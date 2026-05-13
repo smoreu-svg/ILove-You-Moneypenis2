@@ -1693,20 +1693,38 @@ export default function App(){
   const[showNote,setShowNote]=useState(false);
   const[introDone,setIntroDone]=useState(false);
   const[planchePreview,setPlanchePreview]=useState(null);
+  const[started,setStarted]=useState(false);
+  const audioRef=useRef(null);
   const t=T[lang];
+
+  // À la 1ʳᵉ interaction, on amorce l'audio (silencieux play→pause)
+  // pour débloquer iOS Safari, puis on lance l'intro
+  const handleStart=()=>{
+    if(started) return;
+    const a=new Audio("/intro-end.mp3");
+    a.preload="auto";
+    a.muted=true;
+    a.play().then(()=>{
+      a.pause();
+      a.currentTime=0;
+      a.muted=false;
+    }).catch(()=>{a.muted=false;});
+    audioRef.current=a;
+    setStarted(true);
+  };
 
   // Déclenche le son démon à 11,96s (capture de l'aubergine).
   // La transition vers la suite se fait à la FIN du son (event 'ended'),
   // pas à la fin de l'animation. Avec fallback si autoplay bloqué.
   useEffect(()=>{
-    if(introDone||dis) return;
-    const audio=new Audio("/intro-end.mp3");
+    if(!started||introDone||dis) return;
+    const audio=audioRef.current||new Audio("/intro-end.mp3");
     audio.preload="auto";
     const onEnded=()=>setIntroDone(true);
     audio.addEventListener("ended",onEnded);
     const playTm=setTimeout(()=>{
       audio.play().catch(()=>{
-        // Autoplay bloqué (Safari iOS sans interaction) : transition après ~3,2s
+        // Autoplay encore bloqué : transition après ~3,2s
         setTimeout(()=>setIntroDone(true),3200);
       });
     },11960);
@@ -1718,7 +1736,7 @@ export default function App(){
       audio.removeEventListener("ended",onEnded);
       audio.pause();
     };
-  },[introDone,dis]);
+  },[started,introDone,dis]);
   const ed=EDS.find(e=>e.key===et);
   const NAV=["portfolio","video","coffret","chez","shop","bio","presse","parlent","jeu","contact"];
   const GR=["presse","parlent"];
@@ -1845,10 +1863,34 @@ export default function App(){
         .intro-aub   { position: absolute; top: 48.73%; left: 44.58%; width: 43.33%; height: 39.41%;
                        animation: introAub 13s linear forwards; transform-origin: 50% 50%; pointer-events: none; }
         .fade-in    { transition: opacity .8s ease .2s; }
+        @keyframes introBreathe {
+          0%, 100% { opacity: .42; }
+          50%      { opacity: 1;   }
+        }
       `}</style>
 
+      {/* ══ ÉCRAN D'ENTRÉE · débloque l'audio + lance l'intro ═══════════════════ */}
+      {!started&&(
+        <div onClick={handleStart} onTouchStart={handleStart}
+          style={{position:"fixed",inset:0,zIndex:99999,background:"#ffffff",
+            display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",
+            padding:"max(32px,env(safe-area-inset-top,32px)) 24px max(32px,env(safe-area-inset-bottom,32px))",
+            cursor:"pointer",textAlign:"center"}}>
+          <div style={{animation:"introBreathe 2.4s ease-in-out infinite"}}>
+            <p style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",fontWeight:400,
+              fontSize:"clamp(22px,4.5vw,30px)",color:"#1a1a1a",marginBottom:20,lineHeight:1.3}}>
+              Toucher pour entrer
+            </p>
+            <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,fontSize:9,
+              letterSpacing:5,color:"#1a1a1a",textTransform:"uppercase"}}>
+              Tap · Touch · Tocar · Tippen · 點擊 · タップ
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* ══ AGE GATE ══════════════════════════════════════════════════════════ */}
-      {!dis&&(
+      {started&&!dis&&(
         <div style={{position:"fixed",inset:0,zIndex:9999,background:"#ffffff",
           display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",
           padding:"max(32px,env(safe-area-inset-top,32px)) 24px max(32px,env(safe-area-inset-bottom,32px))",
