@@ -1503,11 +1503,11 @@ function PImg({src,ageOk,bz=[],style={},onClick,fit=false}){
   const needsCensor = !ageOk && bz && bz.length > 0;
   const effectiveSrc = needsCensor ? src.replace(/\.jpg$/i, "-censored.jpg") : src;
   const wrapperStyle = fit
-    ? {position:"relative",display:"inline-block",lineHeight:0,
-       maxWidth:"100%",maxHeight:"100%",...style}
+    ? {position:"relative",width:"100%",height:"100%",lineHeight:0,
+       display:"flex",alignItems:"center",justifyContent:"center",...style}
     : {position:"relative",...style};
   const imgStyle = fit
-    ? {maxWidth:"100%",maxHeight:"100%",width:"auto",height:"auto",display:"block",
+    ? {width:"100%",height:"100%",objectFit:"contain",display:"block",
        userSelect:"none",WebkitUserDrag:"none",cursor:onClick?"pointer":"default"}
     : {width:"100%",height:"auto",display:"block",
        userSelect:"none",WebkitUserDrag:"none",cursor:onClick?"pointer":"default"};
@@ -1585,13 +1585,11 @@ function LBox({prints,ci,ageOk,onClose,onPrev,onNext,t,lang}){
         {/* Image */}
         <div ref={imgRef} onClick={handleImgClick}
           style={{flex:1,overflow:"hidden",cursor:zoomed?"zoom-out":"zoom-in",
-            display:"flex",alignItems:"center",justifyContent:"center",background:"#ffffff",
-            padding:"20px"}}>
-          <div style={{transition:"transform .35s ease",
+            background:"#ffffff",position:"relative",minHeight:0}}>
+          <div style={{position:"absolute",inset:"20px",
+            transition:"transform .35s ease",
             transformOrigin:`${zPos.x}% ${zPos.y}%`,
-            transform:zoomed?"scale(2.5)":"scale(1)",
-            maxWidth:"100%",maxHeight:"100%",
-            display:"flex",alignItems:"center",justifyContent:"center"}}>
+            transform:zoomed?"scale(2.5)":"scale(1)"}}>
             <PImg src={p.src} ageOk={ageOk} bz={p.bz} fit={true}/>
           </div>
         </div>
@@ -1755,25 +1753,27 @@ export default function App(){
   },[]);
 
   // Le logo statique navy+blanc est cliquable. Le clic est la "user gesture"
-  // qui amorce silencieusement l'audio (technique iOS Safari : play muet → pause)
-  // puis lance l'animation. Garantit la lecture du son démon plus tard.
+  // qui amorce silencieusement l'audio (muted=true + volume=0 pour double sécurité,
+  // jamais démuté dans le prime → pas de risque de fuite sonore).
   const handleStartLogo=()=>{
     if(started) return;
     const a=new Audio("/intro-end.mp3");
     a.preload="auto";
     a.muted=true;
+    a.volume=0;
     a.play().then(()=>{
       a.pause();
       a.currentTime=0;
-      a.muted=false;
-    }).catch(()=>{a.muted=false;});
+      // NB : on garde muted=true et volume=0 ici. Le vrai play (useEffect)
+      // se chargera de réinitialiser pause→reset→unmute→volume=1→play.
+    }).catch(()=>{});
     audioRef.current=a;
     setStarted(true);
   };
 
-  // Déclenche le son démon à 11,96s (capture de l'aubergine).
-  // La transition vers la suite se fait à la FIN du son (event 'ended'),
-  // pas à la fin de l'animation.
+  // Déclenche le son démon au moment de la capture de l'aubergine.
+  // Reset complet (pause/currentTime=0/unmute/volume=1) AVANT le play
+  // pour éliminer tout risque de double lecture.
   useEffect(()=>{
     if(!started||introDone||dis) return;
     let audioInUse=null;
@@ -1781,6 +1781,10 @@ export default function App(){
       const audio=audioRef.current;
       if(audio){
         audioInUse=audio;
+        audio.pause();
+        audio.currentTime=0;
+        audio.muted=false;
+        audio.volume=1;
         audio.addEventListener("ended",()=>setIntroDone(true),{once:true});
         audio.play().catch(()=>{
           setTimeout(()=>setIntroDone(true),3200);
@@ -1788,9 +1792,8 @@ export default function App(){
       }else{
         setTimeout(()=>setIntroDone(true),3200);
       }
-    },11960);
-    // Failsafe global : si tout échoue, transition forcée à 17s
-    const failTm=setTimeout(()=>setIntroDone(true),17000);
+    },8050);  /* 85% × 9.5s : coïncide avec la capture de l'aubergine */
+    const failTm=setTimeout(()=>setIntroDone(true),13500);
     return()=>{
       clearTimeout(playTm);
       clearTimeout(failTm);
@@ -1831,93 +1834,79 @@ export default function App(){
         input:focus,textarea:focus{border-color:#0a1228;}
         video{display:block;width:100%;}
         @keyframes introWrap {
-          /* I. Apparition explosive · 4 ruptures de rythme en 0,6s */
-          0%   { transform: translate(0,0)              scale(0.05)  rotate(0deg);    animation-timing-function: cubic-bezier(.34,1.1,.64,1); }
-          2%   { transform: translate(0,0)              scale(0.7)   rotate(160deg); }
-          4%   { transform: translate(-18vmin,-22vmin)  scale(0.4)   rotate(300deg);  animation-timing-function: cubic-bezier(.5,0,.5,1); }
-          /* II. Tour rapide des 4 coins · ruptures alternées */
-          6%   { transform: translate( 22vmin,-22vmin)  scale(0.85)  rotate(460deg); }
-          8%   { transform: translate( 25vmin, 20vmin)  scale(0.5)   rotate(640deg);  animation-timing-function: cubic-bezier(.34,1.08,.64,1); }
-          10%  { transform: translate(-25vmin, 22vmin)  scale(1.2)   rotate(820deg); }
-          12%  { transform: translate(-22vmin,-12vmin)  scale(0.55)  rotate(980deg);  animation-timing-function: cubic-bezier(.42,0,.58,1); }
-          /* III. 1ʳᵉ floraison massive · 75vmin · jamais débordée */
-          14%  { transform: translate(0,0)              scale(calc(75vmin/104px)) rotate(1160deg); animation-timing-function: cubic-bezier(.55,0,.45,1); }
-          17%  { transform: translate(0,0)              scale(0.3)   rotate(1360deg); animation-timing-function: ease-in; }
-          /* IV. Foisonnement chaotique · 8 directions (4 cardinaux + 4 diagonaux) */
-          19%  { transform: translate(  0vmin,-25vmin)  scale(0.55)  rotate(1510deg); }                                /* N */
-          21%  { transform: translate( 22vmin,-18vmin)  scale(0.8)   rotate(1640deg); }                                /* NE */
-          23%  { transform: translate( 25vmin,  0vmin)  scale(0.45)  rotate(1770deg); }                                /* E */
-          25%  { transform: translate( 20vmin, 20vmin)  scale(0.95)  rotate(1900deg);  animation-timing-function: cubic-bezier(.5,0,.5,1); }   /* SE */
-          27%  { transform: translate(  0vmin, 25vmin)  scale(0.5)   rotate(2020deg); }                                /* S */
-          29%  { transform: translate(-22vmin, 18vmin)  scale(1.1)   rotate(2140deg);  animation-timing-function: cubic-bezier(.34,1.08,.64,1); } /* SW */
-          31%  { transform: translate(  0vmin,  0vmin)  scale(0.95)  rotate(2160deg); }                                /* recentre upright (6×360) */
-          /* V. Pause « tiens?! » · le cœur va glisser */
-          33%  { transform: translate(0, 0)             scale(1)     rotate(2162deg); }
-          /* VI. Plongeon · attrape le cœur tombant */
-          36%  { transform: translate(0,  5vh)          scale(0.88)  rotate(2170deg); }
-          40%  { transform: translate(0, 14vh)          scale(0.78)  rotate(2180deg);  animation-timing-function: cubic-bezier(.4,0,.2,1); }
-          44%  { transform: translate(0, 23vh)          scale(0.72)  rotate(2195deg); }
-          47%  { transform: translate(0, 28vh)          scale(0.78)  rotate(2215deg);  animation-timing-function: cubic-bezier(.34,1.08,.64,1); }   /* attrape le cœur */
-          /* VII. Remontée triomphale · accélération · overshoot */
-          51%  { transform: translate(0, 14vh)          scale(0.92)  rotate(2300deg);  animation-timing-function: cubic-bezier(.4,0,.4,1); }
-          54%  { transform: translate(0,  3vh)          scale(1.08)  rotate(2440deg); }
-          57%  { transform: translate(0, -3vh)          scale(1.2)   rotate(2580deg);  animation-timing-function: cubic-bezier(.34,1.08,.64,1); }
-          /* VIII. 2ᵉ floraison encore plus massive · 78vmin */
-          60%  { transform: translate(0, 0)             scale(calc(78vmin/104px)) rotate(2720deg); animation-timing-function: cubic-bezier(.55,0,.45,1); }
-          63%  { transform: translate(0, 0)             scale(0.35)  rotate(2900deg);  animation-timing-function: ease-out; }
-          /* IX. Orbital condensé · 3 coins · ruptures */
-          67%  { transform: translate( 24vmin, 16vmin)  scale(0.6)   rotate(3120deg); }                                /* SE */
-          72%  { transform: translate(-22vmin,-18vmin)  scale(0.5)   rotate(3400deg);  animation-timing-function: cubic-bezier(.5,0,.5,1); } /* NW */
-          76%  { transform: translate( 20vmin,-15vmin)  scale(0.85)  rotate(3680deg);  animation-timing-function: cubic-bezier(.34,1.08,.64,1); } /* NE */
-          79%  { transform: translate(  0vmin,  0vmin)  scale(1.15)  rotate(3960deg);  animation-timing-function: cubic-bezier(.34,1.1,.64,1); }   /* recentre upright (11×360) */
-          81%  { transform: translate(0, 0)             scale(1)     rotate(3961deg); }
-          /* X. Tilt « tiens?! » avant le décrochage de l'aubergine */
-          83%  { transform: translate(0, 0)             scale(0.96)  rotate(3963deg); }
-          /* XI. Plongeon · attrape l'aubergine */
-          86%  { transform: translate( 3vw, 12vh)       scale(0.92)  rotate(4005deg);  animation-timing-function: cubic-bezier(.4,0,.2,1); }
-          89%  { transform: translate(0,   22vh)        scale(0.86)  rotate(4070deg); }
-          92%  { transform: translate(0,   18vh)        scale(0.95)  rotate(4160deg);  animation-timing-function: cubic-bezier(.34,1.08,.64,1); }
-          /* XII. Remontée et apothéose finale */
-          95%  { transform: translate(0,    6vh)        scale(1.12)  rotate(4320deg);  animation-timing-function: cubic-bezier(.4,0,.4,1); }
-          98%  { transform: translate(0,   -2vh)        scale(1.18)  rotate(4540deg);  animation-timing-function: cubic-bezier(.34,1.08,.64,1); }
-          100% { transform: translate(0, 0)             scale(1)     rotate(4680deg); }                                /* upright (13×360) */
+          /* I. Apparition explosive · tour des 4 coins continu (0-14%) */
+          0%   { transform: translate(0,0)              scale(0.05) rotate(0deg);    animation-timing-function: cubic-bezier(.34,1.08,.64,1); }
+          3%   { transform: translate(-18vmin,-20vmin)  scale(0.45) rotate(220deg); }
+          7%   { transform: translate( 22vmin,-18vmin)  scale(0.8)  rotate(500deg); }
+          10%  { transform: translate( 22vmin, 18vmin)  scale(0.55) rotate(760deg); }
+          14%  { transform: translate(-22vmin, 20vmin)  scale(1.0)  rotate(1040deg); }
+          /* II. 1ʳᵉ floraison fluide puis resserrement (14-22%) */
+          17%  { transform: translate(0,0)              scale(calc(75vmin/104px)) rotate(1240deg); animation-timing-function: cubic-bezier(.42,0,.58,1); }
+          20%  { transform: translate(-8vmin, 0)        scale(0.55) rotate(1420deg); }
+          /* III. Plongée continue pour le cœur (22-38%) */
+          23%  { transform: translate(0,  3vh)          scale(0.62) rotate(1560deg); }
+          27%  { transform: translate(0, 10vh)          scale(0.68) rotate(1700deg); }
+          31%  { transform: translate(0, 18vh)          scale(0.72) rotate(1840deg); }
+          35%  { transform: translate(0, 24vh)          scale(0.76) rotate(1980deg); }
+          38%  { transform: translate(0, 28vh)          scale(0.78) rotate(2080deg); }   /* attrape le cœur */
+          /* IV. Remontée continue (38-52%) */
+          42%  { transform: translate(0, 18vh)          scale(0.85) rotate(2220deg); }
+          46%  { transform: translate(0,  6vh)          scale(0.98) rotate(2380deg); }
+          50%  { transform: translate(0, -3vh)          scale(1.12) rotate(2540deg); }
+          /* V. 2ᵉ floraison fluide puis resserrement (52-60%) */
+          54%  { transform: translate(0,0)              scale(calc(78vmin/104px)) rotate(2700deg); animation-timing-function: cubic-bezier(.42,0,.58,1); }
+          58%  { transform: translate( 8vmin, 0)        scale(0.5)  rotate(2880deg); }
+          /* VI. Tournoiement continu en figure 8 (60-75%) */
+          62%  { transform: translate( 22vmin, 12vmin)  scale(0.6)  rotate(3020deg); }
+          66%  { transform: translate(-22vmin, 14vmin)  scale(0.85) rotate(3180deg); }
+          70%  { transform: translate(-20vmin,-16vmin)  scale(0.55) rotate(3340deg); }
+          74%  { transform: translate( 18vmin,-12vmin)  scale(0.9)  rotate(3500deg); }
+          /* VII. Plongée continue pour l'aubergine (75-85%) */
+          77%  { transform: translate( 4vw,  6vh)       scale(0.92) rotate(3640deg); }
+          81%  { transform: translate(0,   17vh)        scale(0.88) rotate(3780deg); }
+          85%  { transform: translate(0,   23vh)        scale(0.92) rotate(3920deg); }   /* attrape l'aubergine · son démarre */
+          /* VIII. Remontée fluide et pose finale (85-100%) */
+          89%  { transform: translate(0, 13vh)          scale(1.02) rotate(4080deg); }
+          93%  { transform: translate(0,  3vh)          scale(1.12) rotate(4260deg); }
+          97%  { transform: translate(0, -1vh)          scale(1.15) rotate(4400deg); }
+          100% { transform: translate(0, 0)             scale(1)    rotate(4500deg); }
         }
         @keyframes heartFall {
-          /* 0→33% : accroché au logo (aucun décalage propre) */
-          0%, 33% { transform: translate(0,0) rotate(0deg); }
-          /* 34→47% : décrochage et chute zigzag tournoyante */
-          34%    { transform: translate(4%, 3%)   rotate(30deg) scale(1.08); }                                   /* petit rebond initial */
-          37%    { transform: translate(-8%,11vh) rotate(120deg); }                                              /* zigzag à gauche */
-          40%    { transform: translate(7%, 18vh) rotate(210deg); }                                              /* zigzag à droite */
-          43%    { transform: translate(-5%,25vh) rotate(290deg) scale(0.92); }
-          46%    { transform: translate(2%, 28vh) rotate(340deg) scale(1.05); }                                  /* attrapé · micro-rebond */
-          47%    { transform: translate(0,  28vh) rotate(355deg); }
-          /* 48→57% : retour à sa place, le wrapper remonte */
-          51%    { transform: translate(0,  14vh) rotate(360deg); }
-          55%    { transform: translate(0,   4vh) rotate(360deg); }
-          57%,100% { transform: translate(0,0)    rotate(360deg); }
+          /* 0→22% : accroché au logo */
+          0%, 22% { transform: translate(0,0) rotate(0deg); }
+          /* 23→38% : décrochage et chute continue */
+          24%    { transform: translate( 4%, 3%)   rotate(25deg); }
+          28%    { transform: translate(-5%,10vh)  rotate(100deg); }
+          32%    { transform: translate( 5%,18vh)  rotate(190deg); }
+          36%    { transform: translate(-2%,24vh)  rotate(280deg); }
+          38%    { transform: translate(0,  28vh)  rotate(320deg); }
+          /* 38→50% : remontée avec le wrap */
+          42%    { transform: translate(0,  18vh)  rotate(340deg); }
+          46%    { transform: translate(0,   6vh)  rotate(355deg); }
+          50%,100% { transform: translate(0,0)     rotate(360deg); }
         }
         @keyframes introAub {
-          /* 0→81% : accrochée au logo */
-          0%, 81% { transform: translate(0,0) rotate(0deg); }
-          /* 82→92% : décrochage et chute oblique zigzag */
-          83%    { transform: translate(4%, 4%)    rotate(-25deg) scale(1.08); }                                 /* rebond initial */
-          86%    { transform: translate(10%,13vh)  rotate(-100deg); }                                            /* zigzag à droite */
-          89%    { transform: translate(-6%,21vh)  rotate(-200deg); }                                            /* zigzag à gauche */
-          92%    { transform: translate(0,  19vh)  rotate(-280deg) scale(1.05); }                                /* attrapée · micro-rebond */
-          /* 93→100% : retour à sa place */
-          95%    { transform: translate(0,   8vh)  rotate(-330deg); }
-          98%    { transform: translate(0,  -1vh)  rotate(-355deg); }
+          /* 0→74% : accrochée au logo */
+          0%, 74% { transform: translate(0,0) rotate(0deg); }
+          /* 75→85% : décrochage et chute continue */
+          76%    { transform: translate( 3%, 3%)   rotate(-20deg); }
+          79%    { transform: translate( 8%, 9vh)  rotate(-90deg); }
+          82%    { transform: translate(-4%,17vh)  rotate(-180deg); }
+          85%    { transform: translate(0,  23vh)  rotate(-260deg); }
+          /* 85→100% : retour à sa place */
+          89%    { transform: translate(0,  13vh)  rotate(-310deg); }
+          93%    { transform: translate(0,   3vh)  rotate(-340deg); }
+          97%    { transform: translate(0,  -1vh)  rotate(-355deg); }
           100%   { transform: translate(0,0)       rotate(-360deg); }
         }
         .intro-stage { position: relative; width: 104px; height: 104px; flex-shrink: 0; }
-        .intro-wrap  { position: absolute; inset: 0; animation: introWrap 13s linear forwards; transform-origin: 50% 50%; }
+        .intro-wrap  { position: absolute; inset: 0; animation: introWrap 9.5s linear forwards; transform-origin: 50% 50%; }
         .intro-base  { position: absolute; inset: 0; width: 100%; height: 100%;
                        border-radius: 50%; border: 1px solid #0a1228; object-fit: cover; object-position: center; }
         .intro-heart { position: absolute; top: 17.80%; left: 48.75%; width: 29.58%; height: 47.46%;
-                       animation: heartFall 13s linear forwards; transform-origin: 50% 50%; pointer-events: none; }
+                       animation: heartFall 9.5s linear forwards; transform-origin: 50% 50%; pointer-events: none; }
         .intro-aub   { position: absolute; top: 48.73%; left: 44.58%; width: 43.33%; height: 39.41%;
-                       animation: introAub 13s linear forwards; transform-origin: 50% 50%; pointer-events: none; }
+                       animation: introAub 9.5s linear forwards; transform-origin: 50% 50%; pointer-events: none; }
         .fade-in    { transition: opacity .8s ease .2s; }
         @keyframes introPulse {
           0%, 100% { box-shadow: 0 0 0 0 rgba(10,18,40,.25); }
@@ -2504,57 +2493,200 @@ export default function App(){
             <h2 style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",
               fontWeight:400,fontSize:"clamp(20px,4vw,38px)"}}>{t.st}</h2>
           </div>
-          <div style={{display:"flex",borderBottom:"1px solid #0a1228",marginBottom:28}}>
-            {EDS.map(e=>(
-              <button key={e.key} onClick={()=>setEt(e.key)}
+
+          {/* Tabs : 3 catégories (PF / GF / Planches à l'unité) */}
+          <div style={{display:"flex",borderBottom:"1px solid #0a1228",marginBottom:28,
+            flexWrap:"wrap"}}>
+            {[{k:"pf",lbl:t.pft},{k:"gf",lbl:t.gft},{k:"single",lbl:t.siPl}].map(tab=>(
+              <button key={tab.k} onClick={()=>setEt(tab.k)}
                 style={{background:"none",border:"none",
-                  borderBottom:et===e.key?"1px solid #0a1228":"1px solid transparent",
-                  color:et===e.key?"#0a1228":"#0a1228",padding:"9px 22px",fontSize:9,
-                  letterSpacing:3,cursor:"pointer",fontFamily:"'Space Grotesk',sans-serif",
-                  fontWeight:400,textTransform:"uppercase",transition:"all .2s",marginBottom:-1}}>
-                {e.key==="pf"?t.pft:t.gft}
+                  borderBottom:et===tab.k?"2px solid #0a1228":"2px solid transparent",
+                  color:"#0a1228",padding:"9px 18px",fontSize:9,letterSpacing:3,
+                  cursor:"pointer",fontFamily:"'Space Grotesk',sans-serif",
+                  fontWeight:et===tab.k?500:400,
+                  textTransform:"uppercase",transition:"all .2s",marginBottom:-1}}>
+                {tab.lbl}
               </button>
             ))}
           </div>
-          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:24,marginBottom:8,
-            padding:18,background:"#ffffff",border:"1px solid #0a1228",alignItems:"center"}}>
-            <img src={et==="pf"?IMG.coffret_pf_print:IMG.coffret_gf_closed} alt=""
-              draggable={false} onContextMenu={e=>e.preventDefault()}
-              style={{width:"100%",display:"block"}}/>
-            <div>
-              <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,fontSize:8,
-                letterSpacing:4,color:"#0a1228",marginBottom:8,textTransform:"uppercase"}}>
-                {et==="pf"?t.pft:t.gft}
-              </p>
-              <p style={{fontSize:13,fontWeight:400,color:"#0a1228",marginBottom:5}}>
-                {et==="pf"?t.pfc:t.gfc}
-              </p>
-              <p style={{color:"#0a1228",fontSize:11,marginBottom:5,
-                fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>{t.sg}</p>
-              <p style={{color:"#0a1228",fontSize:9,
-                fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>
-                {et==="pf"?t.pfi:t.gfi}
-              </p>
-            </div>
-          </div>
-          <SRow label={et==="pf"?t.p1:t.p3} price={ed.pr.port}
-            rem={ed.rm.port} total={ed.rm.tot} cta={t.by}/>
-          <SRow label={et==="pf"?t.p2:t.p4} price={ed.pr.single}
-            rem={99} total={110} cta={t.rv}/>
-          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(210px,1fr))",
-            gap:2,marginTop:32}}>
-            {[{ti:t.sh,bo:t.sb},{ti:t.py,bo:t.pb},{ti:t.co,bo:t.cb}].map(c=>(
-              <div key={c.ti} style={{background:"#ffffff",border:"1px solid #0a1228",
-                padding:"18px 16px"}}>
-                <p style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",
-                  fontSize:15,fontWeight:400,marginBottom:8}}>{c.ti}</p>
-                <p style={{color:"#0a1228",fontSize:12,lineHeight:1.9,
-                  whiteSpace:"pre-line",fontWeight:400}}>{c.bo}</p>
+
+          {/* Catégorie : COFFRET (PF ou GF) */}
+          {(et==="pf"||et==="gf")&&ed&&(
+            <>
+              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:24,marginBottom:8,
+                padding:18,background:"#ffffff",alignItems:"center"}}>
+                <img src={et==="pf"?IMG.coffret_pf_print:IMG.coffret_gf_closed} alt=""
+                  draggable={false} onContextMenu={e=>e.preventDefault()}
+                  style={{width:"100%",display:"block"}}/>
+                <div>
+                  <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,fontSize:8,
+                    letterSpacing:4,color:"#0a1228",marginBottom:8,textTransform:"uppercase"}}>
+                    {et==="pf"?t.pft:t.gft}
+                  </p>
+                  <p style={{fontSize:13,fontWeight:400,color:"#0a1228",marginBottom:5}}>
+                    {et==="pf"?t.pfc:t.gfc}
+                  </p>
+                  <p style={{color:"#0a1228",fontSize:11,marginBottom:5,
+                    fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>{t.sg}</p>
+                  <p style={{color:"#0a1228",fontSize:9,
+                    fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>
+                    {et==="pf"?t.pfi:t.gfi}
+                  </p>
+                </div>
               </div>
-            ))}
+              {(()=>{
+                const label=et==="pf"?t.p1:t.p3;
+                const price=ed.pr.port;
+                const body=`${label}\n${price} €`;
+                const href=`mailto:smoreu@mac.com?subject=${encodeURIComponent(t.st+" — "+label)}&body=${encodeURIComponent(body)}`;
+                const pct=Math.round(((ed.rm.tot-ed.rm.port)/ed.rm.tot)*100);
+                return(
+                  <div style={{padding:"18px 0",borderBottom:"1px solid #0a1228"}}>
+                    <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",
+                      flexWrap:"wrap",gap:12}}>
+                      <div>
+                        <p style={{color:"#0a1228",fontSize:13,fontWeight:400}}>{label}</p>
+                        <div style={{display:"flex",alignItems:"center",gap:8,marginTop:5}}>
+                          <div style={{width:70,height:1,background:"#0a1228"}}>
+                            <div style={{width:`${pct}%`,height:"100%",background:"#0a1228"}}/>
+                          </div>
+                          <span style={{color:"#0a1228",fontSize:9,
+                            fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>
+                            {ed.rm.port}/{ed.rm.tot}
+                          </span>
+                        </div>
+                      </div>
+                      <div style={{display:"flex",alignItems:"center",gap:12}}>
+                        <span style={{fontFamily:"'Libre Baskerville',serif",fontSize:22,
+                          color:"#0a1228"}}>
+                          {price.toLocaleString()} €
+                        </span>
+                        <a href={href}
+                          style={{background:"transparent",border:"1px solid #0a1228",
+                            color:"#0a1228",padding:"7px 18px",fontSize:9,letterSpacing:2,
+                            cursor:"pointer",transition:"all .2s",
+                            fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,
+                            textTransform:"uppercase",textDecoration:"none",
+                            display:"inline-block"}}>
+                          ✉ {t.siInq}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })()}
+            </>
+          )}
+
+          {/* Catégorie : PLANCHES À L'UNITÉ */}
+          {et==="single"&&(
+            <>
+              <p style={{color:"#0a1228",fontSize:11,letterSpacing:1,marginBottom:20,
+                fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>
+                {t.siPick}
+              </p>
+              <div style={{display:"grid",
+                gridTemplateColumns:"repeat(auto-fit,minmax(140px,1fr))",gap:14,marginBottom:30}}>
+                {PRINTS.map((p,idx)=>(
+                  <div key={p.id} onClick={()=>setPlanchePreview(idx)}
+                    style={{cursor:"pointer",background:"#ffffff",
+                      transition:"transform .2s ease"}}
+                    onMouseEnter={e=>e.currentTarget.style.transform="scale(1.03)"}
+                    onMouseLeave={e=>e.currentTarget.style.transform="scale(1)"}>
+                    <PImg src={p.src} ageOk={ageOk} bz={p.bz}/>
+                    <p style={{padding:"6px 4px 2px",color:"#0a1228",fontSize:9,
+                      letterSpacing:2,textAlign:"center",
+                      fontFamily:"'Space Grotesk',sans-serif",fontWeight:500,
+                      textTransform:"uppercase"}}>
+                      I.L.Y.M. · {p.num}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+
+          {/* Bandeau bas : tarifs TTC · contact · pro · RGPD */}
+          <div style={{marginTop:36,padding:"22px 0",borderTop:"1px solid #0a1228"}}>
+            <p style={{color:"#0a1228",fontSize:10,letterSpacing:2,marginBottom:14,
+              fontFamily:"'Space Grotesk',sans-serif",fontWeight:500,
+              textTransform:"uppercase"}}>{t.siNote}</p>
+            <p style={{color:"#0a1228",fontSize:13,marginBottom:14,lineHeight:1.7,
+              fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>{t.siCont}</p>
+            <p style={{color:"#0a1228",fontSize:12,marginBottom:14,lineHeight:1.7,
+              fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,fontStyle:"italic"}}>
+              {t.siPro}
+            </p>
+            <p style={{color:"#0a1228",fontSize:10,lineHeight:1.7,
+              fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,opacity:0.75}}>
+              {t.siRgpd}
+            </p>
           </div>
         </div>
       )}
+
+      {/* ══ MODAL PLANCHE À L'UNITÉ (sélection format + mailto) ════════════════ */}
+      {typeof planchePreview==="number"&&PRINTS[planchePreview]&&(()=>{
+        const p=PRINTS[planchePreview];
+        const subject=`${t.st} — I.L.Y.M. ${p.num}`;
+        return(
+          <div onClick={()=>setPlanchePreview(null)}
+            style={{position:"fixed",inset:0,zIndex:9998,
+              background:"rgba(10,18,40,0.92)",
+              display:"flex",alignItems:"center",justifyContent:"center",padding:20,
+              overflowY:"auto"}}>
+            <div onClick={e=>e.stopPropagation()}
+              style={{maxWidth:680,width:"100%",background:"#ffffff",padding:24,
+                position:"relative",maxHeight:"95vh",overflowY:"auto"}}>
+              <button onClick={()=>setPlanchePreview(null)}
+                style={{position:"absolute",top:10,right:14,background:"none",
+                  border:"none",color:"#0a1228",fontSize:24,cursor:"pointer",
+                  lineHeight:1,padding:4,zIndex:2}}>×</button>
+              <div style={{marginBottom:18}}>
+                <PImg src={p.src} ageOk={ageOk} bz={p.bz}/>
+              </div>
+              <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:500,fontSize:11,
+                letterSpacing:3,color:"#0a1228",textTransform:"uppercase",marginBottom:6}}>
+                I.L.Y.M. · {p.num}
+              </p>
+              <p style={{fontSize:11,color:"#0a1228",marginBottom:18,
+                fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>{p.tech}</p>
+              <p style={{fontSize:10,letterSpacing:2,color:"#0a1228",marginBottom:14,
+                fontFamily:"'Space Grotesk',sans-serif",fontWeight:500,
+                textTransform:"uppercase"}}>{t.siCh}</p>
+              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:18}}>
+                {EDS.map(e=>{
+                  const body=`${t.st}\n\nI.L.Y.M. ${p.num}\n${e.key==="pf"?t.pft:t.gft}\n${e.pr.single} €`;
+                  const href=`mailto:smoreu@mac.com?subject=${encodeURIComponent(subject+" — "+(e.key==="pf"?t.pft:t.gft))}&body=${encodeURIComponent(body)}`;
+                  return(
+                    <a key={e.key} href={href}
+                      style={{display:"block",padding:"14px 12px",background:"#0a1228",
+                        color:"#ffffff",textAlign:"center",textDecoration:"none",
+                        fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,
+                        fontSize:11,letterSpacing:1,lineHeight:1.5}}>
+                      <span style={{display:"block",fontSize:9,letterSpacing:3,
+                        textTransform:"uppercase",marginBottom:4,opacity:0.7}}>
+                        {e.key==="pf"?t.pft:t.gft}
+                      </span>
+                      <span style={{fontFamily:"'Libre Baskerville',serif",fontSize:18}}>
+                        {e.pr.single} €
+                      </span>
+                      <span style={{display:"block",fontSize:8,letterSpacing:2,
+                        textTransform:"uppercase",marginTop:4,opacity:0.7}}>
+                        ✉ {t.siInq}
+                      </span>
+                    </a>
+                  );
+                })}
+              </div>
+              <p style={{fontSize:9,color:"#0a1228",opacity:0.7,
+                fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,lineHeight:1.6}}>
+                {t.siNote}
+              </p>
+            </div>
+          </div>
+        );
+      })()}
 
       {/* ══ BIO ══════════════════════════════════════════════════════════════ */}
       {sec==="bio"&&(
