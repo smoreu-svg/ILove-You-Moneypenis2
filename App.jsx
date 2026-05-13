@@ -1804,7 +1804,7 @@ export default function App(){
           98%    { transform: translate(0,  -1vh) rotate(-345deg); }
           100%   { transform: translate(0,0)     rotate(-360deg); }
         }
-        .intro-stage { position: relative; width: 104px; height: 104px; }
+        .intro-stage { position: relative; width: 104px; height: 104px; flex-shrink: 0; }
         .intro-wrap  { position: absolute; inset: 0; animation: introWrap 13s linear forwards; transform-origin: 50% 50%; }
         .intro-base  { position: absolute; inset: 0; width: 100%; height: 100%;
                        border-radius: 50%; border: 1px solid #cfcbc4; object-fit: cover; object-position: center; }
