@@ -1695,12 +1695,30 @@ export default function App(){
   const[planchePreview,setPlanchePreview]=useState(null);
   const t=T[lang];
 
-  // Fallback : si onAnimationEnd ne fire pas, force introDone après 13.3s
+  // Déclenche le son démon à 11,96s (capture de l'aubergine).
+  // La transition vers la suite se fait à la FIN du son (event 'ended'),
+  // pas à la fin de l'animation. Avec fallback si autoplay bloqué.
   useEffect(()=>{
-    if(introDone) return;
-    const tm=setTimeout(()=>setIntroDone(true),13300);
-    return ()=>clearTimeout(tm);
-  },[introDone]);
+    if(introDone||dis) return;
+    const audio=new Audio("/intro-end.mp3");
+    audio.preload="auto";
+    const onEnded=()=>setIntroDone(true);
+    audio.addEventListener("ended",onEnded);
+    const playTm=setTimeout(()=>{
+      audio.play().catch(()=>{
+        // Autoplay bloqué (Safari iOS sans interaction) : transition après ~3,2s
+        setTimeout(()=>setIntroDone(true),3200);
+      });
+    },11960);
+    // Failsafe global : si tout échoue, transition forcée à 17s
+    const failTm=setTimeout(()=>setIntroDone(true),17000);
+    return ()=>{
+      clearTimeout(playTm);
+      clearTimeout(failTm);
+      audio.removeEventListener("ended",onEnded);
+      audio.pause();
+    };
+  },[introDone,dis]);
   const ed=EDS.find(e=>e.key===et);
   const NAV=["portfolio","video","coffret","chez","shop","bio","presse","parlent","jeu","contact"];
   const GR=["presse","parlent"];
@@ -1735,76 +1753,90 @@ export default function App(){
         input:focus,textarea:focus{border-color:#1a1a1a;}
         video{display:block;width:100%;}
         @keyframes introWrap {
-          /* I. Apparition · spin rapide · taille rapide */
-          0%   { transform: scale(0.08)              rotate(0deg);                                                animation-timing-function: ease-out; }
-          5%   { transform: scale(0.5)               rotate(180deg); }
-          10%  { transform: scale(1.0)               rotate(360deg);                                              animation-timing-function: cubic-bezier(.7,0,.4,1); }
-          /* II. 1ʳᵉ floraison centrée (≈72vmin, contenue) */
-          14%  { transform: scale(calc(min(72vw,72vh)/104px))  rotate(540deg);                                    animation-timing-function: cubic-bezier(.85,0,.15,1); }
-          18%  { transform: scale(0.35)              rotate(640deg);                                              animation-timing-function: ease-in; }
-          /* III. Zigzag · retour au centre upright pour le drop du cœur */
-          22%  { transform: translate(13vw,-10vh) scale(0.6)  rotate(680deg); }
-          26%  { transform: translate(-13vw, 8vh) scale(0.55) rotate(710deg); }
-          30%  { transform: translate(0,0)        scale(0.85) rotate(720deg); }                                  /* upright (360×2) */
-          /* IV. Tiens ?! Le cœur glisse · le logo se fige */
-          33%  { transform: translate(0,0)        scale(0.85) rotate(722deg); }                                  /* pause surprise */
-          /* V. Plongeon vers le cœur tombé */
-          36%  { transform: translate(0, 4vh)     scale(0.78) rotate(725deg); }
-          40%  { transform: translate(0,12vh)     scale(0.72) rotate(727deg); }
-          44%  { transform: translate(0,22vh)     scale(0.7)  rotate(728deg);                                    animation-timing-function: cubic-bezier(.4,0,.2,1); }
-          47%  { transform: translate(0,28vh)     scale(0.72) rotate(730deg); }                                  /* attrape le cœur */
-          /* VI. Remontée avec le cœur · accélération rotation */
-          51%  { transform: translate(0,12vh)     scale(0.8)  rotate(750deg);                                    animation-timing-function: cubic-bezier(.4,0,.4,1); }
-          55%  { transform: translate(0,0)        scale(0.95) rotate(800deg);                                    animation-timing-function: cubic-bezier(.34,1.3,.64,1); }
-          57%  { transform: translate(0,-2vh)     scale(1.05) rotate(830deg); }                                  /* petit overshoot */
-          /* VII. 2ᵉ floraison centrée (≈75vmin) */
-          62%  { transform: scale(calc(min(75vw,75vh)/104px)) rotate(1020deg);                                   animation-timing-function: cubic-bezier(.7,0,.3,1); }
-          66%  { transform: scale(0.3)              rotate(1200deg); }
-          /* VIII. Orbital court · spin très rapide */
-          70%  { transform: translate(10vw, 8vh)  scale(0.6)  rotate(1320deg); }
-          74%  { transform: translate(-10vw, 8vh) scale(0.6)  rotate(1410deg); }
-          77%  { transform: translate(0,0)        scale(1.1)  rotate(1440deg);                                   animation-timing-function: cubic-bezier(.34,1.4,.64,1); }   /* upright (360×4) */
-          79%  { transform: scale(0.95)             rotate(1442deg); }
-          81%  { transform: scale(1)                rotate(1443deg); }                                            /* settled (fausse fin) */
-          /* IX. Tilt « tiens?! » au moment où l'aubergine se détache */
-          83%  { transform: scale(0.97)             rotate(1441deg); }
-          /* X. Plongeon vers l'aubergine tombée */
-          86%  { transform: translate(2vw, 14vh)  scale(0.92) rotate(1444deg);                                   animation-timing-function: cubic-bezier(.4,0,.2,1); }
-          89%  { transform: translate(0,  22vh)   scale(0.9)  rotate(1447deg); }
-          92%  { transform: translate(0,  18vh)   scale(0.95) rotate(1450deg); }                                 /* attrape l'aubergine */
-          /* XI. Remontée et pose finale */
-          96%  { transform: translate(0,  6vh)    scale(1.05) rotate(1620deg);                                   animation-timing-function: cubic-bezier(.4,0,.4,1); }
-          98%  { transform: translate(0, -1vh)    scale(1.08) rotate(1730deg);                                   animation-timing-function: cubic-bezier(.34,1.3,.64,1); }
-          100% { transform: translate(0, 0)       scale(1)    rotate(1800deg); }                                  /* upright (360×5) */
+          /* I. Apparition explosive · 4 ruptures de rythme en 0,6s */
+          0%   { transform: translate(0,0)              scale(0.05)  rotate(0deg);    animation-timing-function: cubic-bezier(.34,1.5,.64,1); }
+          2%   { transform: translate(0,0)              scale(0.7)   rotate(160deg); }
+          4%   { transform: translate(-18vmin,-22vmin)  scale(0.4)   rotate(300deg);  animation-timing-function: cubic-bezier(.7,0,.3,1); }
+          /* II. Tour rapide des 4 coins · ruptures alternées */
+          6%   { transform: translate( 22vmin,-22vmin)  scale(0.85)  rotate(460deg); }
+          8%   { transform: translate( 25vmin, 20vmin)  scale(0.5)   rotate(640deg);  animation-timing-function: cubic-bezier(.34,1.3,.64,1); }
+          10%  { transform: translate(-25vmin, 22vmin)  scale(1.2)   rotate(820deg); }
+          12%  { transform: translate(-22vmin,-12vmin)  scale(0.55)  rotate(980deg);  animation-timing-function: cubic-bezier(.4,0,.6,1); }
+          /* III. 1ʳᵉ floraison massive · 75vmin · jamais débordée */
+          14%  { transform: translate(0,0)              scale(calc(75vmin/104px)) rotate(1160deg); animation-timing-function: cubic-bezier(.85,0,.15,1); }
+          17%  { transform: translate(0,0)              scale(0.3)   rotate(1360deg); animation-timing-function: ease-in; }
+          /* IV. Foisonnement chaotique · 8 directions (4 cardinaux + 4 diagonaux) */
+          19%  { transform: translate(  0vmin,-25vmin)  scale(0.55)  rotate(1510deg); }                                /* N */
+          21%  { transform: translate( 22vmin,-18vmin)  scale(0.8)   rotate(1640deg); }                                /* NE */
+          23%  { transform: translate( 25vmin,  0vmin)  scale(0.45)  rotate(1770deg); }                                /* E */
+          25%  { transform: translate( 20vmin, 20vmin)  scale(0.95)  rotate(1900deg);  animation-timing-function: cubic-bezier(.7,0,.3,1); }   /* SE */
+          27%  { transform: translate(  0vmin, 25vmin)  scale(0.5)   rotate(2020deg); }                                /* S */
+          29%  { transform: translate(-22vmin, 18vmin)  scale(1.1)   rotate(2140deg);  animation-timing-function: cubic-bezier(.34,1.3,.64,1); } /* SW */
+          31%  { transform: translate(  0vmin,  0vmin)  scale(0.95)  rotate(2160deg); }                                /* recentre upright (6×360) */
+          /* V. Pause « tiens?! » · le cœur va glisser */
+          33%  { transform: translate(0, 0)             scale(1)     rotate(2162deg); }
+          /* VI. Plongeon · attrape le cœur tombant */
+          36%  { transform: translate(0,  5vh)          scale(0.88)  rotate(2170deg); }
+          40%  { transform: translate(0, 14vh)          scale(0.78)  rotate(2180deg);  animation-timing-function: cubic-bezier(.4,0,.2,1); }
+          44%  { transform: translate(0, 23vh)          scale(0.72)  rotate(2195deg); }
+          47%  { transform: translate(0, 28vh)          scale(0.78)  rotate(2215deg);  animation-timing-function: cubic-bezier(.34,1.3,.64,1); }   /* attrape le cœur */
+          /* VII. Remontée triomphale · accélération · overshoot */
+          51%  { transform: translate(0, 14vh)          scale(0.92)  rotate(2300deg);  animation-timing-function: cubic-bezier(.4,0,.4,1); }
+          54%  { transform: translate(0,  3vh)          scale(1.08)  rotate(2440deg); }
+          57%  { transform: translate(0, -3vh)          scale(1.2)   rotate(2580deg);  animation-timing-function: cubic-bezier(.34,1.3,.64,1); }
+          /* VIII. 2ᵉ floraison encore plus massive · 78vmin */
+          60%  { transform: translate(0, 0)             scale(calc(78vmin/104px)) rotate(2720deg); animation-timing-function: cubic-bezier(.85,0,.15,1); }
+          63%  { transform: translate(0, 0)             scale(0.35)  rotate(2900deg);  animation-timing-function: ease-out; }
+          /* IX. Orbital chaotique · 7 points en 1,8s · ruptures */
+          65%  { transform: translate( 22vmin, 12vmin)  scale(0.55)  rotate(3050deg); }
+          67%  { transform: translate(-22vmin, 18vmin)  scale(0.65)  rotate(3200deg); }
+          69%  { transform: translate(-25vmin, -8vmin)  scale(0.45)  rotate(3350deg);  animation-timing-function: cubic-bezier(.7,0,.3,1); }
+          71%  { transform: translate(  0vmin,-22vmin)  scale(0.8)   rotate(3490deg); }
+          73%  { transform: translate( 22vmin,-18vmin)  scale(0.5)   rotate(3620deg); }
+          75%  { transform: translate( 18vmin, 18vmin)  scale(0.9)   rotate(3740deg);  animation-timing-function: cubic-bezier(.34,1.3,.64,1); }
+          77%  { transform: translate(-18vmin, 16vmin)  scale(0.65)  rotate(3840deg); }
+          79%  { transform: translate(  0vmin,  0vmin)  scale(1.15)  rotate(3960deg);  animation-timing-function: cubic-bezier(.34,1.4,.64,1); }   /* fausse fin (11×360) */
+          81%  { transform: translate(0, 0)             scale(1)     rotate(3961deg); }
+          /* X. Tilt « tiens?! » avant le décrochage de l'aubergine */
+          83%  { transform: translate(0, 0)             scale(0.96)  rotate(3963deg); }
+          /* XI. Plongeon · attrape l'aubergine */
+          86%  { transform: translate( 3vw, 12vh)       scale(0.92)  rotate(4005deg);  animation-timing-function: cubic-bezier(.4,0,.2,1); }
+          89%  { transform: translate(0,   22vh)        scale(0.86)  rotate(4070deg); }
+          92%  { transform: translate(0,   18vh)        scale(0.95)  rotate(4160deg);  animation-timing-function: cubic-bezier(.34,1.3,.64,1); }
+          /* XII. Remontée et apothéose finale */
+          95%  { transform: translate(0,    6vh)        scale(1.12)  rotate(4320deg);  animation-timing-function: cubic-bezier(.4,0,.4,1); }
+          98%  { transform: translate(0,   -2vh)        scale(1.18)  rotate(4540deg);  animation-timing-function: cubic-bezier(.34,1.3,.64,1); }
+          100% { transform: translate(0, 0)             scale(1)     rotate(4680deg); }                                /* upright (13×360) */
         }
         @keyframes heartFall {
           /* 0→33% : accroché au logo (aucun décalage propre) */
           0%, 33% { transform: translate(0,0) rotate(0deg); }
-          /* 34→47% : décrochage et chute tournoyante */
-          34%    { transform: translate(3%, 5%)   rotate(20deg); }
-          37%    { transform: translate(-2%, 12vh) rotate(90deg); }
-          41%    { transform: translate(4%, 22vh)  rotate(180deg); }
-          45%    { transform: translate(-2%, 27vh) rotate(260deg) scale(0.95); }
-          47%    { transform: translate(0,  28vh)  rotate(310deg) scale(1.05); }                                /* attrapé · micro-rebond */
+          /* 34→47% : décrochage et chute zigzag tournoyante */
+          34%    { transform: translate(4%, 3%)   rotate(30deg) scale(1.08); }                                   /* petit rebond initial */
+          37%    { transform: translate(-8%,11vh) rotate(120deg); }                                              /* zigzag à gauche */
+          40%    { transform: translate(7%, 18vh) rotate(210deg); }                                              /* zigzag à droite */
+          43%    { transform: translate(-5%,25vh) rotate(290deg) scale(0.92); }
+          46%    { transform: translate(2%, 28vh) rotate(340deg) scale(1.05); }                                  /* attrapé · micro-rebond */
+          47%    { transform: translate(0,  28vh) rotate(355deg); }
           /* 48→57% : retour à sa place, le wrapper remonte */
-          51%    { transform: translate(0,  14vh)  rotate(345deg); }
-          55%    { transform: translate(0,   4vh)  rotate(355deg); }
-          57%,100% { transform: translate(0,0)     rotate(360deg); }
+          51%    { transform: translate(0,  14vh) rotate(360deg); }
+          55%    { transform: translate(0,   4vh) rotate(360deg); }
+          57%,100% { transform: translate(0,0)    rotate(360deg); }
         }
         @keyframes introAub {
           /* 0→81% : accrochée au logo */
           0%, 81% { transform: translate(0,0) rotate(0deg); }
-          /* 82→92% : décrochage et chute oblique vers le bas-droite */
-          83%    { transform: translate(3%, 5%)   rotate(-15deg); }
-          86%    { transform: translate(8%, 14vh) rotate(-60deg); }
-          89%    { transform: translate(-4%, 22vh) rotate(-130deg); }
-          92%    { transform: translate(0,  20vh) rotate(-200deg) scale(1.05); }                                /* attrapée · micro-rebond */
+          /* 82→92% : décrochage et chute oblique zigzag */
+          83%    { transform: translate(4%, 4%)    rotate(-25deg) scale(1.08); }                                 /* rebond initial */
+          86%    { transform: translate(10%,13vh)  rotate(-100deg); }                                            /* zigzag à droite */
+          89%    { transform: translate(-6%,21vh)  rotate(-200deg); }                                            /* zigzag à gauche */
+          92%    { transform: translate(0,  19vh)  rotate(-280deg) scale(1.05); }                                /* attrapée · micro-rebond */
           /* 93→100% : retour à sa place */
-          95%    { transform: translate(0,   8vh) rotate(-280deg); }
-          98%    { transform: translate(0,  -1vh) rotate(-345deg); }
-          100%   { transform: translate(0,0)     rotate(-360deg); }
+          95%    { transform: translate(0,   8vh)  rotate(-330deg); }
+          98%    { transform: translate(0,  -1vh)  rotate(-355deg); }
+          100%   { transform: translate(0,0)       rotate(-360deg); }
         }
-        .intro-stage { position: relative; width: 104px; height: 104px; }
+        .intro-stage { position: relative; width: 104px; height: 104px; flex-shrink: 0; }
         .intro-wrap  { position: absolute; inset: 0; animation: introWrap 13s linear forwards; transform-origin: 50% 50%; }
         .intro-base  { position: absolute; inset: 0; width: 100%; height: 100%;
                        border-radius: 50%; border: 1px solid #cfcbc4; object-fit: cover; object-position: center; }
@@ -1854,8 +1886,7 @@ export default function App(){
 
           {/* Logo central : layered (base sans cœur ni aubergine + cœur + aubergine séparés) */}
           <div className="intro-stage">
-            <div className="intro-wrap"
-              onAnimationEnd={(e)=>{if(e.animationName==='introWrap')setIntroDone(true);}}>
+            <div className="intro-wrap">
               <img className="intro-base" src={IMG.logo_base} alt=""
                 draggable={false} onContextMenu={e=>e.preventDefault()}/>
               <img className="intro-heart" src={IMG.logo_heart} alt=""
