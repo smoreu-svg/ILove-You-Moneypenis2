@@ -1937,6 +1937,8 @@ export default function App(){
   const[formReturn,setFormReturn]=useState("list");
   const audioRef=useRef(null);
   const audioConsumedRef=useRef(false);
+  const homeVoiceRef=useRef(null);
+  const homeVoiceConsumedRef=useRef(false);
   const t=T[lang];
 
   // Helper : "Faire une demande" depuis une page produit
@@ -1981,17 +1983,28 @@ export default function App(){
   // jamais démuté dans le prime → pas de risque de fuite sonore).
   const handleStartLogo=()=>{
     if(started) return;
+    // Amorce 1 : son démon (joué pendant l'animation)
     const a=new Audio("/intro-end.mp3");
     a.preload="auto";
     a.muted=true;
     a.volume=0;
     a.play().then(()=>{
-      // Si le vrai play a déjà démarré, on ne touche surtout pas à l'audio.
       if(audioConsumedRef.current) return;
       a.pause();
       a.currentTime=0;
     }).catch(()=>{});
     audioRef.current=a;
+    // Amorce 2 : voix d'accueil (jouée quand on entre sur le portfolio)
+    const b=new Audio("/home-voice.mp3");
+    b.preload="auto";
+    b.muted=true;
+    b.volume=0;
+    b.play().then(()=>{
+      if(homeVoiceConsumedRef.current) return;
+      b.pause();
+      b.currentTime=0;
+    }).catch(()=>{});
+    homeVoiceRef.current=b;
     setStarted(true);
   };
 
@@ -2025,6 +2038,24 @@ export default function App(){
       // finir naturellement (ou être pausé par la transition introDone).
     };
   },[started,introDone,dis]);
+
+  // Voix d'accueil : joue dès que le user atterrit sur le portfolio
+  // après le age gate. Une seule fois par session (homeVoiceConsumedRef).
+  useEffect(()=>{
+    if(!dis||sec!=="portfolio"||homeVoiceConsumedRef.current) return;
+    const audio=homeVoiceRef.current;
+    if(!audio) return;
+    homeVoiceConsumedRef.current=true;
+    // Petit délai pour laisser le portfolio s'afficher confortablement
+    const tm=setTimeout(()=>{
+      audio.pause();
+      audio.currentTime=0;
+      audio.muted=false;
+      audio.volume=1;
+      audio.play().catch(()=>{});
+    },400);
+    return()=>clearTimeout(tm);
+  },[dis,sec]);
   const ed=EDS.find(e=>e.key===et);
   const NAV=["portfolio","video","coffret","insitu","shop","bio","jeu","contact"];
   const GR=[];
@@ -2053,10 +2084,10 @@ export default function App(){
           transition:all .25s;font-family:'Space Grotesk',sans-serif;font-weight:400;width:100%;}
         .bg:hover{border-color:#0a1228;color:#0a1228;}
         .hs{transition:opacity .2s;}.hs:hover{opacity:.88;}
-        input,textarea{background:#fff;border:1px solid #0a1228;color:#0a1228;
+        input:not([type="checkbox"]):not([type="radio"]),textarea{background:#fff;border:1px solid #0a1228;color:#0a1228;
           padding:12px 16px;font-size:14px;width:100%;outline:none;
           font-family:'Space Grotesk',sans-serif;transition:border-color .2s;}
-        input:focus,textarea:focus{border-color:#0a1228;}
+        input:not([type="checkbox"]):not([type="radio"]):focus,textarea:focus{border-color:#0a1228;}
         video{display:block;width:100%;}
         @keyframes introWrap {
           /* I. Apparition explosive · tour des 4 coins continu (0-14%) */
