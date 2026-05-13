@@ -2039,23 +2039,19 @@ export default function App(){
     };
   },[started,introDone,dis]);
 
-  // Voix d'accueil : joue dès que le user atterrit sur le portfolio
-  // après le age gate. Une seule fois par session (homeVoiceConsumedRef).
+  // Voix d'accueil : démarre EXACTEMENT à la fin du 1er son (introDone=true),
+  // simultanément à l'apparition du contenu du age gate.
   useEffect(()=>{
-    if(!dis||sec!=="portfolio"||homeVoiceConsumedRef.current) return;
+    if(!introDone||homeVoiceConsumedRef.current) return;
     const audio=homeVoiceRef.current;
     if(!audio) return;
     homeVoiceConsumedRef.current=true;
-    // Petit délai pour laisser le portfolio s'afficher confortablement
-    const tm=setTimeout(()=>{
-      audio.pause();
-      audio.currentTime=0;
-      audio.muted=false;
-      audio.volume=1;
-      audio.play().catch(()=>{});
-    },400);
-    return()=>clearTimeout(tm);
-  },[dis,sec]);
+    audio.pause();
+    audio.currentTime=0;
+    audio.muted=false;
+    audio.volume=1;
+    audio.play().catch(()=>{});
+  },[introDone]);
   const ed=EDS.find(e=>e.key===et);
   const NAV=["portfolio","video","coffret","insitu","shop","bio","jeu","contact"];
   const GR=[];
