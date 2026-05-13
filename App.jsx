@@ -1693,50 +1693,66 @@ export default function App(){
   const[showNote,setShowNote]=useState(false);
   const[introDone,setIntroDone]=useState(false);
   const[planchePreview,setPlanchePreview]=useState(null);
-  const[started,setStarted]=useState(false);
   const audioRef=useRef(null);
   const t=T[lang];
 
-  // À la 1ʳᵉ interaction, on amorce l'audio (silencieux play→pause)
-  // pour débloquer iOS Safari, puis on lance l'intro
-  const handleStart=()=>{
-    if(started) return;
-    const a=new Audio("/intro-end.mp3");
-    a.preload="auto";
-    a.muted=true;
-    a.play().then(()=>{
-      a.pause();
-      a.currentTime=0;
-      a.muted=false;
-    }).catch(()=>{a.muted=false;});
-    audioRef.current=a;
-    setStarted(true);
-  };
+  // À la TOUTE 1ʳᵉ interaction de l'utilisateur (clic/tap/touche n'importe où),
+  // on amorce silencieusement l'audio pour qu'iOS/Safari autorisent la lecture
+  // plus tard. Aucun écran intermédiaire : si l'utilisateur a touché l'écran
+  // (même par réflexe) avant 11,96s, le son démon jouera. Sinon : pas de son
+  // mais tout le reste fonctionne normalement.
+  useEffect(()=>{
+    if(audioRef.current) return;
+    const prime=()=>{
+      if(audioRef.current) return;
+      const a=new Audio("/intro-end.mp3");
+      a.preload="auto";
+      a.muted=true;
+      a.play().then(()=>{
+        a.pause();
+        a.currentTime=0;
+        a.muted=false;
+      }).catch(()=>{a.muted=false;});
+      audioRef.current=a;
+    };
+    const opts={once:true,capture:true};
+    document.addEventListener("pointerdown",prime,opts);
+    document.addEventListener("touchstart",prime,opts);
+    document.addEventListener("keydown",prime,opts);
+    return()=>{
+      document.removeEventListener("pointerdown",prime,true);
+      document.removeEventListener("touchstart",prime,true);
+      document.removeEventListener("keydown",prime,true);
+    };
+  },[]);
 
   // Déclenche le son démon à 11,96s (capture de l'aubergine).
   // La transition vers la suite se fait à la FIN du son (event 'ended'),
-  // pas à la fin de l'animation. Avec fallback si autoplay bloqué.
+  // pas à la fin de l'animation. Avec fallback si pas d'audio amorcé.
   useEffect(()=>{
-    if(!started||introDone||dis) return;
-    const audio=audioRef.current||new Audio("/intro-end.mp3");
-    audio.preload="auto";
-    const onEnded=()=>setIntroDone(true);
-    audio.addEventListener("ended",onEnded);
+    if(introDone||dis) return;
+    let audioInUse=null;
     const playTm=setTimeout(()=>{
-      audio.play().catch(()=>{
-        // Autoplay encore bloqué : transition après ~3,2s
+      const audio=audioRef.current;
+      if(audio){
+        audioInUse=audio;
+        audio.addEventListener("ended",()=>setIntroDone(true),{once:true});
+        audio.play().catch(()=>{
+          setTimeout(()=>setIntroDone(true),3200);
+        });
+      }else{
+        // Pas d'interaction utilisateur encore : pas de son, transition après ~3,2s
         setTimeout(()=>setIntroDone(true),3200);
-      });
+      }
     },11960);
     // Failsafe global : si tout échoue, transition forcée à 17s
     const failTm=setTimeout(()=>setIntroDone(true),17000);
-    return ()=>{
+    return()=>{
       clearTimeout(playTm);
       clearTimeout(failTm);
-      audio.removeEventListener("ended",onEnded);
-      audio.pause();
+      if(audioInUse) audioInUse.pause();
     };
-  },[started,introDone,dis]);
+  },[introDone,dis]);
   const ed=EDS.find(e=>e.key===et);
   const NAV=["portfolio","video","coffret","chez","shop","bio","presse","parlent","jeu","contact"];
   const GR=["presse","parlent"];
@@ -1805,15 +1821,11 @@ export default function App(){
           /* VIII. 2ᵉ floraison encore plus massive · 78vmin */
           60%  { transform: translate(0, 0)             scale(calc(78vmin/104px)) rotate(2720deg); animation-timing-function: cubic-bezier(.85,0,.15,1); }
           63%  { transform: translate(0, 0)             scale(0.35)  rotate(2900deg);  animation-timing-function: ease-out; }
-          /* IX. Orbital chaotique · 7 points en 1,8s · ruptures */
-          65%  { transform: translate( 22vmin, 12vmin)  scale(0.55)  rotate(3050deg); }
-          67%  { transform: translate(-22vmin, 18vmin)  scale(0.65)  rotate(3200deg); }
-          69%  { transform: translate(-25vmin, -8vmin)  scale(0.45)  rotate(3350deg);  animation-timing-function: cubic-bezier(.7,0,.3,1); }
-          71%  { transform: translate(  0vmin,-22vmin)  scale(0.8)   rotate(3490deg); }
-          73%  { transform: translate( 22vmin,-18vmin)  scale(0.5)   rotate(3620deg); }
-          75%  { transform: translate( 18vmin, 18vmin)  scale(0.9)   rotate(3740deg);  animation-timing-function: cubic-bezier(.34,1.3,.64,1); }
-          77%  { transform: translate(-18vmin, 16vmin)  scale(0.65)  rotate(3840deg); }
-          79%  { transform: translate(  0vmin,  0vmin)  scale(1.15)  rotate(3960deg);  animation-timing-function: cubic-bezier(.34,1.4,.64,1); }   /* fausse fin (11×360) */
+          /* IX. Orbital condensé · 3 coins · ruptures */
+          67%  { transform: translate( 24vmin, 16vmin)  scale(0.6)   rotate(3120deg); }                                /* SE */
+          72%  { transform: translate(-22vmin,-18vmin)  scale(0.5)   rotate(3400deg);  animation-timing-function: cubic-bezier(.7,0,.3,1); } /* NW */
+          76%  { transform: translate( 20vmin,-15vmin)  scale(0.85)  rotate(3680deg);  animation-timing-function: cubic-bezier(.34,1.3,.64,1); } /* NE */
+          79%  { transform: translate(  0vmin,  0vmin)  scale(1.15)  rotate(3960deg);  animation-timing-function: cubic-bezier(.34,1.4,.64,1); }   /* recentre upright (11×360) */
           81%  { transform: translate(0, 0)             scale(1)     rotate(3961deg); }
           /* X. Tilt « tiens?! » avant le décrochage de l'aubergine */
           83%  { transform: translate(0, 0)             scale(0.96)  rotate(3963deg); }
@@ -1863,34 +1875,10 @@ export default function App(){
         .intro-aub   { position: absolute; top: 48.73%; left: 44.58%; width: 43.33%; height: 39.41%;
                        animation: introAub 13s linear forwards; transform-origin: 50% 50%; pointer-events: none; }
         .fade-in    { transition: opacity .8s ease .2s; }
-        @keyframes introBreathe {
-          0%, 100% { opacity: .42; }
-          50%      { opacity: 1;   }
-        }
       `}</style>
 
-      {/* ══ ÉCRAN D'ENTRÉE · débloque l'audio + lance l'intro ═══════════════════ */}
-      {!started&&(
-        <div onClick={handleStart} onTouchStart={handleStart}
-          style={{position:"fixed",inset:0,zIndex:99999,background:"#ffffff",
-            display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",
-            padding:"max(32px,env(safe-area-inset-top,32px)) 24px max(32px,env(safe-area-inset-bottom,32px))",
-            cursor:"pointer",textAlign:"center"}}>
-          <div style={{animation:"introBreathe 2.4s ease-in-out infinite"}}>
-            <p style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",fontWeight:400,
-              fontSize:"clamp(22px,4.5vw,30px)",color:"#1a1a1a",marginBottom:20,lineHeight:1.3}}>
-              Toucher pour entrer
-            </p>
-            <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,fontSize:9,
-              letterSpacing:5,color:"#1a1a1a",textTransform:"uppercase"}}>
-              Tap · Touch · Tocar · Tippen · 點擊 · タップ
-            </p>
-          </div>
-        </div>
-      )}
-
       {/* ══ AGE GATE ══════════════════════════════════════════════════════════ */}
-      {started&&!dis&&(
+      {!dis&&(
         <div style={{position:"fixed",inset:0,zIndex:9999,background:"#ffffff",
           display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",
           padding:"max(32px,env(safe-area-inset-top,32px)) 24px max(32px,env(safe-area-inset-bottom,32px))",
