@@ -3983,14 +3983,20 @@ export default function App(){
           100% { transform: translateX(-100%); }
         }
         .nb{background:none;border:none;color:#0a1228;
-          font-size:clamp(16px,2.6vw,24px);letter-spacing:0.5px;
-          text-transform:none;cursor:pointer;padding:8px 0;width:100%;text-align:center;
-          transition:color .2s;font-family:'Libre Baskerville',serif;font-style:italic;
-          font-weight:400;display:block;line-height:1.2;}
-        .nb.big{font-size:clamp(22px,4vw,36px);}
-        .nb.aub{font-size:28px;line-height:1;padding:14px 0 4px;margin-top:12px;}
-        .nb:hover,.nb.on{color:#0a1228;}
-        .nb.gr{color:#0a1228;cursor:default;pointer-events:none;}
+          letter-spacing:0.5px;text-transform:none;cursor:pointer;padding:0;
+          text-align:center;transition:opacity .2s;
+          font-family:'Libre Baskerville',serif;font-style:italic;
+          font-weight:400;display:inline-block;line-height:1.15;
+          white-space:normal;}
+        .nb.huge{font-size:clamp(36px,7vw,72px);line-height:1.05;font-weight:400;}
+        .nb.big {font-size:clamp(20px,3.6vw,36px);}
+        .nb.med {font-size:clamp(17px,2.8vw,26px);}
+        .nb.sml {font-size:clamp(13px,2vw,19px);}
+        .nb.aub {font-size:clamp(32px,5vw,56px);line-height:1;}
+        .nb:hover{opacity:0.65;}
+        .nb.gr{cursor:default;opacity:0.55;}
+        .nb.gr:hover{opacity:0.55;}
+        .nb.on{font-weight:700;}
         .bs{background:#0a1228;border:1px solid #0a1228;color:#fff;padding:14px 30px;
           font-size:9px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;
           transition:opacity .2s;font-family:'Space Grotesk',sans-serif;font-weight:400;width:100%;}
@@ -4367,42 +4373,56 @@ export default function App(){
         </div>
       </nav>
 
-      {/* ══ MENU OVERLAY ══════════════════════════════════════════════════════ */}
+      {/* ══ MENU OVERLAY (cloud layout) ═══════════════════════════════════════ */}
       {menuOpen&&(
         <div style={{position:"fixed",inset:0,zIndex:790,
           background:"rgba(255,255,255,0.98)",backdropFilter:"blur(20px)",
-          display:"flex",flexDirection:"column",
           paddingTop:"calc(52px + env(safe-area-inset-top,0px))",
           paddingBottom:"env(safe-area-inset-bottom,20px)"}}
           onClick={()=>setMenuOpen(false)}>
-          <div style={{flex:1,display:"flex",flexDirection:"column",
-            justifyContent:"center",alignItems:"center",gap:0}}>
-            {/* Display order: accueil, bio, portfolio (gros), coffret, signatures, insitu, video, shop, contact, jeu (aubergine) */}
-            {[8,5,0,2,9,3,1,4,7,6].map((i)=>{
-              const sk=NAV[i];
-              // Fallback labels FR pour langues qui n'ont pas encore les 10 items
-              const fallback={accueil:"Ici tout recommence",signatures:"Des feutres et des mains"};
-              const n=t.nav[i]||fallback[sk]||sk;
-              const isBig=sk==="portfolio";
-              const isAubergine=sk==="jeu";
-              return (
-                <button key={sk}
-                  className={`nb${sec===sk?" on":""}${GR.includes(sk)?" gr":""}${isBig?" big":""}${isAubergine?" aub":""}`}
-                  onClick={()=>{
-                    if(GR.includes(sk)) return;
-                    if(sk==="accueil"){
+          <div style={{position:"relative",width:"100%",height:"100%"}}>
+            {(() => {
+              const cloudItems=[
+                {sk:"accueil",    size:"med",  top:10, left:50, label: t.nav[8]||"Ici tout recommence"},
+                {sk:"bio",        size:"big",  top:26, left:22, label: t.nav[5]||"De jolies plumes vraiment…"},
+                {sk:"shop",       size:"big",  top:26, left:78, label: t.nav[4]||"Le prix des aubergines"},
+                {sk:"coffret",    size:"sml",  top:49, left:13, label: t.nav[2]||"Les précieux coffrets"},
+                {sk:"portfolio",  size:"huge", top:50, left:50, label: t.nav[0]||"I Love You Moneypenis"},
+                {sk:"insitu",     size:"sml",  top:49, left:87, label: t.nav[3]||"In Situ aimes ça"},
+                {sk:"video",      size:"big",  top:71, left:28, label: t.nav[1]||"Le Clip Teaser"},
+                {sk:"signatures", size:"sml",  top:71, left:72, label: t.nav[9]||"Des feutres et des mains"},
+                {sk:"contact",    size:"sml",  top:84, left:30, label: t.nav[7]||"I love you too"},
+                {sk:"presse",     size:"sml",  top:84, left:70, label:"Trop d'honneurs pour peu de chair", disabled:true},
+                {sk:"jeu",        size:"aub",  top:92, left:50, label:"🍆"},
+              ];
+              return cloudItems.map(item=>(
+                <button key={item.sk}
+                  className={`nb ${item.size}${item.disabled?" gr":""}${sec===item.sk?" on":""}`}
+                  style={{
+                    position:"absolute",
+                    top:`${item.top}%`,
+                    left:`${item.left}%`,
+                    transform:"translate(-50%, -50%)",
+                    maxWidth:"min(82vw, 540px)",
+                    padding:"4px 8px"
+                  }}
+                  onClick={(e)=>{
+                    e.stopPropagation();
+                    if(item.disabled) return;
+                    if(item.sk==="accueil"){
                       goSec("portfolio");
                       setTimeout(()=>window.scrollTo({top:0,behavior:"smooth"}),50);
                       return;
                     }
-                    goSec(sk);
+                    goSec(item.sk);
                   }}>
-                  {n}
+                  {item.label}
                 </button>
-              );
-            })}
-            <div style={{marginTop:24,paddingBottom:8}} onClick={e=>e.stopPropagation()}>
-              <SocialButtons size={32}/>
+              ));
+            })()}
+            <div style={{position:"absolute",bottom:8,left:"50%",transform:"translateX(-50%)"}}
+              onClick={e=>e.stopPropagation()}>
+              <SocialButtons size={28}/>
             </div>
           </div>
         </div>
