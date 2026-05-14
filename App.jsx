@@ -3194,7 +3194,7 @@ function LBox({prints,ci,ageOk,onClose,onPrev,onNext,t,lang}){
 // 2. Créer un nouveau formulaire, copier le code [ex: xyzabcde]
 // 3. Remplacer ci-dessous, puis push
 // 4. Tant que vide, le formulaire bascule sur mailto: en fallback
-const FORMSPREE_ID = "";
+const FORMSPREE_ID = "mlgzkqvo";
 const FORMSPREE_URL = FORMSPREE_ID ? `https://formspree.io/f/${FORMSPREE_ID}` : "";
 
 // Pays courants (top 30 — peut être étendu)
