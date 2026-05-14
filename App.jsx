@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import MoneypenisGame from "./MoneypenisGame";
 
 // ─── Timing audio ──────────────────────────────────────────────────────────
@@ -1998,8 +1999,32 @@ export default function App(){
     setStarted(true);
   };
 
+  // Coupe l'audio dès que la transition vers la page d'accueil démarre.
+  // 1,5 s de grâce pour laisser le temps à la ligne "I love you Moneypenis"
+  // de se terminer si on est dans la transition naturelle (non-skip).
+  useEffect(()=>{
+    if(!introDone) return;
+    const stopAll=()=>{
+      if(audioRef.current){
+        try{
+          audioRef.current.pause();
+          audioRef.current.currentTime=0;
+          audioRef.current.src="";
+          audioRef.current.load();
+        }catch{}
+      }
+      try{
+        document.querySelectorAll("audio").forEach(a=>{
+          try{a.pause();a.currentTime=0;}catch{}
+        });
+      }catch{}
+    };
+    const tm=setTimeout(stopAll,1500);
+    return()=>clearTimeout(tm);
+  },[introDone]);
+
+  // Skip : coupe IMMÉDIATEMENT animation et audio (pas de délai de 1,5s)
   const handleSkipIntro=()=>{
-    // Coupe l'audio principal
     if(audioRef.current){
       try{
         audioRef.current.pause();
@@ -2008,8 +2033,6 @@ export default function App(){
         audioRef.current.load();
       }catch{}
     }
-    // Filet de sécurité : stoppe TOUS les <audio> présents dans le DOM
-    // (au cas où une instance fantôme aurait été créée par un effet de bord)
     try{
       document.querySelectorAll("audio").forEach(a=>{
         try{a.pause();a.currentTime=0;}catch{}
@@ -3216,17 +3239,19 @@ export default function App(){
         </div>
       )}
 
-      {/* ══ BOUTON SKIP : visible uniquement pendant l'animation d'intro ═════ */}
-      {started&&!introDone&&(
+      {/* ══ BOUTON SKIP : rendu via portal pour échapper à tout conteneur CSS ═ */}
+      {started&&!introDone&&typeof document!=="undefined"&&createPortal(
         <button onClick={handleSkipIntro}
-          style={{position:"fixed",bottom:60,left:"50%",
-            transform:"translateX(-50%)",background:"none",border:"none",
-            color:"#000000",fontFamily:"'Space Grotesk',sans-serif",
-            fontWeight:700,fontSize:16,letterSpacing:4,
-            textTransform:"uppercase",cursor:"pointer",padding:"12px 28px",
-            zIndex:9500,textShadow:"0 0 8px rgba(255,255,255,0.6)"}}>
+          style={{position:"fixed",bottom:"calc(60px + env(safe-area-inset-bottom,0px))",
+            left:"50%",transform:"translateX(-50%)",
+            background:"none",border:"none",color:"#000000",
+            fontFamily:"'Space Grotesk',sans-serif",fontWeight:700,
+            fontSize:20,letterSpacing:4,textTransform:"uppercase",
+            cursor:"pointer",padding:"14px 32px",zIndex:2147483647,
+            textShadow:"0 0 10px rgba(255,255,255,0.9), 0 0 20px rgba(255,255,255,0.5)"}}>
           SKIP
-        </button>
+        </button>,
+        document.body
       )}
     </div>
   );
