@@ -2197,6 +2197,15 @@ export default function App(){
         .intro-stage { position: relative; width: 104px; height: 104px; flex-shrink: 0; }
         .intro-wrap  { position: absolute; inset: 0; animation: introWrap 9.5s linear forwards; transform-origin: 50% 50%; }
 
+        /* État "intro terminée" : fige toutes les animations au dernier frame
+           (logo droit, cœur tombé, aubergine tombée) sans flash. */
+        .intro-stage.done .intro-wrap,
+        .intro-stage.done .intro-heart,
+        .intro-stage.done .intro-aub {
+          animation-delay: -9.5s !important;
+          animation-play-state: paused !important;
+        }
+
         /* Flash subliminal plein écran : 3 apparitions en crescendo
            (80 / 135 / 200 ms) entre 50% et 60% de l'animation = 4,75s → 5,7s
            = après la chute du cœur (47%) et avant celle de l'aubergine (92%). */
@@ -2282,7 +2291,7 @@ export default function App(){
             )}
           </div>
 
-          {/* Logo central : statique navy+blanc (cliquable) AVANT clic, animé APRÈS, démonté QUAND intro finie */}
+          {/* Logo central : statique (cliquable) AVANT clic, animé PENDANT, figé final APRÈS */}
           {!started ? (
             <div onClick={handleStartLogo} role="button" tabIndex={0}
               onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();handleStartLogo();}}}
@@ -2297,13 +2306,14 @@ export default function App(){
                 style={{width:"100%",height:"100%",objectFit:"cover",
                   objectPosition:"center",display:"block",pointerEvents:"none"}}/>
             </div>
-          ) : !introDone ? (
+          ) : (
             <>
-              {/* Flash subliminal plein écran : 3 apparitions ultra-rapides
-                  après la chute du cœur, avant la chute de l'aubergine */}
-              <img className="intro-flash" src={IMG.flash} alt=""
-                draggable={false} onContextMenu={e=>e.preventDefault()}/>
-              <div className="intro-stage">
+              {/* Flash subliminal : uniquement PENDANT l'animation, jamais après */}
+              {!introDone&&(
+                <img className="intro-flash" src={IMG.flash} alt=""
+                  draggable={false} onContextMenu={e=>e.preventDefault()}/>
+              )}
+              <div className={`intro-stage${introDone?" done":""}`}>
                 <div className="intro-wrap">
                   <img className="intro-base" src={IMG.logo_base} alt=""
                     draggable={false} onContextMenu={e=>e.preventDefault()}/>
@@ -2314,7 +2324,7 @@ export default function App(){
                 </div>
               </div>
             </>
-          ) : null}
+          )}
 
           {/* Tout le reste : fade-in après intro */}
           <div className="fade-in" style={{display:"flex",flexDirection:"column",
