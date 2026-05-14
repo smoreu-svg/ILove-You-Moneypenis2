@@ -1,0 +1,8 @@
+# I Love You Moneypenis — moneypenis.com
+# Site d'art contemporain. Contenu pour adultes mais autorisé à l'indexation.
+
+User-agent: *
+Allow: /
+Disallow: /prevention
+
+Sitemap: https://moneypenis.com/sitemap.xml
