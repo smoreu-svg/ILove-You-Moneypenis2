@@ -2282,7 +2282,7 @@ export default function App(){
             )}
           </div>
 
-          {/* Logo central : statique navy+blanc (cliquable) AVANT clic, animé APRÈS */}
+          {/* Logo central : statique navy+blanc (cliquable) AVANT clic, animé APRÈS, démonté QUAND intro finie */}
           {!started ? (
             <div onClick={handleStartLogo} role="button" tabIndex={0}
               onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();handleStartLogo();}}}
@@ -2297,7 +2297,7 @@ export default function App(){
                 style={{width:"100%",height:"100%",objectFit:"cover",
                   objectPosition:"center",display:"block",pointerEvents:"none"}}/>
             </div>
-          ) : (
+          ) : !introDone ? (
             <>
               {/* Flash subliminal plein écran : 3 apparitions ultra-rapides
                   après la chute du cœur, avant la chute de l'aubergine */}
@@ -2314,7 +2314,7 @@ export default function App(){
                 </div>
               </div>
             </>
-          )}
+          ) : null}
 
           {/* Tout le reste : fade-in après intro */}
           <div className="fade-in" style={{display:"flex",flexDirection:"column",
