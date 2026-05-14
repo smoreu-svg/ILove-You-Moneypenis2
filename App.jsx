@@ -2650,7 +2650,7 @@ function LBox({prints,ci,ageOk,onClose,onPrev,onNext,t,lang}){
     else{setZPos({x:((e.clientX-r.left)/r.width)*100,y:((e.clientY-r.top)/r.height)*100});setZoomed(true);}
   };
 
-  const txt = TEXTS[p.num]?.[lang] || null;
+  const txt = TEXTS[p.num]?.[lang] || TEXTS[p.num]?.EN || TEXTS[p.num]?.FR || null;
   // En paysage + tapuscrit visible : tapuscrit à GAUCHE, image à droite (row layout)
   // En portrait + tapuscrit visible : tapuscrit en HAUT, image en dessous (column layout, comme avant)
   const textBesideImage = isLandscape && showText && txt;
