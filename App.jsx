@@ -1,6 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import MoneypenisGame from "./MoneypenisGame";
 
+// ─── Timing audio ──────────────────────────────────────────────────────────
+// Timestamp EXACT (en secondes) où commence la ligne "... I love you Moneypenis"
+// dans intro.mp3. La transition vers la page d'accueil se cale précisément
+// sur ce moment. À ajuster après écoute du fichier audio.
+const DIALOGUE_AT_S = 16.5;
+
 const IMG={
   logo:"/logo.jpg",
   logo_static:"/logo-static.png",
@@ -1936,9 +1942,7 @@ export default function App(){
   // D'où le user vient lorsqu'il a ouvert le formulaire (pour le retour)
   const[formReturn,setFormReturn]=useState("list");
   const audioRef=useRef(null);
-  const audioConsumedRef=useRef(false);
-  const homeVoiceRef=useRef(null);
-  const homeVoiceConsumedRef=useRef(false);
+  const audioTriggeredRef=useRef(false);
   const t=T[lang];
 
   // Helper : "Faire une demande" depuis une page produit
@@ -1983,79 +1987,46 @@ export default function App(){
   // jamais démuté dans le prime → pas de risque de fuite sonore).
   const handleStartLogo=()=>{
     if(started) return;
-    // Amorce 1 : son démon (joué pendant l'animation)
-    const a=new Audio("/intro-end.mp3");
+    const a=new Audio("/intro.mp3");
     a.preload="auto";
-    a.muted=true;
-    a.volume=0;
-    a.play().then(()=>{
-      if(audioConsumedRef.current) return;
-      a.pause();
-      a.currentTime=0;
-    }).catch(()=>{});
+    a.volume=1;
+    // Le clic est la user gesture → play immédiat autorisé
+    a.play().catch(()=>{});
     audioRef.current=a;
-    // Amorce 2 : voix d'accueil (jouée quand on entre sur le portfolio)
-    const b=new Audio("/home-voice.mp3");
-    b.preload="auto";
-    b.muted=true;
-    b.volume=0;
-    b.play().then(()=>{
-      if(homeVoiceConsumedRef.current) return;
-      b.pause();
-      b.currentTime=0;
-    }).catch(()=>{});
-    homeVoiceRef.current=b;
     setStarted(true);
   };
 
-  // Déclenche le son démon au moment de la capture de l'aubergine.
-  // Garde-fou : audioConsumedRef évite toute double lecture (Strict Mode,
-  // re-render, ré-entrée du useEffect après changement de dépendance).
+  // Transition vers le age gate AU MOMENT EXACT où la ligne
+  // "... I love you Moneypenis" est prononcée dans l'audio.
+  // Synchronisé sur la lecture réelle (timeupdate) — robuste au jitter du browser.
   useEffect(()=>{
     if(!started||introDone||dis) return;
-    const playTm=setTimeout(()=>{
-      if(audioConsumedRef.current) return;
-      const audio=audioRef.current;
-      if(!audio){
-        setTimeout(()=>setIntroDone(true),3200);
-        return;
+    const audio=audioRef.current;
+    if(!audio) {
+      // Failsafe : pas d'audio → transition après DIALOGUE_AT_S
+      const tm=setTimeout(()=>setIntroDone(true),DIALOGUE_AT_S*1000);
+      return()=>clearTimeout(tm);
+    }
+    const onTime=()=>{
+      if(audioTriggeredRef.current) return;
+      if(audio.currentTime>=DIALOGUE_AT_S){
+        audioTriggeredRef.current=true;
+        setIntroDone(true);
       }
-      audioConsumedRef.current=true;
-      audio.pause();
-      audio.currentTime=0;
-      audio.muted=false;
-      audio.volume=1;
-      audio.addEventListener("ended",()=>setIntroDone(true),{once:true});
-      audio.play().catch(()=>{
-        setTimeout(()=>setIntroDone(true),3200);
-      });
-    },8050);  /* 85% × 9.5s : coïncide avec la capture de l'aubergine */
-    const failTm=setTimeout(()=>setIntroDone(true),13500);
+    };
+    audio.addEventListener("timeupdate",onTime);
+    // Failsafe : si timeupdate ne fire pas (audio bloqué), transition forcée
+    const failTm=setTimeout(()=>{
+      if(!audioTriggeredRef.current){
+        audioTriggeredRef.current=true;
+        setIntroDone(true);
+      }
+    },DIALOGUE_AT_S*1000+3000);
     return()=>{
-      clearTimeout(playTm);
+      audio.removeEventListener("timeupdate",onTime);
       clearTimeout(failTm);
-      // NB : on ne pause pas l'audio ici. Si le son a démarré, il doit
-      // finir naturellement (ou être pausé par la transition introDone).
     };
   },[started,introDone,dis]);
-
-  // Voix d'accueil : joue dès que le user atterrit sur le portfolio
-  // après le age gate. Une seule fois par session (homeVoiceConsumedRef).
-  useEffect(()=>{
-    if(!dis||sec!=="portfolio"||homeVoiceConsumedRef.current) return;
-    const audio=homeVoiceRef.current;
-    if(!audio) return;
-    homeVoiceConsumedRef.current=true;
-    // Petit délai pour laisser le portfolio s'afficher confortablement
-    const tm=setTimeout(()=>{
-      audio.pause();
-      audio.currentTime=0;
-      audio.muted=false;
-      audio.volume=1;
-      audio.play().catch(()=>{});
-    },400);
-    return()=>clearTimeout(tm);
-  },[dis,sec]);
   const ed=EDS.find(e=>e.key===et);
   const NAV=["portfolio","video","coffret","insitu","shop","bio","jeu","contact"];
   const GR=[];
