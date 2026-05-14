@@ -2130,9 +2130,9 @@ export default function App(){
         .intro-stage { position: relative; width: 104px; height: 104px; flex-shrink: 0; }
         .intro-wrap  { position: absolute; inset: 0; animation: introWrap 9.5s linear forwards; transform-origin: 50% 50%; }
 
-        /* Flash subliminal plein écran : 3 apparitions ultra-rapides (~80ms)
-           entre 50% et 60% de l'animation = 4,75s → 5,7s = après la chute
-           du cœur (47%) et avant la chute de l'aubergine (92%). */
+        /* Flash subliminal plein écran : 3 apparitions en crescendo
+           (80 / 135 / 200 ms) entre 50% et 60% de l'animation = 4,75s → 5,7s
+           = après la chute du cœur (47%) et avant celle de l'aubergine (92%). */
         .intro-flash {
           position: fixed; inset: 0; width: 100vw; height: 100vh;
           object-fit: cover; object-position: center;
@@ -2142,14 +2142,14 @@ export default function App(){
         }
         @keyframes subliminalFlash {
           0%,    49.5% { opacity: 0; }
-          50%          { opacity: 1; }
-          50.8%        { opacity: 0; }
+          50%          { opacity: 1; }   /* Flash 1 : ~80ms */
+          50.85%       { opacity: 0; }
           53.5%        { opacity: 0; }
-          54%          { opacity: 1; }
-          54.8%        { opacity: 0; }
+          54%          { opacity: 1; }   /* Flash 2 : ~135ms */
+          55.4%        { opacity: 0; }
           57.5%        { opacity: 0; }
-          58%          { opacity: 1; }
-          58.8%        { opacity: 0; }
+          58%          { opacity: 1; }   /* Flash 3 : ~200ms */
+          60.1%        { opacity: 0; }
           100%         { opacity: 0; }
         }
         .intro-base  { position: absolute; inset: 0; width: 100%; height: 100%;
