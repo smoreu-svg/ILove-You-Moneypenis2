@@ -3714,6 +3714,40 @@ function ContactForm({t,lang,d,setD,matrix,setMatrix,result,setResult,onContinue
   );
 }
 
+function SocialButtons({align="center",size=36}){
+  const links=[
+    {name:"Instagram",href:"https://www.instagram.com/i.l.y.m_artproject?igsh=MTdtd3l1em5pNWI1aA%3D%3D&utm_source=qr",
+     icon:(<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+       <rect x="3" y="3" width="18" height="18" rx="5"/>
+       <circle cx="12" cy="12" r="4"/>
+       <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/>
+     </svg>)},
+    {name:"X",href:"https://x.com/SirMoneypenis",
+     icon:(<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+     </svg>)},
+    {name:"Threads",href:"https://www.threads.com/@i.l.y.m_artproject",
+     icon:(<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+       <path d="M12.18 23.5h-.04C9.16 23.45 6.84 22.55 5.2 20.81 3.7 19.24 2.9 17 2.85 14.16v-.06c.05-2.84.85-5.08 2.35-6.65C6.84 5.71 9.16 4.81 12.14 4.76h.05c2.24.02 4.11.66 5.58 1.92 1.46 1.25 2.42 3.02 2.85 5.27l-1.71.42c-.72-3.75-3.18-5.66-6.74-5.7-2.36.04-4.13.74-5.27 2.07-1.06 1.24-1.61 3.04-1.65 5.34.04 2.3.59 4.1 1.65 5.34 1.14 1.33 2.91 2.03 5.27 2.07 2.13-.03 3.54-.55 4.71-1.71.78-.78 1.5-1.95 1.66-3.5-.58-.32-1.32-.62-2.2-.86-.16 1.59-.65 2.85-1.46 3.74-1.07 1.16-2.6 1.78-4.36 1.81-1.41-.02-2.59-.4-3.42-1.16-.83-.74-1.31-1.79-1.31-2.93 0-1.16.49-2.18 1.43-2.84.93-.66 2.25-1 3.74-.99 1.09.01 2.05.13 2.86.34-.05-.66-.18-1.21-.4-1.6-.32-.55-.86-.87-1.69-.87-.04 0-.07 0-.11.01-.66 0-1.55.16-2.16 1.13l-1.46-.99c.79-1.27 2.16-1.91 3.62-1.94h.16c2.7 0 4.31 1.66 4.55 4.6.13.05.27.11.4.17 1.79.85 3.11 2.13 3.83 3.71l-1.59.74c-.55-1.18-1.43-2.07-2.6-2.69-.21 1.99-1.07 3.5-2.06 4.49-1.46 1.46-3.31 2.16-5.83 2.19z"/>
+     </svg>)}
+  ];
+  return (
+    <div style={{display:"flex",alignItems:"center",justifyContent:align==="right"?"flex-end":align==="left"?"flex-start":"center",gap:8}}>
+      {links.map(l=>(
+        <a key={l.name} href={l.href} target="_blank" rel="noopener noreferrer"
+          title={l.name} aria-label={l.name}
+          style={{display:"inline-flex",alignItems:"center",justifyContent:"center",
+            width:size,height:size,background:"#0a1228",color:"#ffffff",
+            borderRadius:4,textDecoration:"none",transition:"opacity .2s"}}
+          onMouseEnter={e=>e.currentTarget.style.opacity="0.75"}
+          onMouseLeave={e=>e.currentTarget.style.opacity="1"}>
+          {l.icon}
+        </a>
+      ))}
+    </div>
+  );
+}
+
 function CS({title,soon,contact}){
   return(
     <div style={{maxWidth:680,margin:"100px auto",padding:"0 24px",textAlign:"center"}}>
@@ -4357,6 +4391,9 @@ export default function App(){
                 </button>
               );
             })}
+            <div style={{marginTop:24,paddingBottom:8}} onClick={e=>e.stopPropagation()}>
+              <SocialButtons size={32}/>
+            </div>
           </div>
         </div>
       )}
@@ -4637,12 +4674,15 @@ export default function App(){
       {/* ══ CHEZ VOUS ════════════════════════════════════════════════════════ */}
       {sec==="insitu"&&(
         <div style={{maxWidth:1140,margin:"60px auto",padding:"0 14px 70px"}}>
-          <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
-            <button onClick={()=>goSec("portfolio")}
-              style={{background:"none",border:"none",cursor:"pointer",
-                color:"#0a1228",fontSize:18,lineHeight:1,padding:"0 4px 0 0"}}>←</button>
-            <h2 style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",
-              fontWeight:400,fontSize:"clamp(20px,4vw,38px)"}}>{t.zt}</h2>
+          <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:12,marginBottom:6}}>
+            <div style={{display:"flex",alignItems:"center",gap:12}}>
+              <button onClick={()=>goSec("portfolio")}
+                style={{background:"none",border:"none",cursor:"pointer",
+                  color:"#0a1228",fontSize:18,lineHeight:1,padding:"0 4px 0 0"}}>←</button>
+              <h2 style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",
+                fontWeight:400,fontSize:"clamp(20px,4vw,38px)"}}>{t.zt}</h2>
+            </div>
+            <SocialButtons size={32}/>
           </div>
           <p style={{color:"#0a1228",fontSize:12,letterSpacing:1,
             fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,marginBottom:32}}>
@@ -5121,23 +5161,9 @@ export default function App(){
             </p>
 
             {/* Liens réseaux sociaux */}
-            <p style={{marginTop:22,fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,
-              fontSize:12,color:"#0a1228",letterSpacing:.5}}>
-              <a href="https://www.instagram.com/i.l.y.m_artproject?igsh=MTdtd3l1em5pNWI1aA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer"
-                style={{color:"#0a1228",textDecoration:"underline",textUnderlineOffset:3}}>
-                Instagram
-              </a>
-              {" · "}
-              <a href="https://x.com/SirMoneypenis" target="_blank" rel="noopener noreferrer"
-                style={{color:"#0a1228",textDecoration:"underline",textUnderlineOffset:3}}>
-                X
-              </a>
-              {" · "}
-              <a href="https://www.threads.com/@i.l.y.m_artproject" target="_blank" rel="noopener noreferrer"
-                style={{color:"#0a1228",textDecoration:"underline",textUnderlineOffset:3}}>
-                Threads
-              </a>
-            </p>
+            <div style={{marginTop:24,display:"flex",justifyContent:"center"}}>
+              <SocialButtons size={36}/>
+            </div>
           </div>
           <SimpleContactForm t={t} lang={lang}/>
         </div>
