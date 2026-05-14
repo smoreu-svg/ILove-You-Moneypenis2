@@ -3948,9 +3948,11 @@ export default function App(){
           0%   { transform: translateX(0); }
           100% { transform: translateX(-100%); }
         }
-        .nb{background:none;border:none;color:#0a1228;font-size:11px;letter-spacing:3px;
-          text-transform:uppercase;cursor:pointer;padding:12px 0;width:100%;text-align:center;
-          transition:color .2s;font-family:'Space Grotesk',sans-serif;font-weight:400;display:block;}
+        .nb{background:none;border:none;color:#0a1228;
+          font-size:clamp(20px,3.2vw,30px);letter-spacing:0.5px;
+          text-transform:none;cursor:pointer;padding:10px 0;width:100%;text-align:center;
+          transition:color .2s;font-family:'Libre Baskerville',serif;font-style:italic;
+          font-weight:400;display:block;line-height:1.2;}
         .nb:hover,.nb.on{color:#0a1228;}
         .nb.gr{color:#0a1228;cursor:default;pointer-events:none;}
         .bs{background:#0a1228;border:1px solid #0a1228;color:#fff;padding:14px 30px;
