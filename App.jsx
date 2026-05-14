@@ -14,6 +14,7 @@ const IMG={
   logo_heart:"/logo-heart.png",
   logo_aubergine_piece:"/logo-aubergine.png",
   aubergine:"/aubergine.png",
+  flash:"/flash.jpg",
   warning_cmp:"/warning-cmp.jpg",
   fan:"/fan.jpg",
   open_pf:"/open-pf.jpg",
@@ -2128,6 +2129,29 @@ export default function App(){
         }
         .intro-stage { position: relative; width: 104px; height: 104px; flex-shrink: 0; }
         .intro-wrap  { position: absolute; inset: 0; animation: introWrap 9.5s linear forwards; transform-origin: 50% 50%; }
+
+        /* Flash subliminal plein écran : 3 apparitions ultra-rapides (~80ms)
+           entre 50% et 60% de l'animation = 4,75s → 5,7s = après la chute
+           du cœur (47%) et avant la chute de l'aubergine (92%). */
+        .intro-flash {
+          position: fixed; inset: 0; width: 100vw; height: 100vh;
+          object-fit: cover; object-position: center;
+          pointer-events: none; z-index: 9999; opacity: 0;
+          animation: subliminalFlash 9.5s linear forwards;
+          will-change: opacity;
+        }
+        @keyframes subliminalFlash {
+          0%,    49.5% { opacity: 0; }
+          50%          { opacity: 1; }
+          50.8%        { opacity: 0; }
+          53.5%        { opacity: 0; }
+          54%          { opacity: 1; }
+          54.8%        { opacity: 0; }
+          57.5%        { opacity: 0; }
+          58%          { opacity: 1; }
+          58.8%        { opacity: 0; }
+          100%         { opacity: 0; }
+        }
         .intro-base  { position: absolute; inset: 0; width: 100%; height: 100%;
                        border-radius: 50%; border: 1px solid #0a1228; object-fit: cover; object-position: center; }
         .intro-heart { position: absolute; top: 17.80%; left: 48.75%; width: 29.58%; height: 47.46%;
@@ -2207,16 +2231,22 @@ export default function App(){
                   objectPosition:"center",display:"block",pointerEvents:"none"}}/>
             </div>
           ) : (
-            <div className="intro-stage">
-              <div className="intro-wrap">
-                <img className="intro-base" src={IMG.logo_base} alt=""
-                  draggable={false} onContextMenu={e=>e.preventDefault()}/>
-                <img className="intro-heart" src={IMG.logo_heart} alt=""
-                  draggable={false} onContextMenu={e=>e.preventDefault()}/>
-                <img className="intro-aub" src={IMG.aubergine} alt=""
-                  draggable={false} onContextMenu={e=>e.preventDefault()}/>
+            <>
+              {/* Flash subliminal plein écran : 3 apparitions ultra-rapides
+                  après la chute du cœur, avant la chute de l'aubergine */}
+              <img className="intro-flash" src={IMG.flash} alt=""
+                draggable={false} onContextMenu={e=>e.preventDefault()}/>
+              <div className="intro-stage">
+                <div className="intro-wrap">
+                  <img className="intro-base" src={IMG.logo_base} alt=""
+                    draggable={false} onContextMenu={e=>e.preventDefault()}/>
+                  <img className="intro-heart" src={IMG.logo_heart} alt=""
+                    draggable={false} onContextMenu={e=>e.preventDefault()}/>
+                  <img className="intro-aub" src={IMG.aubergine} alt=""
+                    draggable={false} onContextMenu={e=>e.preventDefault()}/>
+                </div>
               </div>
-            </div>
+            </>
           )}
 
           {/* Tout le reste : fade-in après intro */}
