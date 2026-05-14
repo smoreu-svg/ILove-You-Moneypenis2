@@ -83,13 +83,6 @@ const EDS=[
   {key:"gf",pr:{port:1190,single:180},rm:{port:12,tot:15},
    avail:{portFrom:3,portTo:13,portTot:15,singleFrom:14,singleTo:15,singleTot:15}}
 ];
-// Les 4 produits affichés dans le formulaire shop, regroupés par format
-const SHOP_PRODUCTS=[
-  {id:"port_pf",fmt:"pf",type:"port"},
-  {id:"single_pf",fmt:"pf",type:"single"},
-  {id:"port_gf",fmt:"gf",type:"port"},
-  {id:"single_gf",fmt:"gf",type:"single"}
-];
 // 5 types de requête (anciens : info/buy/dep/pro/col/oth — remplacés)
 const REQUEST_KEYS=["rqInfo","rqAcq","rqPro","rqPress","rqOther"];
 const TEXTS = {
@@ -3384,14 +3377,8 @@ function ContactForm({t,lang,d,setD,matrix,setMatrix,result,setResult,onContinue
   const set=(k,v)=>setD(s=>({...s,[k]:v}));
   const tog=(o,r)=>setMatrix(m=>({...m,[`${o}|${r}`]:!m[`${o}|${r}`]}));
 
-  // 4 produits : portfolio + planches × petit/grand format
-  const productLabel=(p)=>{
-    if(p.id==="port_pf") return t.shopPortPF||"Portfolio · Petit Format";
-    if(p.id==="single_pf") return t.shopSingPF||"Planches à l'unité · Petit Format";
-    if(p.id==="port_gf") return t.shopPortGF||"Portfolio · Grand Format";
-    if(p.id==="single_gf") return t.shopSingGF||"Planches à l'unité · Grand Format";
-    return p.id;
-  };
+  // Format clé matrix : `${format}_${oId}|${requestKey}`
+  // format ∈ {pf, gf}, oId ∈ {port, I, II, ..., XI}, requestKey ∈ REQUEST_KEYS
   const requestLabel=(k)=>{
     if(k==="rqInfo") return t.rqInfo2||t.rqInfo||"Informations générales";
     if(k==="rqAcq") return t.rqAcq||"Disponibilité & acquisition";
@@ -3402,20 +3389,19 @@ function ContactForm({t,lang,d,setD,matrix,setMatrix,result,setResult,onContinue
   };
 
   // Icônes SVG sobres (navy)
-  const IconBox=()=>(
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0a1228" strokeWidth="1.4" style={{flexShrink:0}}>
+  const IconBox=({sz=18})=>(
+    <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{display:"inline-block",verticalAlign:"middle"}}>
       <rect x="3" y="6" width="18" height="14"/>
       <path d="M3 10 L21 10"/>
       <path d="M9 6 L9 4 L15 4 L15 6"/>
     </svg>
   );
-  const IconPrint=()=>(
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0a1228" strokeWidth="1.4" style={{flexShrink:0}}>
+  const IconPrint=({sz=18})=>(
+    <svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{display:"inline-block",verticalAlign:"middle"}}>
       <rect x="4" y="3" width="16" height="18"/>
       <path d="M7 9 L17 9 M7 13 L17 13 M7 17 L13 17"/>
     </svg>
   );
-  const productIcon=(p)=>p.type==="port"?<IconBox/>:<IconPrint/>;
 
   // Récap résumé envoyé à smoreu@mac.com
   const buildSummary=()=>{
@@ -3432,15 +3418,25 @@ function ContactForm({t,lang,d,setD,matrix,setMatrix,result,setResult,onContinue
       `Préférence de contact : ${d.pref==="phone"?"Téléphone":"Email"}`,
       "",
       "── Objet de la demande ──"];
-    SHOP_PRODUCTS.forEach(p=>{
-      const types=REQUEST_KEYS.filter(r=>matrix[`${p.id}|${r}`]).map(r=>requestLabel(r));
-      if(types.length){
-        lignes.push(`• ${productLabel(p)} : ${types.join(", ")}`);
+    // Parcourt PF puis GF
+    EDS.forEach(ed=>{
+      const fmtName=ed.key==="pf"?"Petit Format (30×40)":"Grand Format (50×70)";
+      const items=[];
+      // Portfolio d'abord
+      const portTypes=REQUEST_KEYS.filter(r=>matrix[`${ed.key}_port|${r}`]).map(r=>requestLabel(r));
+      if(portTypes.length) items.push(`Portfolio : ${portTypes.join(", ")}`);
+      // Puis les planches I à XI
+      PRINTS.forEach(p=>{
+        const types=REQUEST_KEYS.filter(r=>matrix[`${ed.key}_${p.num}|${r}`]).map(r=>requestLabel(r));
+        if(types.length) items.push(`Planche ${p.num} : ${types.join(", ")}`);
+      });
+      if(items.length){
+        lignes.push(`▸ ${fmtName}`);
+        items.forEach(it=>lignes.push(`  • ${it}`));
       }
     });
-    if(!SHOP_PRODUCTS.some(p=>REQUEST_KEYS.some(r=>matrix[`${p.id}|${r}`]))){
-      lignes.push("(Aucun produit sélectionné)");
-    }
+    const anyChecked=Object.values(matrix).some(v=>v);
+    if(!anyChecked) lignes.push("(Aucun produit sélectionné)");
     lignes.push("","── Message ──",d.msg||"(aucun)");
     return lignes.join("\n");
   };
@@ -3544,7 +3540,7 @@ function ContactForm({t,lang,d,setD,matrix,setMatrix,result,setResult,onContinue
         ))}
       </div>
 
-      {/* Section 3 : Matrice produit × type de demande, groupée par format */}
+      {/* Section 3 : Pour chaque format, en-tête + grille [Portfolio + planches I-XI] × types */}
       <p style={lbl}>{t.fMatrix}</p>
       <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,fontSize:11,
         color:"#0a1228",opacity:.7,marginBottom:14}}>{t.fMatrixHint}</p>
@@ -3552,85 +3548,108 @@ function ContactForm({t,lang,d,setD,matrix,setMatrix,result,setResult,onContinue
       {EDS.map((ed,edi)=>{
         const isP=ed.key==="pf";
         const fmtLabel=isP?(t.shopFmtPF||"Petit Format · 30 × 40 cm"):(t.shopFmtGF||"Grand Format · 50 × 70 cm");
-        const products=SHOP_PRODUCTS.filter(p=>p.fmt===ed.key);
         const av=ed.avail;
+        const availPortTxt=(t.availPort||"Numéros %F% à %T% sur %N%")
+          .replace("%F%",av.portFrom).replace("%T%",av.portTo).replace("%N%",av.portTot);
+        const availSingTxt=(t.availSingle||"Issues des portfolios %F% à %T% sur %N%")
+          .replace("%F%",av.singleFrom).replace("%T%",av.singleTo).replace("%N%",av.singleTot);
         return(
-          <div key={ed.key} style={{border:"1px solid #0a1228",marginBottom:edi===0?16:22}}>
-            {/* En-tête format */}
-            <div style={{background:"#0a1228",color:"#ffffff",padding:"10px 14px",
-              fontFamily:"'Space Grotesk',sans-serif",fontWeight:500,fontSize:10,
-              letterSpacing:3,textTransform:"uppercase"}}>
-              {fmtLabel}
+          <div key={ed.key} style={{border:"1px solid #0a1228",marginBottom:edi===0?20:24}}>
+            {/* En-tête format : titre + prix + dispo */}
+            <div style={{background:"#0a1228",color:"#ffffff",padding:"12px 16px"}}>
+              <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:500,fontSize:11,
+                letterSpacing:3,textTransform:"uppercase",marginBottom:8}}>
+                {fmtLabel}
+              </p>
+              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14,
+                fontFamily:"'Space Grotesk',sans-serif",fontSize:11,lineHeight:1.5}}>
+                <div>
+                  <p style={{marginBottom:2,opacity:.7,fontSize:9,letterSpacing:1.5,
+                    textTransform:"uppercase"}}>
+                    <IconBox sz={12}/> Portfolio
+                  </p>
+                  <p style={{fontWeight:600,fontSize:14,marginBottom:2}}>
+                    {ed.pr.port.toLocaleString("fr-FR")} € <span style={{fontSize:10,opacity:.7,fontWeight:400}}>{t.priceUnit||"TTC"}</span>
+                  </p>
+                  <p style={{opacity:.85,fontSize:10}}>{availPortTxt}</p>
+                  <p style={{opacity:.65,fontSize:9,fontStyle:"italic",marginTop:2}}>{t.noChoice||"Numéro attribué automatiquement"}</p>
+                </div>
+                <div>
+                  <p style={{marginBottom:2,opacity:.7,fontSize:9,letterSpacing:1.5,
+                    textTransform:"uppercase"}}>
+                    <IconPrint sz={12}/> {t.shUn||"Planches à l'unité"}
+                  </p>
+                  <p style={{fontWeight:600,fontSize:14,marginBottom:2}}>
+                    {ed.pr.single} € <span style={{fontSize:10,opacity:.7,fontWeight:400}}>{t.priceUnit||"TTC"} {t.pricePer||"/ planche"}</span>
+                  </p>
+                  <p style={{opacity:.85,fontSize:10}}>{availSingTxt}</p>
+                </div>
+              </div>
             </div>
 
-            {/* Tableau : 2 produits × 5 colonnes */}
+            {/* Tableau : 5 lignes (types) × 12 colonnes (Portfolio + I à XI) */}
             <div style={{overflowX:"auto"}}>
               <table style={{borderCollapse:"collapse",width:"100%",
                 fontFamily:"'Space Grotesk',sans-serif",fontSize:10,color:"#0a1228",
-                tableLayout:"fixed"}}>
+                minWidth:680}}>
                 <thead>
                   <tr style={{borderBottom:"1px solid #0a1228"}}>
                     <th style={{padding:"10px 10px",textAlign:"left",fontWeight:500,
-                      letterSpacing:1,fontSize:9,minWidth:170,background:"#f7f6f3"}}>
+                      letterSpacing:1,fontSize:9,minWidth:160,background:"#f7f6f3",
+                      position:"sticky",left:0,zIndex:1,borderRight:"1px solid #0a1228"}}>
                       &nbsp;
                     </th>
-                    {REQUEST_KEYS.map(rk=>(
-                      <th key={rk} style={{padding:"10px 6px",textAlign:"center",fontWeight:500,
-                        letterSpacing:1,fontSize:9,textTransform:"uppercase",background:"#f7f6f3",
-                        borderLeft:"1px solid rgba(10,18,40,.15)",lineHeight:1.3}}>
-                        {requestLabel(rk)}
+                    {/* Colonne Portfolio en premier */}
+                    <th style={{padding:"10px 6px",textAlign:"center",fontWeight:500,
+                      letterSpacing:1,fontSize:9,textTransform:"uppercase",
+                      background:"#f7f6f3",borderRight:"1px solid #0a1228",minWidth:64}}>
+                      <div style={{display:"flex",flexDirection:"column",alignItems:"center",gap:3}}>
+                        <IconBox sz={16}/>
+                        <span>Portfolio</span>
+                      </div>
+                    </th>
+                    {/* Colonnes planches I à XI */}
+                    {PRINTS.map(p=>(
+                      <th key={p.id} style={{padding:"10px 4px",textAlign:"center",fontWeight:500,
+                        letterSpacing:.5,fontSize:9,background:"#f7f6f3",
+                        borderLeft:"1px solid rgba(10,18,40,.15)",minWidth:42}}>
+                        <div style={{display:"flex",flexDirection:"column",alignItems:"center",gap:3}}>
+                          <IconPrint sz={14}/>
+                          <span>{p.num}</span>
+                        </div>
                       </th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
-                  {products.map(p=>{
-                    const isPort=p.type==="port";
-                    const price=isPort?ed.pr.port:ed.pr.single;
-                    const availTxt=isPort
-                      ? (t.availPort||"Numéros %F% à %T% sur %N%")
-                          .replace("%F%",av.portFrom).replace("%T%",av.portTo).replace("%N%",av.portTot)
-                      : (t.availSingle||"Issues des portfolios %F% à %T% sur %N%")
-                          .replace("%F%",av.singleFrom).replace("%T%",av.singleTo).replace("%N%",av.singleTot);
-                    return(
-                      <tr key={p.id} style={{borderTop:"1px solid rgba(10,18,40,.15)"}}>
-                        <td style={{padding:"12px 10px",verticalAlign:"top"}}>
-                          <div style={{display:"flex",gap:10,alignItems:"flex-start"}}>
-                            {productIcon(p)}
-                            <div style={{minWidth:0,flex:1}}>
-                              <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:500,
-                                fontSize:11,letterSpacing:.5,marginBottom:4,lineHeight:1.3}}>
-                                {isPort?(t.ct||"Portfolio"):(t.shUn||"Planches à l'unité")}
-                              </p>
-                              <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:600,
-                                fontSize:13,marginBottom:4}}>
-                                {price.toLocaleString("fr-FR")} € <span style={{fontWeight:400,opacity:.75,fontSize:10}}>{isPort?(t.priceUnit||"TTC"):(t.priceUnit||"TTC")+" "+(t.pricePer||"/ planche")}</span>
-                              </p>
-                              <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,
-                                fontSize:10,opacity:.75,lineHeight:1.4,marginBottom:isPort?4:0}}>
-                                {availTxt}
-                              </p>
-                              {isPort&&(
-                                <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,
-                                  fontSize:9,opacity:.6,lineHeight:1.4,fontStyle:"italic"}}>
-                                  {t.noChoice||"Numéro attribué automatiquement"}
-                                </p>
-                              )}
-                            </div>
-                          </div>
+                  {REQUEST_KEYS.map(rk=>(
+                    <tr key={rk} style={{borderTop:"1px solid rgba(10,18,40,.15)"}}>
+                      <td style={{padding:"10px 10px",fontWeight:500,
+                        background:"#ffffff",position:"sticky",left:0,zIndex:1,
+                        borderRight:"1px solid #0a1228",textTransform:"uppercase",
+                        letterSpacing:1,fontSize:9,lineHeight:1.3}}>
+                        {requestLabel(rk)}
+                      </td>
+                      {/* Case Portfolio */}
+                      <td style={{padding:"6px",textAlign:"center",
+                        borderRight:"1px solid #0a1228",background:"#fcfaf6"}}>
+                        <input type="checkbox"
+                          checked={!!matrix[`${ed.key}_port|${rk}`]}
+                          onChange={()=>tog(`${ed.key}_port`,rk)}
+                          style={{accentColor:"#0a1228",cursor:"pointer",width:16,height:16}}/>
+                      </td>
+                      {/* Cases planches I à XI */}
+                      {PRINTS.map(p=>(
+                        <td key={p.id} style={{padding:"6px",textAlign:"center",
+                          borderLeft:"1px solid rgba(10,18,40,.15)"}}>
+                          <input type="checkbox"
+                            checked={!!matrix[`${ed.key}_${p.num}|${rk}`]}
+                            onChange={()=>tog(`${ed.key}_${p.num}`,rk)}
+                            style={{accentColor:"#0a1228",cursor:"pointer",width:14,height:14}}/>
                         </td>
-                        {REQUEST_KEYS.map(rk=>(
-                          <td key={rk} style={{padding:"6px",textAlign:"center",
-                            borderLeft:"1px solid rgba(10,18,40,.15)",verticalAlign:"middle"}}>
-                            <input type="checkbox"
-                              checked={!!matrix[`${p.id}|${rk}`]}
-                              onChange={()=>tog(p.id,rk)}
-                              style={{accentColor:"#0a1228",cursor:"pointer",width:16,height:16}}/>
-                          </td>
-                        ))}
-                      </tr>
-                    );
-                  })}
+                      ))}
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -3747,10 +3766,22 @@ export default function App(){
   const t=T[lang]?{...T.EN,...T[lang]}:T.EN;
 
   // Helper : "Faire une demande" depuis une page produit
+  // Pré-coche la case "Acquisition" du produit choisi
+  // productId : "PF" (portfolio petit), "GF" (portfolio grand), ou "I"..."XI" (planche num)
   const openDemandFor=(productId)=>{
-    setFormMatrix(m=>({...m,[`${productId}|info`]:true}));
+    setFormMatrix(m=>{
+      const next={...m};
+      if(productId==="PF") next[`pf_port|rqAcq`]=true;
+      else if(productId==="GF") next[`gf_port|rqAcq`]=true;
+      else {
+        // Planche I..XI : coche dans les 2 formats (PF et GF) → l'acheteur précise dans le message
+        next[`pf_${productId}|rqAcq`]=true;
+        next[`gf_${productId}|rqAcq`]=true;
+      }
+      return next;
+    });
     setFormReturn(shopView);
-    setSec("contact");
+    setShopView("form");
   };
 
   // Helper : "Continuer la consultation" depuis le formulaire
@@ -4918,6 +4949,35 @@ export default function App(){
                 </div>
               );
             })()}
+
+            {/* ── VUE : FORMULAIRE DE DEMANDE (grille shop) ───────────── */}
+            {shopView==="form"&&(
+              <div style={{maxWidth:1100,margin:"50px auto",padding:"0 18px 70px"}}>
+                <button onClick={()=>setShopView(formReturn||"list")}
+                  style={{background:"none",border:"none",cursor:"pointer",
+                    color:"#0a1228",fontSize:10,letterSpacing:3,padding:"0 0 16px",
+                    fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,
+                    textTransform:"uppercase"}}>
+                  ← {t.st}
+                </button>
+                <div style={{textAlign:"center",marginBottom:28}}>
+                  <h2 style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",
+                    fontWeight:400,fontSize:"clamp(24px,4vw,36px)",color:"#0a1228",
+                    marginBottom:8}}>{t.shopFormTitle||t.req}</h2>
+                  <div style={{width:36,height:1,background:"#0a1228",margin:"0 auto 14px"}}/>
+                  <p style={{color:"#0a1228",fontSize:12,lineHeight:1.7,maxWidth:520,
+                    margin:"0 auto",fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>
+                    {t.shopFormSubtitle||t.fMatrixHint}
+                  </p>
+                </div>
+                <ContactForm t={t} lang={lang}
+                  d={formData} setD={setFormData}
+                  matrix={formMatrix} setMatrix={setFormMatrix}
+                  result={formResult} setResult={setFormResult}
+                  onContinue={()=>setShopView(formReturn||"list")}
+                  onSuccess={onFormSuccess}/>
+              </div>
+            )}
           </>
         ) : (
           /* -18 : pas de shop accessible */
