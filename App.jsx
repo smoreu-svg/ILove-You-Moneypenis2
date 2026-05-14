@@ -1999,9 +1999,23 @@ export default function App(){
   };
 
   const handleSkipIntro=()=>{
+    // Coupe l'audio principal
     if(audioRef.current){
-      try{audioRef.current.pause();audioRef.current.currentTime=0;}catch{}
+      try{
+        audioRef.current.pause();
+        audioRef.current.currentTime=0;
+        audioRef.current.src="";
+        audioRef.current.load();
+      }catch{}
     }
+    // Filet de sécurité : stoppe TOUS les <audio> présents dans le DOM
+    // (au cas où une instance fantôme aurait été créée par un effet de bord)
+    try{
+      document.querySelectorAll("audio").forEach(a=>{
+        try{a.pause();a.currentTime=0;}catch{}
+      });
+    }catch{}
+    audioTriggeredRef.current=true;
     setIntroDone(true);
   };
 
@@ -3205,12 +3219,12 @@ export default function App(){
       {/* ══ BOUTON SKIP : visible uniquement pendant l'animation d'intro ═════ */}
       {started&&!introDone&&(
         <button onClick={handleSkipIntro}
-          style={{position:"fixed",bottom:40,left:"50%",
+          style={{position:"fixed",bottom:60,left:"50%",
             transform:"translateX(-50%)",background:"none",border:"none",
             color:"#000000",fontFamily:"'Space Grotesk',sans-serif",
-            fontWeight:500,fontSize:11,letterSpacing:5,
-            textTransform:"uppercase",cursor:"pointer",padding:"10px 24px",
-            zIndex:8500}}>
+            fontWeight:700,fontSize:16,letterSpacing:4,
+            textTransform:"uppercase",cursor:"pointer",padding:"12px 28px",
+            zIndex:9500,textShadow:"0 0 8px rgba(255,255,255,0.6)"}}>
           SKIP
         </button>
       )}
