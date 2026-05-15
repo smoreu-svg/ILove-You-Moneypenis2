@@ -4907,9 +4907,9 @@ export default function App(){
           {/* Tout le reste : fade-in après intro */}
           <div className="fade-in" style={{display:"flex",flexDirection:"column",
             alignItems:"center",width:"100%",opacity:introDone?1:0}}>
-          <div style={{height:18}}/>
+          <div style={{height:38}}/>
           <h1 style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",fontWeight:400,
-            fontSize:"clamp(22px,5.4vw,34px)",color:"#0a1228",marginBottom:4,lineHeight:1.2}}>
+            fontSize:"clamp(28px,6.6vw,44px)",color:"#0a1228",marginBottom:6,lineHeight:1.2}}>
             I Love You Moneypenis
           </h1>
           <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,fontSize:10,
@@ -4917,42 +4917,45 @@ export default function App(){
             Sébastien Moreu & André Vaszkievicz · Paris 2024
           </p>
           <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,fontSize:9,
-            letterSpacing:4,color:"#0a1228",marginBottom:22,textTransform:"uppercase"}}>
+            letterSpacing:4,color:"#0a1228",marginBottom:42,textTransform:"uppercase"}}>
             {t.aw}
           </p>
 
           {/* ── Déclaration + boutons · sans cadre, en premier ──────────────── */}
-          <div style={{maxWidth:380,width:"100%",marginBottom:26,textAlign:"left",
+          <div style={{maxWidth:380,width:"100%",marginBottom:46,textAlign:"left",
             padding:"0 4px"}}>
-            <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,fontSize:10.5,
-              color:"#0a1228",lineHeight:1.6,marginBottom:11}}>{t.am}</p>
+            <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,fontSize:9.5,
+              color:"#0a1228",lineHeight:1.55,marginBottom:10}}>{t.am}</p>
 
-            <label style={{display:"flex",alignItems:"flex-start",gap:9,
-              cursor:"pointer",marginBottom:8}}>
+            <label style={{display:"flex",alignItems:"flex-start",gap:8,
+              cursor:"pointer",marginBottom:7}}>
               <input type="checkbox" checked={ck1} onChange={e=>setCk1(e.target.checked)}
-                style={{marginTop:2,width:14,height:14,accentColor:"#0a1228",
+                style={{marginTop:2,width:13,height:13,accentColor:"#0a1228",
                   flexShrink:0,cursor:"pointer"}}/>
               <span style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,
-                fontSize:10.5,color:"#0a1228",lineHeight:1.45}}>{t.ck1}</span>
+                fontSize:9.5,color:"#0a1228",lineHeight:1.45}}>{t.ck1}</span>
             </label>
 
-            <label style={{display:"flex",alignItems:"flex-start",gap:9,
-              cursor:"pointer",marginBottom:14}}>
+            <label style={{display:"flex",alignItems:"flex-start",gap:8,
+              cursor:"pointer",marginBottom:13}}>
               <input type="checkbox" checked={ck2} onChange={e=>setCk2(e.target.checked)}
-                style={{marginTop:2,width:14,height:14,accentColor:"#0a1228",
+                style={{marginTop:2,width:13,height:13,accentColor:"#0a1228",
                   flexShrink:0,cursor:"pointer"}}/>
               <span style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,
-                fontSize:10.5,color:"#0a1228",lineHeight:1.45}}>{t.ck2}</span>
+                fontSize:9.5,color:"#0a1228",lineHeight:1.45}}>{t.ck2}</span>
             </label>
 
-            <div style={{display:"flex",flexDirection:"column",gap:7}}>
+            <div style={{display:"flex",flexDirection:"row",gap:8}}>
               <button className="bs"
-                style={{opacity:ck1&&ck2?1:0.35,transition:"opacity .2s",
-                  cursor:ck1&&ck2?"pointer":"not-allowed",padding:"11px 22px",fontSize:10.5}}
+                style={{flex:1,opacity:ck1&&ck2?1:0.35,transition:"opacity .2s",
+                  cursor:ck1&&ck2?"pointer":"not-allowed",padding:"9px 10px",fontSize:9,
+                  letterSpacing:1.4,lineHeight:1.3}}
                 onClick={()=>{if(ck1&&ck2){setAgeOk(true);setDis(true);}}}>
                 {t.ap}
               </button>
-              <button className="bg" style={{padding:"11px 22px",fontSize:10.5}}
+              <button className="bg"
+                style={{flex:1,padding:"9px 10px",fontSize:9,
+                  letterSpacing:1.4,lineHeight:1.3}}
                 onClick={()=>{setAgeOk(false);setDis(true);}}>
                 {t.am2}
               </button>
@@ -4962,17 +4965,23 @@ export default function App(){
           {/* ── Note des auteurs · sans cadre, intégrale, après les boutons ─── */}
           <div style={{maxWidth:520,width:"100%",marginBottom:18,textAlign:"left",
             padding:"0 4px"}}>
-            <p style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",
-              fontWeight:400,fontSize:13.5,color:"#0a1228",marginBottom:10,
-              letterSpacing:".02em"}}>
-              {t.nat}
-            </p>
-            {t.naf.split("\n\n").map((para,j)=>(
-              <p key={j} style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,
-                fontSize:11,color:"#0a1228",lineHeight:1.7,marginBottom:9}}>
-                {para}
-              </p>
-            ))}
+            {(()=>{
+              const AUTH={FR:"Les Auteurs",EN:"The Authors",ES:"Los Autores",
+                PT:"Os Autores",IT:"Gli Autori",DE:"Die Autoren",
+                EL:"Οι Δημιουργοί",TR:"Yazarlar",RU:"Авторы",PL:"Autorzy",
+                NL:"De Auteurs",UK:"Автори",LT:"Autoriai",KO:"작가들",
+                "中":"作者们","日":"作者たち",AR:"المؤلفان",HE:"המחברים",FA:"نویسندگان"};
+              const a=AUTH[lang]||"";
+              return t.naf.split("\n\n").map((para,j)=>{
+                const idx=(j===0&&a)?para.indexOf(a):-1;
+                return(
+                  <p key={j} style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,
+                    fontSize:11,color:"#0a1228",lineHeight:1.7,marginBottom:9}}>
+                    {idx>=0?(<>{para.slice(0,idx)}<strong style={{fontWeight:700}}>{a}</strong>{para.slice(idx+a.length)}</>):para}
+                  </p>
+                );
+              });
+            })()}
           </div>
 
           <div style={{marginTop:4,display:"flex",gap:16,fontSize:10,color:"#0a1228",
