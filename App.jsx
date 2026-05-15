@@ -5676,7 +5676,7 @@ export default function App(){
 
             {/* ── VUE : LISTE DES 11 PLANCHES ─────────────────────────── */}
             {shopView==="singles"&&(
-              <div style={{maxWidth:1100,margin:"60px auto",padding:"0 18px 70px"}}>
+              <div style={{maxWidth:860,margin:"60px auto",padding:"0 18px 70px"}}>
                 <button onClick={()=>setShopView("list")}
                   style={{background:"none",border:"none",cursor:"pointer",
                     color:"#0a1228",fontSize:10,letterSpacing:3,padding:"0 0 12px",
@@ -5689,20 +5689,36 @@ export default function App(){
                   marginBottom:6}}>{t.shUn}</h2>
                 <p style={{color:"#0a1228",fontSize:12,letterSpacing:1,marginBottom:30,
                   fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>{t.shUnD}</p>
-                <div style={{display:"grid",
-                  gridTemplateColumns:"repeat(auto-fit,minmax(160px,1fr))",gap:18}}>
+                <div style={{display:"flex",flexDirection:"column"}}>
                   {PRINTS.map((p,idx)=>(
-                    <div key={p.id} onClick={()=>setShopView(`single-${idx}`)}
-                      style={{cursor:"pointer",transition:"opacity .2s"}}
-                      onMouseEnter={e=>e.currentTarget.style.opacity=.75}
-                      onMouseLeave={e=>e.currentTarget.style.opacity=1}>
-                      <PImg src={p.src} ageOk={ageOk} bz={p.bz}/>
-                      <p style={{padding:"8px 4px 0",color:"#0a1228",fontSize:9,
-                        letterSpacing:2,textAlign:"center",
-                        fontFamily:"'Space Grotesk',sans-serif",fontWeight:500,
-                        textTransform:"uppercase"}}>
-                        I.L.Y.M. · {p.num}
-                      </p>
+                    <div key={p.id} className="hs"
+                      style={{display:"flex",alignItems:"stretch",
+                        background:"#ffffff",cursor:"pointer",marginBottom:28}}
+                      onClick={()=>setShopView(`single-${idx}`)}
+                      onMouseEnter={e=>e.currentTarget.style.background="#ffffff"}
+                      onMouseLeave={e=>e.currentTarget.style.background="#ffffff"}>
+                      <div style={{flexShrink:0,width:"32%",maxWidth:200,background:"#ffffff"}}>
+                        <PImg src={p.src} ageOk={ageOk} bz={p.bz}/>
+                      </div>
+                      <div style={{flex:1,padding:"20px 18px",display:"flex",
+                        flexDirection:"column",justifyContent:"center",gap:7}}>
+                        <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:500,
+                          fontSize:"clamp(13px,1.8vw,18px)",color:"#0a1228",letterSpacing:3,
+                          textTransform:"uppercase",lineHeight:1.3}}>
+                          I.L.Y.M. · {p.num}, 2024
+                        </p>
+                        <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,
+                          fontSize:9,color:"#0a1228",lineHeight:1.6,marginTop:2}}>{t.tech_comp}</p>
+                        <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,
+                          fontSize:9,color:"#0a1228",lineHeight:1.6}}>{p.landscape?t.tech_dim_L:t.tech_dim}</p>
+                        <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,
+                          fontSize:9,color:"#0a1228",lineHeight:1.6}}>{t.tech_lab}</p>
+                        <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,
+                          fontSize:8,color:"#0a1228",letterSpacing:2,textTransform:"uppercase",
+                          marginTop:6}}>
+                          {t.mg}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
