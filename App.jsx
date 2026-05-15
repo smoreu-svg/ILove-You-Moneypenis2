@@ -4388,27 +4388,33 @@ export default function App(){
           <div style={{position:"relative",width:"100%",height:"100%"}}>
             {(() => {
               const items=[
-                {sk:"bio",        top:7,  left:24, size:"big",  fsOver:"clamp(22px,4.3vw,42px)", maxW:"62vw", label: t.nav[5]||"De jolies plumes vraiment…"},
-                {sk:"coffret",    top:14, left:72, size:"sml",                                   maxW:"42vw", label: t.nav[2]||"Les précieux coffrets"},
-                {sk:"contact",    top:22, left:30, size:"sml",  fsOver:"clamp(12px,1.8vw,17px)", maxW:"40vw", label: t.nav[7]||"I love you too"},
-                {sk:"shop",       top:29, left:72, size:"big",                                   maxW:"56vw", label: t.nav[4]||"Le prix des aubergines"},
-                {sk:"jeu",        top:39, left:60, size:"aub",  fsOver:"clamp(28px,4.2vw,46px)", maxW:"22vw", label:"🍆"},
-                {sk:"portfolio",  top:53, left:48, size:"huge",                                  maxW:"88vw", label: t.nav[0]||"I Love You Moneypenis", twoLine:true},
-                {sk:"insitu",     top:67, left:72, size:"sml",  fsOver:"clamp(16px,2.6vw,24px)", maxW:"48vw", label: t.nav[3]||"In Situ aimes ça"},
-                {sk:"signatures", top:75, left:22, size:"sml",                                   maxW:"50vw", label: t.nav[9]||"Des feutres et des mains"},
-                {sk:"video",      top:82, left:64, size:"big",  fsOver:"clamp(18px,3.2vw,30px)", maxW:"55vw", label: t.nav[1]||"Le Clip Teaser"},
-                {sk:"presse",     top:89, left:34, size:"sml",                                   maxW:"62vw", label: t.navPresse||"Trop d'honneurs pour peu de chair", disabled:true},
-                {sk:"accueil",    top:96, left:66, size:"med",                                   maxW:"55vw", label: t.nav[8]||"Ici tout recommence"},
+                {sk:"bio",        side:"left",  pos:5,  top:8,  size:"big",  fsOver:"clamp(22px,4.3vw,42px)", maxW:"60vw", label: t.nav[5]||"De jolies plumes vraiment…"},
+                {sk:"coffret",    side:"right", pos:5,  top:15, size:"sml",                                   maxW:"42vw", label: t.nav[2]||"Les précieux coffrets"},
+                {sk:"contact",    side:"left",  pos:10, top:23, size:"sml",  fsOver:"clamp(12px,1.8vw,17px)", maxW:"40vw", label: t.nav[7]||"I love you too"},
+                {sk:"shop",       side:"right", pos:5,  top:30, size:"big",                                   maxW:"54vw", label: t.nav[4]||"Le prix des aubergines"},
+                {sk:"jeu",        side:"left",  pos:14, top:45, size:"aub",  fsOver:"clamp(48px,8.5vw,100px)",maxW:"30vw", label:"🍆"},
+                {sk:"portfolio",  side:"center",         top:56, size:"huge",                                 maxW:"86vw", label: t.nav[0]||"I Love You Moneypenis", twoLine:true},
+                {sk:"insitu",     side:"right", pos:5,  top:69, size:"sml",  fsOver:"clamp(16px,2.6vw,24px)", maxW:"46vw", label: t.nav[3]||"In Situ aimes ça"},
+                {sk:"signatures", side:"left",  pos:5,  top:77, size:"sml",                                   maxW:"50vw", label: t.nav[9]||"Des feutres et des mains"},
+                {sk:"video",      side:"right", pos:6,  top:84, size:"big",  fsOver:"clamp(18px,3.2vw,30px)", maxW:"54vw", label: t.nav[1]||"Le Clip Teaser"},
+                {sk:"presse",     side:"center",         top:91, size:"sml",                                  maxW:"82vw", label: t.navPresse||"Trop d'honneurs pour peu de chair", disabled:true},
+                {sk:"accueil",    side:"right", pos:8,  top:96, size:"med",                                   maxW:"55vw", label: t.nav[8]||"Ici tout recommence"},
               ];
               return items.map(item=>{
-                const styleObj={
-                  position:"absolute",
-                  top:`${item.top}%`,
-                  left:`${item.left}%`,
-                  transform:"translate(-50%, -50%)",
-                  maxWidth:`min(${item.maxW}, 540px)`,
-                  padding:"4px 8px"
-                };
+                const styleObj={position:"absolute", top:`${item.top}%`, padding:"4px 8px", maxWidth:`min(${item.maxW}, 540px)`};
+                if(item.side==="left"){
+                  styleObj.left=`${item.pos}%`;
+                  styleObj.transform="translateY(-50%)";
+                  styleObj.textAlign="left";
+                }else if(item.side==="right"){
+                  styleObj.right=`${item.pos}%`;
+                  styleObj.transform="translateY(-50%)";
+                  styleObj.textAlign="right";
+                }else{
+                  styleObj.left="50%";
+                  styleObj.transform="translate(-50%, -50%)";
+                  styleObj.textAlign="center";
+                }
                 if(item.fsOver) styleObj.fontSize=item.fsOver;
                 return (
                   <button key={item.sk}
@@ -4426,7 +4432,7 @@ export default function App(){
                     }}>
                     {item.twoLine&&item.sk==="portfolio" ? (
                       <span style={{display:"inline-block"}}>
-                        <span style={{display:"block",lineHeight:1.04}}>I&nbsp;Love&nbsp;You</span>
+                        <span style={{display:"block",lineHeight:1.04,textAlign:"left"}}>I&nbsp;Love&nbsp;You</span>
                         <span style={{display:"block",lineHeight:1.04,paddingLeft:"22%"}}>Moneypenis</span>
                       </span>
                     ) : item.label}
