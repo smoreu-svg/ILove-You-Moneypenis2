@@ -31,6 +31,10 @@ const IMG={
   coffret_pf_print:"/coffret-pf-print.jpg",
   coffret_detail:"/coffret-detail.jpg",
   open_pf_2:"/open-pf-2.jpg",
+  // ── illustrations navy/blanc pour cards shop (vue liste) ──
+  shop_pf:"/shop-coffret-pf.png",
+  shop_gf:"/shop-coffret-gf.png",
+  shop_singles:"/shop-singles-fan.png",
   // ── portraits bio ──
   portrait_sm:"/portrait-sm.jpg",
   portrait_av:"/portrait-av.jpg",
@@ -5498,7 +5502,7 @@ export default function App(){
                     style={{cursor:"pointer",transition:"opacity .2s"}}
                     onMouseEnter={e=>e.currentTarget.style.opacity=.75}
                     onMouseLeave={e=>e.currentTarget.style.opacity=1}>
-                    <img src={IMG.coffret_pf_print} alt="" draggable={false}
+                    <img src={IMG.shop_pf} alt="" draggable={false}
                       onContextMenu={e=>e.preventDefault()}
                       style={{width:"100%",display:"block",marginBottom:14}}/>
                     <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:500,fontSize:9,
@@ -5528,7 +5532,7 @@ export default function App(){
                     style={{cursor:"pointer",transition:"opacity .2s"}}
                     onMouseEnter={e=>e.currentTarget.style.opacity=.75}
                     onMouseLeave={e=>e.currentTarget.style.opacity=1}>
-                    <img src={IMG.coffret_gf_closed} alt="" draggable={false}
+                    <img src={IMG.shop_gf} alt="" draggable={false}
                       onContextMenu={e=>e.preventDefault()}
                       style={{width:"100%",display:"block",marginBottom:14}}/>
                     <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:500,fontSize:9,
@@ -5558,14 +5562,9 @@ export default function App(){
                     style={{cursor:"pointer",transition:"opacity .2s"}}
                     onMouseEnter={e=>e.currentTarget.style.opacity=.75}
                     onMouseLeave={e=>e.currentTarget.style.opacity=1}>
-                    <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:3,
-                      marginBottom:14}}>
-                      {PRINTS.slice(0,8).map(p=>(
-                        <div key={p.id} style={{background:"#ffffff"}}>
-                          <PImg src={p.src} ageOk={ageOk} bz={p.bz}/>
-                        </div>
-                      ))}
-                    </div>
+                    <img src={IMG.shop_singles} alt="" draggable={false}
+                      onContextMenu={e=>e.preventDefault()}
+                      style={{width:"100%",display:"block",marginBottom:14}}/>
                     <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:500,fontSize:9,
                       letterSpacing:4,color:"#0a1228",marginBottom:6,textTransform:"uppercase"}}>
                       {t.shUn}
