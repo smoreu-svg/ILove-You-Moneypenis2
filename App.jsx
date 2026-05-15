@@ -5684,11 +5684,15 @@ export default function App(){
                     textTransform:"uppercase"}}>
                   ← {t.nav[4]||t.st}
                 </button>
-                <h2 style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",
-                  fontWeight:400,fontSize:"clamp(22px,4vw,32px)",color:"#0a1228",
-                  marginBottom:6}}>{t.shUn}</h2>
-                <p style={{color:"#0a1228",fontSize:12,letterSpacing:1,marginBottom:30,
-                  fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>{t.shUnD}</p>
+                <div style={{textAlign:"center",marginBottom:40}}>
+                  <h2 style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",
+                    fontWeight:400,fontSize:"clamp(22px,4vw,32px)",color:"#0a1228",
+                    marginBottom:14}}>{t.shUn}</h2>
+                  <div style={{width:36,height:1,background:"#0a1228",margin:"0 auto 18px"}}/>
+                  <p style={{color:"#0a1228",fontSize:12,letterSpacing:1,lineHeight:1.7,
+                    maxWidth:520,margin:"0 auto",
+                    fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>{t.shUnD}</p>
+                </div>
                 <div style={{display:"flex",flexDirection:"column"}}>
                   {PRINTS.map((p,idx)=>(
                     <div key={p.id} className="hs"
