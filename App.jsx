@@ -4316,6 +4316,11 @@ export default function App(){
           {/* Right controls */}
           <div style={{display:"flex",alignItems:"center",gap:6,flexShrink:0}}>
 
+            {/* Réseaux sociaux */}
+            <div style={{marginRight:4}}>
+              <SocialButtons size={26}/>
+            </div>
+
             {/* Lang dropdown · drapeau */}
             <div style={{position:"relative"}}>
               <button onClick={()=>{setLangOpen(!langOpen);setMenuOpen(false);}}
@@ -4383,17 +4388,17 @@ export default function App(){
           <div style={{position:"relative",width:"100%",height:"100%"}}>
             {(() => {
               const cloudItems=[
-                {sk:"accueil",    size:"med",  top:10, left:50, label: t.nav[8]||"Ici tout recommence"},
-                {sk:"bio",        size:"big",  top:26, left:22, label: t.nav[5]||"De jolies plumes vraiment…"},
-                {sk:"shop",       size:"big",  top:26, left:78, label: t.nav[4]||"Le prix des aubergines"},
-                {sk:"coffret",    size:"sml",  top:49, left:13, label: t.nav[2]||"Les précieux coffrets"},
-                {sk:"portfolio",  size:"huge", top:50, left:50, label: t.nav[0]||"I Love You Moneypenis"},
-                {sk:"insitu",     size:"sml",  top:49, left:87, label: t.nav[3]||"In Situ aimes ça"},
-                {sk:"video",      size:"big",  top:71, left:28, label: t.nav[1]||"Le Clip Teaser"},
-                {sk:"signatures", size:"sml",  top:71, left:72, label: t.nav[9]||"Des feutres et des mains"},
-                {sk:"contact",    size:"sml",  top:84, left:30, label: t.nav[7]||"I love you too"},
-                {sk:"presse",     size:"sml",  top:84, left:70, label:"Trop d'honneurs pour peu de chair", disabled:true},
-                {sk:"jeu",        size:"aub",  top:92, left:50, label:"🍆"},
+                {sk:"jeu",        size:"aub",  top:5,  left:85, maxW:"30vw", label:"🍆"},
+                {sk:"accueil",    size:"med",  top:11, left:50, maxW:"82vw", label: t.nav[8]||"Ici tout recommence"},
+                {sk:"bio",        size:"big",  top:22, left:32, maxW:"58vw", label: t.nav[5]||"De jolies plumes vraiment…"},
+                {sk:"shop",       size:"big",  top:33, left:68, maxW:"58vw", label: t.nav[4]||"Le prix des aubergines"},
+                {sk:"portfolio",  size:"huge", top:48, left:50, maxW:"85vw", label: t.nav[0]||"I Love You Moneypenis"},
+                {sk:"coffret",    size:"sml",  top:62, left:22, maxW:"42vw", label: t.nav[2]||"Les précieux coffrets"},
+                {sk:"insitu",     size:"sml",  top:62, left:78, maxW:"42vw", label: t.nav[3]||"In Situ aimes ça"},
+                {sk:"video",      size:"big",  top:72, left:50, maxW:"58vw", label: t.nav[1]||"Le Clip Teaser"},
+                {sk:"signatures", size:"sml",  top:82, left:50, maxW:"72vw", label: t.nav[9]||"Des feutres et des mains"},
+                {sk:"contact",    size:"sml",  top:89, left:50, maxW:"60vw", label: t.nav[7]||"I love you too"},
+                {sk:"presse",     size:"sml",  top:95, left:50, maxW:"85vw", label:"Trop d'honneurs pour peu de chair", disabled:true},
               ];
               return cloudItems.map(item=>(
                 <button key={item.sk}
@@ -4403,7 +4408,7 @@ export default function App(){
                     top:`${item.top}%`,
                     left:`${item.left}%`,
                     transform:"translate(-50%, -50%)",
-                    maxWidth:"min(82vw, 540px)",
+                    maxWidth:`min(${item.maxW}, 540px)`,
                     padding:"4px 8px"
                   }}
                   onClick={(e)=>{
@@ -4420,10 +4425,6 @@ export default function App(){
                 </button>
               ));
             })()}
-            <div style={{position:"absolute",bottom:8,left:"50%",transform:"translateX(-50%)"}}
-              onClick={e=>e.stopPropagation()}>
-              <SocialButtons size={28}/>
-            </div>
           </div>
         </div>
       )}
