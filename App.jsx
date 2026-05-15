@@ -4397,7 +4397,7 @@ export default function App(){
                 {sk:"insitu",     side:"right", pos:19, top:69, size:"sml",  fsOver:"clamp(16px,2.6vw,24px)", maxW:"46vw", label: t.nav[3]||"In Situ aimes ça"},
                 {sk:"signatures", side:"left",  pos:17, top:77, size:"sml",                                   maxW:"50vw", label: t.nav[9]||"Des feutres et des mains"},
                 {sk:"video",      side:"right", pos:15, top:84, size:"big",  fsOver:"clamp(18px,3.2vw,30px)", maxW:"54vw", label: t.nav[1]||"Le Clip Teaser"},
-                {sk:"presse",     side:"center",         top:91, size:"sml",                                  maxW:"82vw", label: t.navPresse||"Trop d'honneurs pour peu de chair", disabled:true},
+                {sk:"presse",     side:"center",         top:91, size:"sml",                                  maxW:"82vw", label: t.navPresse||"Trop d'honneurs pour peu de chair", url:"https://catalogue.bnf.fr/rechercher.do?motRecherche=I+love+you+moneypenis&critereRecherche=0&depart=0&facetteModifiee=ok"},
                 {sk:"accueil",    side:"right", pos:11, top:96, size:"med",                                   maxW:"55vw", label: t.nav[8]||"Ici tout recommence"},
               ];
               return items.map(item=>{
@@ -4423,6 +4423,11 @@ export default function App(){
                     onClick={(e)=>{
                       e.stopPropagation();
                       if(item.disabled) return;
+                      if(item.url){
+                        window.open(item.url,"_blank","noopener,noreferrer");
+                        setMenuOpen(false);
+                        return;
+                      }
                       if(item.sk==="accueil"){
                         setStarted(false);
                         setMenuOpen(false);
