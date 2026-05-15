@@ -4388,17 +4388,17 @@ export default function App(){
           <div style={{position:"relative",width:"100%",height:"100%"}}>
             {(() => {
               const items=[
-                {sk:"bio",        side:"left",  pos:5,  top:8,  size:"big",  fsOver:"clamp(22px,4.3vw,42px)", maxW:"60vw", label: t.nav[5]||"De jolies plumes vraiment…"},
-                {sk:"coffret",    side:"right", pos:5,  top:15, size:"sml",                                   maxW:"42vw", label: t.nav[2]||"Les précieux coffrets"},
-                {sk:"contact",    side:"left",  pos:10, top:23, size:"sml",  fsOver:"clamp(12px,1.8vw,17px)", maxW:"40vw", label: t.nav[7]||"I love you too"},
-                {sk:"shop",       side:"right", pos:5,  top:30, size:"big",                                   maxW:"54vw", label: t.nav[4]||"Le prix des aubergines"},
-                {sk:"jeu",        side:"left",  pos:14, top:45, size:"aub",  fsOver:"clamp(48px,8.5vw,100px)",maxW:"30vw", label:"🍆"},
+                {sk:"bio",        side:"left",  pos:8,  top:8,  size:"big",  fsOver:"clamp(22px,4.3vw,42px)", maxW:"60vw", label: t.nav[5]||"De jolies plumes vraiment…"},
+                {sk:"coffret",    side:"right", pos:11, top:15, size:"sml",                                   maxW:"42vw", label: t.nav[2]||"Les précieux coffrets"},
+                {sk:"contact",    side:"left",  pos:14, top:23, size:"sml",  fsOver:"clamp(12px,1.8vw,17px)", maxW:"40vw", label: t.nav[7]||"I love you too"},
+                {sk:"shop",       side:"right", pos:15, top:30, size:"big",                                   maxW:"54vw", label: t.nav[4]||"Le prix des aubergines"},
+                {sk:"jeu",        side:"left",  pos:20, top:45, size:"aub",  fsOver:"clamp(48px,8.5vw,100px)",maxW:"30vw", label:"🍆"},
                 {sk:"portfolio",  side:"center",         top:56, size:"huge",                                 maxW:"86vw", label: t.nav[0]||"I Love You Moneypenis", twoLine:true},
-                {sk:"insitu",     side:"right", pos:5,  top:69, size:"sml",  fsOver:"clamp(16px,2.6vw,24px)", maxW:"46vw", label: t.nav[3]||"In Situ aimes ça"},
-                {sk:"signatures", side:"left",  pos:5,  top:77, size:"sml",                                   maxW:"50vw", label: t.nav[9]||"Des feutres et des mains"},
-                {sk:"video",      side:"right", pos:6,  top:84, size:"big",  fsOver:"clamp(18px,3.2vw,30px)", maxW:"54vw", label: t.nav[1]||"Le Clip Teaser"},
+                {sk:"insitu",     side:"right", pos:19, top:69, size:"sml",  fsOver:"clamp(16px,2.6vw,24px)", maxW:"46vw", label: t.nav[3]||"In Situ aimes ça"},
+                {sk:"signatures", side:"left",  pos:17, top:77, size:"sml",                                   maxW:"50vw", label: t.nav[9]||"Des feutres et des mains"},
+                {sk:"video",      side:"right", pos:15, top:84, size:"big",  fsOver:"clamp(18px,3.2vw,30px)", maxW:"54vw", label: t.nav[1]||"Le Clip Teaser"},
                 {sk:"presse",     side:"center",         top:91, size:"sml",                                  maxW:"82vw", label: t.navPresse||"Trop d'honneurs pour peu de chair", disabled:true},
-                {sk:"accueil",    side:"right", pos:8,  top:96, size:"med",                                   maxW:"55vw", label: t.nav[8]||"Ici tout recommence"},
+                {sk:"accueil",    side:"right", pos:11, top:96, size:"med",                                   maxW:"55vw", label: t.nav[8]||"Ici tout recommence"},
               ];
               return items.map(item=>{
                 const styleObj={position:"absolute", top:`${item.top}%`, padding:"4px 8px", maxWidth:`min(${item.maxW}, 540px)`};
