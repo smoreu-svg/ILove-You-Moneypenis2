@@ -5295,7 +5295,7 @@ export default function App(){
 
       {/* ══ COFFRET ══════════════════════════════════════════════════════════ */}
       {sec==="coffret"&&(
-        <div style={{maxWidth:1140,margin:"60px auto",padding:"0 14px 70px"}}>
+        <div style={{maxWidth:1280,margin:"60px auto",padding:"0 14px 70px"}}>
           <div style={{position:"relative",textAlign:"center",marginBottom:32}}>
             <button onClick={()=>goSec("portfolio")}
               style={{position:"absolute",left:0,top:"50%",transform:"translateY(-50%)",
@@ -5309,115 +5309,87 @@ export default function App(){
             </div>
           </div>
 
-          {/* ──────── Hero : vue d'ensemble ──────── */}
-          <div style={{background:"#ffffff",marginBottom:244}}>
-            <img src={IMG.coffrets_flat} alt="" draggable={false}
-              onContextMenu={e=>e.preventDefault()} style={{width:"100%",display:"block"}}/>
-            <p style={{padding:"8px 14px",color:"#0a1228",fontSize:10,letterSpacing:1,
-              fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>
-              Les 2 coffrets · Petit Format + Grand Format
-            </p>
-          </div>
+          {/* ──────── GRILLE PATCHWORK COFFRETS ──────── */}
+          {(() => {
+            // 10 sujets × 3 fonds = 30 photos
+            const subjects = ["1677","1683","1685","1692","1695","1697","1698","1701","1704","1707"];
+            const bgs = [
+              {code:"A",ext:"png",bg:"black"},
+              {code:"B",ext:"jpg",bg:"turquoise"},
+              {code:"C",ext:"jpg",bg:"pink"}
+            ];
+            const photos = [];
+            subjects.forEach(s => bgs.forEach(b => photos.push({
+              src:`/240418_Moneypenis_DSF${s}_${b.code}.${b.ext}`,
+              bg:b.bg, subject:s, type:"photo"
+            })));
 
-          {/* ──────── PETIT FORMAT ──────── */}
-          <h3 style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",
-            fontWeight:400,fontSize:"clamp(15px,2.4vw,22px)",color:"#0a1228",
-            marginTop:30,marginBottom:14,letterSpacing:.3}}>
-            Petit Format · 30 × 40 cm
-            <span style={{fontFamily:"'Space Grotesk',sans-serif",fontStyle:"normal",
-              fontSize:9,letterSpacing:3,color:"#0a1228",marginLeft:14,
-              textTransform:"uppercase",fontWeight:400}}>50 portfolios · 01 → 50</span>
-          </h3>
-          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:2,marginBottom:2}}>
-            {[{src:IMG.coffret_pf_print,cap:"Coffret PF fermé · Tirage I extrait"},
-              {src:IMG.box_open,        cap:"Coffret PF ouvert · Colophon"}].map((im,i)=>(
-              <div key={i} style={{background:"#ffffff",border:"1px solid #0a1228"}}>
-                <img src={im.src} alt="" draggable={false}
-                  onContextMenu={e=>e.preventDefault()} style={{width:"100%",display:"block"}}/>
-                <p style={{padding:"6px 10px",color:"#0a1228",fontSize:9,
-                  fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>{im.cap}</p>
+            // Shuffle déterministe (seed fixe pour rendu cohérent)
+            const arr = [...photos];
+            let seed = 137;
+            const rnd = () => { seed = (seed*9301+49297)%233280; return seed/233280; };
+            for (let i=arr.length-1; i>0; i--) {
+              const j = Math.floor(rnd()*(i+1));
+              [arr[i],arr[j]] = [arr[j],arr[i]];
+            }
+
+            // Anti-doublon adjacent (fond + sujet)
+            for (let i=1; i<arr.length; i++) {
+              if (arr[i].bg===arr[i-1].bg || arr[i].subject===arr[i-1].subject) {
+                for (let j=i+1; j<arr.length; j++) {
+                  if (arr[j].bg!==arr[i-1].bg && arr[j].subject!==arr[i-1].subject &&
+                      (i===arr.length-1 || (arr[i].bg!==arr[j+1]?.bg && arr[i].subject!==arr[j+1]?.subject))) {
+                    [arr[i],arr[j]] = [arr[j],arr[i]];
+                    break;
+                  }
+                }
+              }
+            }
+
+            // Insertion fillers + assignation tailles
+            const fillerColors = ["#5fbfb0","#f068a8","#ffffff","#f068a8","#5fbfb0"];
+            const items = [];
+            arr.forEach((p,i) => {
+              // Taille pseudo-aléatoire : ~20% L, ~30% M, ~50% S
+              const r = (i*7+5)%10;
+              p.size = r<2 ? "L" : (r<5 ? "M" : "S");
+              items.push(p);
+              // Insérer filler tous les ~7 items
+              if ((i+1)%7===0 && i<arr.length-1) {
+                items.push({type:"filler",color:fillerColors[Math.floor(i/7)%fillerColors.length],size:"S"});
+              }
+            });
+
+            return (
+              <div style={{
+                display:"grid",
+                gridTemplateColumns:"repeat(auto-fill, minmax(140px, 1fr))",
+                gridAutoRows:"95px",
+                gridAutoFlow:"dense",
+                gap:6
+              }}>
+                {items.map((item,i) => {
+                  const span = item.size==="L" ? {c:3,r:3} : item.size==="M" ? {c:2,r:2} : {c:1,r:1};
+                  const base = {
+                    gridColumn:`span ${span.c}`,
+                    gridRow:`span ${span.r}`,
+                    overflow:"hidden"
+                  };
+                  if (item.type==="filler") {
+                    return <div key={i} style={{...base,background:item.color,
+                      border:item.color==="#ffffff"?"1px solid #0a122822":"none"}}/>;
+                  }
+                  return (
+                    <div key={i} style={base}>
+                      <img src={item.src} alt="" draggable={false}
+                        onContextMenu={e=>e.preventDefault()}
+                        style={{width:"100%",height:"100%",objectFit:"cover",display:"block"}}/>
+                    </div>
+                  );
+                })}
               </div>
-            ))}
-          </div>
-          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:2}}>
-            <div style={{background:"#ffffff",border:"1px solid #0a1228"}}>
-              <PImg src={IMG.open_pf} ageOk={ageOk} bz={[{t:18,l:52,w:42,h:62,lb:""}]}/>
-              <p style={{padding:"6px 10px",color:"#0a1228",fontSize:9,
-                fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>
-                Coffret PF ouvert · Tirage V
-              </p>
-            </div>
-            <div style={{background:"#ffffff",border:"1px solid #0a1228"}}>
-              <img src={IMG.open_pf_2} alt="" draggable={false}
-                onContextMenu={e=>e.preventDefault()} style={{width:"100%",display:"block"}}/>
-              <p style={{padding:"6px 10px",color:"#0a1228",fontSize:9,
-                fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>
-                Coffret PF ouvert · Premières pages
-              </p>
-            </div>
-          </div>
-
-          {/* ──────── GRAND FORMAT ──────── */}
-          <h3 style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",
-            fontWeight:400,fontSize:"clamp(15px,2.4vw,22px)",color:"#0a1228",
-            marginTop:30,marginBottom:14,letterSpacing:.3}}>
-            Grand Format · 50 × 70 cm
-            <span style={{fontFamily:"'Space Grotesk',sans-serif",fontStyle:"normal",
-              fontSize:9,letterSpacing:3,color:"#0a1228",marginLeft:14,
-              textTransform:"uppercase",fontWeight:400}}>15 portfolios · 01 → 15</span>
-          </h3>
-          <div style={{display:"flex",justifyContent:"center",
-            background:"#ffffff",border:"1px solid #0a1228"}}>
-            <div style={{maxWidth:540,width:"100%"}}>
-              <img src={IMG.coffret_gf_closed} alt="" draggable={false}
-                onContextMenu={e=>e.preventDefault()} style={{width:"100%",display:"block"}}/>
-              <p style={{padding:"6px 10px",color:"#0a1228",fontSize:9,
-                fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>
-                Coffret GF fermé
-              </p>
-            </div>
-          </div>
-
-          {/* ──────── COMPARATIF DES FORMATS ──────── */}
-          <h3 style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",
-            fontWeight:400,fontSize:"clamp(15px,2.4vw,22px)",color:"#0a1228",
-            marginTop:30,marginBottom:14,letterSpacing:.3}}>
-            Comparatif des formats
-          </h3>
-          <div style={{background:"#ffffff",border:"1px solid #0a1228"}}>
-            <PImg src={IMG.warning_cmp} ageOk={ageOk}
-              bz={[{t:36,l:10,w:22,h:42,lb:""},{t:25,l:46,w:50,h:65,lb:""}]}/>
-            <p style={{padding:"8px 14px",color:"#0a1228",fontSize:10,letterSpacing:1,
-              fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>
-              Tirage VIII — WARNING! · PF (30 × 40) vs GF (50 × 70)
-            </p>
-          </div>
-
-          {/* ──────── LE CONTENU ──────── */}
-          <h3 style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",
-            fontWeight:400,fontSize:"clamp(15px,2.4vw,22px)",color:"#0a1228",
-            marginTop:30,marginBottom:14,letterSpacing:.3}}>
-            Les 11 tirages
-          </h3>
-          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:2,marginBottom:2}}>
-            {[{src:IMG.fan,         cap:"Vue éventail · Drap blanc"},
-              {src:IMG.prints_line, cap:"Alignement · Les 11 planches"}].map((im,i)=>(
-              <div key={i} style={{background:"#ffffff",border:"1px solid #0a1228"}}>
-                <img src={im.src} alt="" draggable={false}
-                  onContextMenu={e=>e.preventDefault()} style={{width:"100%",display:"block"}}/>
-                <p style={{padding:"6px 10px",color:"#0a1228",fontSize:9,
-                  fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>{im.cap}</p>
-              </div>
-            ))}
-          </div>
-          <div style={{background:"#ffffff",border:"1px solid #0a1228"}}>
-            <img src={IMG.coffret_detail} alt="" draggable={false}
-              onContextMenu={e=>e.preventDefault()} style={{width:"100%",display:"block"}}/>
-            <p style={{padding:"6px 10px",color:"#0a1228",fontSize:9,
-              fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>
-              Détail · Intérieur du coffret
-            </p>
-          </div>
+            );
+          })()}
         </div>
       )}
 
