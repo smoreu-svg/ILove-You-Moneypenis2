@@ -5020,7 +5020,7 @@ export default function App(){
 
             {/* Lang dropdown · drapeau */}
             <div style={{position:"relative"}}>
-              <button onClick={()=>{setLangOpen(!langOpen);setMenuOpen(false);}}
+              <button onClick={()=>{setLangOpen(!langOpen);}}
                 style={{background:"none",border:"1px solid #0a1228",color:"#0a1228",
                   padding:"4px 8px",fontSize:16,lineHeight:1,cursor:"pointer",
                   fontFamily:"'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif",
