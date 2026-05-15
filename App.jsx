@@ -4836,7 +4836,7 @@ export default function App(){
       {/* ══ AGE GATE ══════════════════════════════════════════════════════════ */}
       {!dis&&(
         <div style={{position:"fixed",inset:0,zIndex:9999,background:"#ffffff",
-          display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",
+          display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"flex-start",
           padding:"max(32px,env(safe-area-inset-top,32px)) 24px max(32px,env(safe-area-inset-bottom,32px))",
           textAlign:"center",overflowY:"auto"}}>
 
