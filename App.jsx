@@ -4950,13 +4950,13 @@ export default function App(){
                 style={{flex:1,opacity:ck1&&ck2?1:0.35,transition:"opacity .2s",
                   cursor:ck1&&ck2?"pointer":"not-allowed",padding:"9px 10px",fontSize:9,
                   letterSpacing:1.4,lineHeight:1.3}}
-                onClick={()=>{if(ck1&&ck2){setAgeOk(true);setDis(true);}}}>
+                onClick={()=>{if(ck1&&ck2){setAgeOk(true);setDis(true);setMenuOpen(true);}}}>
                 {t.ap}
               </button>
               <button className="bg"
                 style={{flex:1,padding:"9px 10px",fontSize:9,
                   letterSpacing:1.4,lineHeight:1.3}}
-                onClick={()=>{setAgeOk(false);setDis(true);}}>
+                onClick={()=>{setAgeOk(false);setDis(true);setMenuOpen(true);}}>
                 {t.am2}
               </button>
             </div>
@@ -5153,8 +5153,7 @@ export default function App(){
 
       {/* ══ PORTFOLIO ════════════════════════════════════════════════════════ */}
       {sec==="portfolio"&&(<>
-        <div style={{background:"#ffffff",textAlign:"center",
-          padding:"60px 20px 44px",borderBottom:"1px solid #0a1228"}}>
+        <div style={{maxWidth:860,margin:"60px auto 40px",padding:"0 20px",textAlign:"center"}}>
           <p style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,fontSize:8,
             letterSpacing:5,color:"#0a1228",marginBottom:12,textTransform:"uppercase"}}>
             {t.hl}
@@ -5167,14 +5166,10 @@ export default function App(){
           </p>
           <p style={{color:"#0a1228",fontSize:11,letterSpacing:1,marginBottom:20}}>{t.hy}</p>
           <p style={{color:"#0a1228",fontSize:13,lineHeight:1.9,whiteSpace:"pre-line",
-            maxWidth:460,margin:"0 auto 24px",fontWeight:400}}>{t.hd}</p>
-          <button className="bg" style={{width:"auto",display:"inline-block"}}
-            onClick={()=>document.getElementById("pg")?.scrollIntoView({behavior:"smooth"})}>
-            {t.hc}
-          </button>
+            maxWidth:460,margin:"0 auto",fontWeight:400}}>{t.hd}</p>
         </div>
 
-        <div style={{maxWidth:860,margin:"0 auto",padding:"40px 14px 70px"}}>
+        <div style={{maxWidth:860,margin:"0 auto",padding:"0 14px 70px"}}>
 
           {/* ══ Section : OUVERTURE ═══════════════════════════════════════ */}
           <div style={{display:"flex",alignItems:"baseline",gap:12,marginBottom:18}}>
