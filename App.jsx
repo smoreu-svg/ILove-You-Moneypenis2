@@ -4430,6 +4430,8 @@ export default function App(){
                       }
                       if(item.sk==="accueil"){
                         setStarted(false);
+                        setDis(false);
+                        setSec("portfolio");
                         setMenuOpen(false);
                         setTimeout(()=>window.scrollTo({top:0,behavior:"smooth"}),50);
                         return;
@@ -4573,17 +4575,18 @@ export default function App(){
       {/* ══ VIDÉO ════════════════════════════════════════════════════════════ */}
       {sec==="video"&&(
         <div style={{maxWidth:960,margin:"60px auto",padding:"0 18px 70px"}}>
-          <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
+          <div style={{position:"relative",textAlign:"center",marginBottom:28}}>
             <button onClick={()=>goSec("portfolio")}
-              style={{background:"none",border:"none",cursor:"pointer",color:"#0a1228",
-                fontSize:18,lineHeight:1,padding:"0 4px 0 0"}}>←</button>
+              style={{position:"absolute",left:0,top:"50%",transform:"translateY(-50%)",
+                background:"none",border:"none",cursor:"pointer",color:"#0a1228",
+                fontSize:18,lineHeight:1,padding:"6px 10px"}}>←</button>
             <h2 style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",
-              fontWeight:400,fontSize:"clamp(20px,4vw,38px)"}}>{t.vt}</h2>
+              fontWeight:400,fontSize:"clamp(20px,4vw,38px)",marginBottom:6}}>{t.nav[1]||t.vt}</h2>
+            <p style={{color:"#0a1228",fontSize:11,letterSpacing:1,
+              fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>
+              {t.vs}
+            </p>
           </div>
-          <p style={{color:"#0a1228",fontSize:11,letterSpacing:1,
-            fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,marginBottom:28}}>
-            {t.vs}
-          </p>
           <div style={{background:"#0a1228",border:"1px solid #0a1228"}}>
             <video src={ageOk?VID.full:VID.gate} controls preload="metadata"
               onContextMenu={e=>e.preventDefault()}
@@ -4599,16 +4602,17 @@ export default function App(){
       {/* ══ COFFRET ══════════════════════════════════════════════════════════ */}
       {sec==="coffret"&&(
         <div style={{maxWidth:1140,margin:"60px auto",padding:"0 14px 70px"}}>
-          <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
+          <div style={{position:"relative",textAlign:"center",marginBottom:32}}>
             <button onClick={()=>goSec("portfolio")}
-              style={{background:"none",border:"none",cursor:"pointer",
-                color:"#0a1228",fontSize:18,lineHeight:1,padding:"0 4px 0 0"}}>←</button>
+              style={{position:"absolute",left:0,top:"50%",transform:"translateY(-50%)",
+                background:"none",border:"none",cursor:"pointer",
+                color:"#0a1228",fontSize:18,lineHeight:1,padding:"6px 10px"}}>←</button>
             <h2 style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",
-              fontWeight:400,fontSize:"clamp(20px,4vw,38px)"}}>{t.ct}</h2>
-          </div>
-          <div style={{color:"#0a1228",fontSize:12,letterSpacing:1,
-            fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,marginBottom:32}}>
-            {t.cs}
+              fontWeight:400,fontSize:"clamp(20px,4vw,38px)",marginBottom:6}}>{t.nav[2]||t.ct}</h2>
+            <div style={{color:"#0a1228",fontSize:12,letterSpacing:1,
+              fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>
+              {t.cs}
+            </div>
           </div>
 
           {/* ──────── Hero : vue d'ensemble ──────── */}
@@ -4726,20 +4730,18 @@ export default function App(){
       {/* ══ CHEZ VOUS ════════════════════════════════════════════════════════ */}
       {sec==="insitu"&&(
         <div style={{maxWidth:1140,margin:"60px auto",padding:"0 14px 70px"}}>
-          <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:12,marginBottom:6}}>
-            <div style={{display:"flex",alignItems:"center",gap:12}}>
-              <button onClick={()=>goSec("portfolio")}
-                style={{background:"none",border:"none",cursor:"pointer",
-                  color:"#0a1228",fontSize:18,lineHeight:1,padding:"0 4px 0 0"}}>←</button>
-              <h2 style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",
-                fontWeight:400,fontSize:"clamp(20px,4vw,38px)"}}>{t.zt}</h2>
-            </div>
-            <SocialButtons size={32}/>
+          <div style={{position:"relative",textAlign:"center",marginBottom:32}}>
+            <button onClick={()=>goSec("portfolio")}
+              style={{position:"absolute",left:0,top:"50%",transform:"translateY(-50%)",
+                background:"none",border:"none",cursor:"pointer",
+                color:"#0a1228",fontSize:18,lineHeight:1,padding:"6px 10px"}}>←</button>
+            <h2 style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",
+              fontWeight:400,fontSize:"clamp(20px,4vw,38px)",marginBottom:6}}>{t.nav[3]||t.zt}</h2>
+            <p style={{color:"#0a1228",fontSize:12,letterSpacing:1,
+              fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>
+              {t.zs}
+            </p>
           </div>
-          <p style={{color:"#0a1228",fontSize:12,letterSpacing:1,
-            fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,marginBottom:32}}>
-            {t.zs}
-          </p>
           <div style={{background:"#ffffff",marginBottom:24}}>
             <img src={ageOk?IMG.inside:IMG.inside_blur} alt="" draggable={false}
               onContextMenu={e=>e.preventDefault()} style={{width:"100%",display:"block"}}/>
@@ -4772,7 +4774,7 @@ export default function App(){
                 </p>
                 <h1 style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",fontWeight:400,
                   fontSize:"clamp(28px,5vw,52px)",lineHeight:1.2,color:"#0a1228",
-                  marginBottom:18}}>{t.st}</h1>
+                  marginBottom:18}}>{t.nav[4]||t.st}</h1>
                 <div style={{width:36,height:1,background:"#0a1228",margin:"0 auto 18px"}}/>
                 <p style={{color:"#0a1228",fontSize:12,lineHeight:1.8,maxWidth:520,
                   margin:"0 auto",fontWeight:400}}>
@@ -4906,7 +4908,7 @@ export default function App(){
                       color:"#0a1228",fontSize:10,letterSpacing:3,padding:"0 0 24px",
                       fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,
                       textTransform:"uppercase"}}>
-                    ← {t.st}
+                    ← {t.nav[4]||t.st}
                   </button>
                   <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:36,
                     alignItems:"flex-start"}}>
@@ -4972,7 +4974,7 @@ export default function App(){
                     color:"#0a1228",fontSize:10,letterSpacing:3,padding:"0 0 12px",
                     fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,
                     textTransform:"uppercase"}}>
-                  ← {t.st}
+                  ← {t.nav[4]||t.st}
                 </button>
                 <h2 style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",
                   fontWeight:400,fontSize:"clamp(22px,4vw,32px)",color:"#0a1228",
@@ -5062,7 +5064,7 @@ export default function App(){
                     color:"#0a1228",fontSize:10,letterSpacing:3,padding:"0 0 16px",
                     fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,
                     textTransform:"uppercase"}}>
-                  ← {t.st}
+                  ← {t.nav[4]||t.st}
                 </button>
                 <div style={{textAlign:"center",marginBottom:28}}>
                   <h2 style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",
@@ -5089,7 +5091,7 @@ export default function App(){
             <Logo sz={48}/>
             <h2 style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",
               fontWeight:400,fontSize:"clamp(22px,4vw,34px)",color:"#0a1228",
-              marginTop:24,marginBottom:16}}>{t.st}</h2>
+              marginTop:24,marginBottom:16}}>{t.nav[4]||t.st}</h2>
             <div style={{width:36,height:1,background:"#0a1228",margin:"0 auto 22px"}}/>
             <p style={{color:"#0a1228",fontSize:14,lineHeight:1.8,
               fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>
@@ -5106,10 +5108,11 @@ export default function App(){
       {/* ══ BIO (biographies seulement, signatures = section séparée) ════════ */}
       {sec==="bio"&&(
         <div style={{maxWidth:1280,margin:"60px auto",padding:"0 18px 70px"}}>
-          <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:40}}>
+          <div style={{position:"relative",textAlign:"center",marginBottom:40}}>
             <button onClick={()=>goSec("portfolio")}
-              style={{background:"none",border:"none",cursor:"pointer",
-                color:"#0a1228",fontSize:18,lineHeight:1,padding:"0 4px 0 0"}}>←</button>
+              style={{position:"absolute",left:0,top:"50%",transform:"translateY(-50%)",
+                background:"none",border:"none",cursor:"pointer",
+                color:"#0a1228",fontSize:18,lineHeight:1,padding:"6px 10px"}}>←</button>
             <h2 style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",
               fontWeight:400,fontSize:"clamp(20px,4vw,38px)"}}>{t.nav[5]||t.bt}</h2>
           </div>
@@ -5167,10 +5170,11 @@ export default function App(){
       {/* ══ SIGNATURES (photos séance signature seulement) ═══════════════════ */}
       {sec==="signatures"&&(
         <div style={{maxWidth:1140,margin:"60px auto",padding:"0 14px 70px"}}>
-          <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:20}}>
+          <div style={{position:"relative",textAlign:"center",marginBottom:20}}>
             <button onClick={()=>goSec("portfolio")}
-              style={{background:"none",border:"none",cursor:"pointer",
-                color:"#0a1228",fontSize:18,lineHeight:1,padding:"0 4px 0 0"}}>←</button>
+              style={{position:"absolute",left:0,top:"50%",transform:"translateY(-50%)",
+                background:"none",border:"none",cursor:"pointer",
+                color:"#0a1228",fontSize:18,lineHeight:1,padding:"6px 10px"}}>←</button>
             <h2 style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",
               fontWeight:400,fontSize:"clamp(20px,4vw,38px)"}}>
               {t.nav[9]||"Des feutres et des mains"}
@@ -5212,7 +5216,7 @@ export default function App(){
             <Logo sz={48}/>
             <h2 style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",
               fontWeight:400,fontSize:"clamp(26px,4.5vw,42px)",color:"#0a1228",
-              marginTop:18,marginBottom:8}}>{t.nt}</h2>
+              marginTop:18,marginBottom:8}}>{t.nav[7]||t.nt}</h2>
             <div style={{width:36,height:1,background:"#0a1228",margin:"0 auto 18px"}}/>
             <p style={{color:"#0a1228",fontSize:13,lineHeight:1.7,maxWidth:520,margin:"0 auto",
               fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>
