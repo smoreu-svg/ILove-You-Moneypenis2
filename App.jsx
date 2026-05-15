@@ -4378,41 +4378,42 @@ export default function App(){
         </div>
       </nav>
 
-      {/* ══ MENU OVERLAY (colonne quinconce) ═══════════════════════════════════ */}
+      {/* ══ MENU OVERLAY (nuage organique) ════════════════════════════════════ */}
       {menuOpen&&(
         <div style={{position:"fixed",inset:0,zIndex:790,
           background:"rgba(255,255,255,0.98)",backdropFilter:"blur(20px)",
           paddingTop:"calc(52px + env(safe-area-inset-top,0px))",
-          paddingBottom:"env(safe-area-inset-bottom,20px)",
-          overflowY:"auto"}}
+          paddingBottom:"env(safe-area-inset-bottom,16px)"}}
           onClick={()=>setMenuOpen(false)}>
-          <div style={{width:"100%",minHeight:"100%",
-            display:"flex",flexDirection:"column",justifyContent:"space-evenly",
-            padding:"24px 6vw",gap:14}}>
+          <div style={{position:"relative",width:"100%",height:"100%"}}>
             {(() => {
               const items=[
-                {sk:"accueil",    size:"med",  align:"center", label: t.nav[8]||"Ici tout recommence"},
-                {sk:"bio",        size:"big",  align:"left",   label: t.nav[5]||"De jolies plumes vraiment…"},
-                {sk:"shop",       size:"big",  align:"right",  label: t.nav[4]||"Le prix des aubergines"},
-                {sk:"portfolio",  size:"huge", align:"center", label: t.nav[0]||"I Love You Moneypenis"},
-                {sk:"coffret",    size:"sml",  align:"left",   label: t.nav[2]||"Les précieux coffrets"},
-                {sk:"insitu",     size:"sml",  align:"right",  label: t.nav[3]||"In Situ aimes ça"},
-                {sk:"signatures", size:"sml",  align:"left",   label: t.nav[9]||"Des feutres et des mains"},
-                {sk:"video",      size:"big",  align:"right",  label: t.nav[1]||"Le Clip Teaser"},
-                {sk:"presse",     size:"sml",  align:"center", label: t.navPresse||"Trop d'honneurs pour peu de chair", disabled:true},
-                {sk:"contact",    size:"sml",  align:"left",   label: t.nav[7]||"I love you too"},
-                {sk:"jeu",        size:"aub",  align:"right",  label:"🍆"},
+                {sk:"bio",        top:7,  left:24, size:"big",  fsOver:"clamp(22px,4.3vw,42px)", maxW:"62vw", label: t.nav[5]||"De jolies plumes vraiment…"},
+                {sk:"coffret",    top:14, left:72, size:"sml",                                   maxW:"42vw", label: t.nav[2]||"Les précieux coffrets"},
+                {sk:"contact",    top:22, left:30, size:"sml",  fsOver:"clamp(12px,1.8vw,17px)", maxW:"40vw", label: t.nav[7]||"I love you too"},
+                {sk:"shop",       top:29, left:72, size:"big",                                   maxW:"56vw", label: t.nav[4]||"Le prix des aubergines"},
+                {sk:"jeu",        top:39, left:60, size:"aub",  fsOver:"clamp(28px,4.2vw,46px)", maxW:"22vw", label:"🍆"},
+                {sk:"portfolio",  top:53, left:48, size:"huge",                                  maxW:"88vw", label: t.nav[0]||"I Love You Moneypenis", twoLine:true},
+                {sk:"insitu",     top:67, left:72, size:"sml",  fsOver:"clamp(16px,2.6vw,24px)", maxW:"48vw", label: t.nav[3]||"In Situ aimes ça"},
+                {sk:"signatures", top:75, left:22, size:"sml",                                   maxW:"50vw", label: t.nav[9]||"Des feutres et des mains"},
+                {sk:"video",      top:82, left:64, size:"big",  fsOver:"clamp(18px,3.2vw,30px)", maxW:"55vw", label: t.nav[1]||"Le Clip Teaser"},
+                {sk:"presse",     top:89, left:34, size:"sml",                                   maxW:"62vw", label: t.navPresse||"Trop d'honneurs pour peu de chair", disabled:true},
+                {sk:"accueil",    top:96, left:66, size:"med",                                   maxW:"55vw", label: t.nav[8]||"Ici tout recommence"},
               ];
-              const justify=(a)=>a==="left"?"flex-start":a==="right"?"flex-end":"center";
-              return items.map(item=>(
-                <div key={item.sk} style={{display:"flex",justifyContent:justify(item.align),width:"100%"}}>
-                  <button
+              return items.map(item=>{
+                const styleObj={
+                  position:"absolute",
+                  top:`${item.top}%`,
+                  left:`${item.left}%`,
+                  transform:"translate(-50%, -50%)",
+                  maxWidth:`min(${item.maxW}, 540px)`,
+                  padding:"4px 8px"
+                };
+                if(item.fsOver) styleObj.fontSize=item.fsOver;
+                return (
+                  <button key={item.sk}
                     className={`nb ${item.size}${item.disabled?" gr":""}${sec===item.sk?" on":""}`}
-                    style={{
-                      maxWidth:"86vw",
-                      textAlign:item.align==="center"?"center":item.align==="right"?"right":"left",
-                      padding:"2px 4px"
-                    }}
+                    style={styleObj}
                     onClick={(e)=>{
                       e.stopPropagation();
                       if(item.disabled) return;
@@ -4423,10 +4424,15 @@ export default function App(){
                       }
                       goSec(item.sk);
                     }}>
-                    {item.label}
+                    {item.twoLine&&item.sk==="portfolio" ? (
+                      <span style={{display:"inline-block"}}>
+                        <span style={{display:"block",lineHeight:1.04}}>I&nbsp;Love&nbsp;You</span>
+                        <span style={{display:"block",lineHeight:1.04,paddingLeft:"22%"}}>Moneypenis</span>
+                      </span>
+                    ) : item.label}
                   </button>
-                </div>
-              ));
+                );
+              });
             })()}
           </div>
         </div>
