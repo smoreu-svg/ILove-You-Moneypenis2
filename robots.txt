@@ -1,8 +1,89 @@
-# I Love You Moneypenis — moneypenis.com
-# Site d'art contemporain. Contenu pour adultes mais autorisé à l'indexation.
+# www.moneypenis.com — robots.txt
+# I Love You Moneypenis · Sébastien Moreu & André Vaszkievicz · Paris 2024
+# © ISBN PF 978-2-492649-21-9 · ISBN GF 978-2-492649-20-2 · INPI n° 4999735 & 4999726
 
+# ─── Moteurs de recherche classiques ────────────────────────────────
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# ─── Bots IA — Recherche (citation dans les réponses) ───────────────
+# Permettent au site d'apparaître dans les réponses de ChatGPT, Claude, Perplexity
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# ─── Bots IA — Fetch utilisateur (visite en temps réel) ─────────────
+# Quand un internaute demande à l'IA d'aller voir le site
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# ─── Bots IA — Entraînement des modèles ─────────────────────────────
+# Pour refuser l'entraînement, remplacer "Allow: /" par "Disallow: /"
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: omgili
+Allow: /
+
+# ─── Règle générique ────────────────────────────────────────────────
 User-agent: *
 Allow: /
-Disallow: /prevention
 
-Sitemap: https://moneypenis.com/sitemap.xml
+# ─── Sitemap ────────────────────────────────────────────────────────
+Sitemap: https://www.moneypenis.com/sitemap.xml
