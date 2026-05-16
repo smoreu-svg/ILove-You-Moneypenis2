@@ -5234,6 +5234,21 @@ export default function App(){
                   styleObj.textAlign="center";
                 }
                 if(item.fsOver) styleObj.fontSize=item.fsOver;
+                // Items avec URL externe : balise <a> native (plus robuste que window.open
+                // qui est bloqué en PWA standalone, iOS Safari, certaines extensions)
+                if(item.url){
+                  return (
+                    <a key={item.sk}
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`nb ${item.size}`}
+                      style={{...styleObj,textDecoration:"none"}}
+                      onClick={(e)=>{e.stopPropagation();setMenuOpen(false);}}>
+                      {item.label}
+                    </a>
+                  );
+                }
                 return (
                   <button key={item.sk}
                     className={`nb ${item.size}${item.disabled?" gr":""}${sec===item.sk?" on":""}`}
@@ -5241,11 +5256,6 @@ export default function App(){
                     onClick={(e)=>{
                       e.stopPropagation();
                       if(item.disabled) return;
-                      if(item.url){
-                        window.open(item.url,"_blank","noopener,noreferrer");
-                        setMenuOpen(false);
-                        return;
-                      }
                       if(item.sk==="accueil"){
                         setStarted(false);
                         setDis(false);
