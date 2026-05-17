@@ -3743,8 +3743,13 @@ S.M.`,
 // Pour les 11 autres langues : phase 3 en préparation, fallback EN entretemps.
 
 const PREV_LABELS = {
-  FR:{title:"Prévention & Urgence",sub:"Si vous êtes en danger immédiat, appelez les numéros d'urgence en tête de page.",pickCountry:"Choisir un pays",backHome:"Retour",cat:{vital:"URGENCES VITALES",suicide:"Détresse psychique · Suicide",minors:"Mineurs en danger",health:"Santé sexuelle · IST · VIH",sw:"Protection des travailleur·se·s du sexe",addict:"Addictions · Chemsex",psy:"Écoute · Soutien LGBT+"},h24:"24/7",free:"gratuit",call:"Appeler",visit:"Site web",note:"Ressources mises à jour mai 2026. Une révision semestrielle est effectuée. Pour signaler une ligne fermée ou une information erronée : contact@moneypenis.com",ph3:"D'autres langues sont en préparation. Les ressources internationales ci-dessous restent utiles."},
-  EN:{title:"Prevention & Emergency",sub:"If you are in immediate danger, call the emergency numbers at the top of the page.",pickCountry:"Choose a country",backHome:"Back",cat:{vital:"VITAL EMERGENCIES",suicide:"Psychological distress · Suicide",minors:"Children at risk",health:"Sexual health · STI · HIV",sw:"Sex worker protection",addict:"Addictions · Chemsex",psy:"Listening · LGBT+ support"},h24:"24/7",free:"free",call:"Call",visit:"Website",note:"Resources updated May 2026. A semestrial review is performed. To report a closed line or wrong info: contact@moneypenis.com",ph3:"Other languages in preparation. International resources below remain useful."}
+  FR:{title:"Prévention & Urgence",sub:"Si vous êtes en danger immédiat, appelez les numéros d'urgence en tête de page.",pickCountry:"Choisir un pays",backHome:"Retour",cat:{vital:"URGENCES VITALES",suicide:"Détresse psychique · Suicide",minors:"Mineurs en danger",health:"Santé sexuelle · IST · VIH",sw:"Protection des travailleur·se·s du sexe",addict:"Addictions · Chemsex",psy:"Écoute · Soutien LGBT+",local:"Ressources locales par ville"},h24:"24/7",free:"gratuit",call:"Appeler",visit:"Site web",note:"Ressources mises à jour mai 2026. Une révision semestrielle est effectuée. Pour signaler une ligne fermée ou une information erronée : contact@moneypenis.com",ph3:"D'autres langues sont en préparation. Les ressources internationales ci-dessous restent utiles."},
+  EN:{title:"Prevention & Emergency",sub:"If you are in immediate danger, call the emergency numbers at the top of the page.",pickCountry:"Choose a country",backHome:"Back",cat:{vital:"VITAL EMERGENCIES",suicide:"Psychological distress · Suicide",minors:"Children at risk",health:"Sexual health · STI · HIV",sw:"Sex worker protection",addict:"Addictions · Chemsex",psy:"Listening · LGBT+ support",local:"Local resources by city"},h24:"24/7",free:"free",call:"Call",visit:"Website",note:"Resources updated May 2026. A semestrial review is performed. To report a closed line or wrong info: contact@moneypenis.com",ph3:"Other languages in preparation. International resources below remain useful."},
+  ES:{title:"Prevención y Emergencia",sub:"Si estás en peligro inmediato, llama a los números de emergencia que aparecen al principio de la página.",pickCountry:"Elige un país",backHome:"Volver",cat:{vital:"EMERGENCIAS VITALES",suicide:"Crisis psicológica · Suicidio",minors:"Menores en peligro",health:"Salud sexual · ITS · VIH",sw:"Protección de personas trabajadoras del sexo",addict:"Adicciones · Chemsex",psy:"Escucha · Apoyo LGTBI+",local:"Recursos locales por ciudad"},h24:"24/7",free:"gratuito",call:"Llamar",visit:"Web",note:"Recursos actualizados en mayo de 2026. Se realiza una revisión semestral. Para informar de una línea cerrada o información errónea: contact@moneypenis.com",ph3:"Otros idiomas en preparación. Los recursos internacionales siguen siendo útiles."},
+  PT:{title:"Prevenção e Emergência",sub:"Se estiveres em perigo imediato, liga para os números de emergência no topo da página.",pickCountry:"Escolher um país",backHome:"Voltar",cat:{vital:"EMERGÊNCIAS VITAIS",suicide:"Crise psicológica · Suicídio",minors:"Menores em perigo",health:"Saúde sexual · IST · VIH/HIV",sw:"Proteção de trabalhadoras/es do sexo",addict:"Vícios · Chemsex",psy:"Escuta · Apoio LGBTI+",local:"Recursos locais por cidade"},h24:"24/7",free:"gratuito",call:"Ligar",visit:"Site",note:"Recursos atualizados em maio de 2026. É realizada uma revisão semestral. Para reportar uma linha encerrada ou informação errada: contact@moneypenis.com",ph3:"Outros idiomas em preparação. Os recursos internacionais abaixo continuam úteis."},
+  IT:{title:"Prevenzione ed Emergenza",sub:"Se sei in pericolo immediato, chiama i numeri di emergenza in cima alla pagina.",pickCountry:"Scegli un paese",backHome:"Indietro",cat:{vital:"EMERGENZE VITALI",suicide:"Crisi psicologica · Suicidio",minors:"Minori in pericolo",health:"Salute sessuale · IST · HIV",sw:"Tutela lavoratrici/ori del sesso",addict:"Dipendenze · Chemsex",psy:"Ascolto · Supporto LGBT+",local:"Risorse locali per città"},h24:"24/7",free:"gratis",call:"Chiama",visit:"Sito",note:"Risorse aggiornate a maggio 2026. Revisione semestrale. Per segnalare una linea chiusa o un errore: contact@moneypenis.com",ph3:"Altre lingue in preparazione. Le risorse internazionali sotto restano utili."},
+  DE:{title:"Prävention & Notfall",sub:"Wenn Sie in unmittelbarer Gefahr sind, rufen Sie die Notrufnummern oben auf der Seite an.",pickCountry:"Land wählen",backHome:"Zurück",cat:{vital:"LEBENSGEFAHR",suicide:"Psychische Krise · Suizid",minors:"Kinder in Gefahr",health:"Sexuelle Gesundheit · STI · HIV",sw:"Schutz von Sexarbeitenden",addict:"Sucht · Chemsex",psy:"Zuhören · LGBT+-Unterstützung",local:"Lokale Angebote nach Stadt"},h24:"24/7",free:"kostenlos",call:"Anrufen",visit:"Website",note:"Stand Mai 2026, halbjährliche Überprüfung. Geschlossene Linie oder Fehler melden: contact@moneypenis.com",ph3:"Weitere Sprachen in Vorbereitung. Die internationalen Ressourcen unten bleiben verfügbar."},
+  NL:{title:"Preventie & Noodgeval",sub:"Als u in direct gevaar verkeert, bel dan de noodnummers bovenaan de pagina.",pickCountry:"Kies een land",backHome:"Terug",cat:{vital:"LEVENSGEVAARLIJKE NOODGEVALLEN",suicide:"Psychische crisis · Suïcide",minors:"Minderjarigen in gevaar",health:"Seksuele gezondheid · soa · hiv",sw:"Bescherming sekswerkers",addict:"Verslavingen · Chemsex",psy:"Luisteren · LGBT+-steun",local:"Lokale hulpbronnen per stad"},h24:"24/7",free:"gratis",call:"Bellen",visit:"Website",note:"Bronnen bijgewerkt mei 2026. Halfjaarlijkse herziening. Gesloten lijn of fout melden: contact@moneypenis.com",ph3:"Andere talen in voorbereiding. De internationale bronnen hieronder blijven beschikbaar."}
 };
 
 // Données ressources, format compact. n=nom, u=url, t=téléphone, d=description courte, h=heures
@@ -3776,7 +3781,19 @@ const PREV_DATA = {
       psy:[
         {n:"SOS Amitié",u:"https://www.sos-amitie.com",t:"09 72 39 40 50",d:"Écoute généraliste anonyme.",h:"24/7"},
         {n:"Le Refuge",u:"https://www.le-refuge.org",t:"06 31 59 69 50",d:"Hébergement et accompagnement jeunes LGBT+ en rupture.",h:"24/7 urgence"},
-        {n:"SOS Homophobie",u:"https://www.sos-homophobie.org",t:"01 48 06 42 41",d:"Écoute anti-LGBTphobies, soutien victimes, chat.",h:"Variables"}
+        {n:"SOS Homophobie",u:"https://www.sos-homophobie.org",t:"01 48 06 42 41",d:"Écoute anti-LGBTphobies, soutien victimes, chat.",h:"Variables"},
+        {n:"[Paris] Centre LGBTQI+ Paris-IdF",u:"https://www.centrelgbtparis.org",t:"01 43 57 21 47",d:"63 rue Beaubourg 75003. Écoute, accompagnement juridique et social.",h:"Mar–sam"},
+        {n:"[Paris] Acceptess-T (santé trans)",u:"https://www.acceptess-t.com",t:"88 rue Philippe de Girard 75018",d:"Accueil, dépistage TROD, PrEP, accompagnement social trans.",h:"Lun–ven"},
+        {n:"[Paris] Bus des femmes (TDS)",u:"https://busdesfemmes.org",t:"Perm. ven 10h–12h30",d:"Santé communautaire avec et pour les TDS, Paris IdF.",h:"Maraudes lun–ven"},
+        {n:"[Marseille] Centre LGBTQIA+ Marseille",u:"https://centrelgbtqiamarseille.org",t:"Via site",d:"Centre fédérateur, accueil et écoute.",h:"Permanences"},
+        {n:"[Marseille] AIDES Le Spot Longchamp",u:"https://longchamp.lespot.org",t:"04 91 14 05 15",d:"CeGIDD AIDES : PrEP, dépistage VIH/IST, chemsex, soutien trans.",h:"3 bd Longchamp 13001"},
+        {n:"[Lyon] Centre LGBTI+ Lyon",u:"https://www.centrelgbtilyon.org",t:"04 78 27 10 10 · écoute 0 805 031 181",d:"19 rue des Capucins 69001. Ligne écoute 9h–21h.",h:"Ligne lun–sam"},
+        {n:"[Lyon] Cabiria (TDS)",u:"http://cabiria.asso.fr",t:"04 78 30 02 65 · urgence 06 07 62 26 59",d:"Santé communautaire TDS, dépistage, ligne urgence 24/7.",h:"Permanences"},
+        {n:"[Nice] Centre LGBT Côte d'Azur",u:"https://centrelgbt06.fr",t:"04 83 32 81 84",d:"123 rue Roquebillière 06300. Accueil, écoute, juridique.",h:"Permanences"},
+        {n:"[Bordeaux] Le Girofard",u:"https://www.le-girofard.org",t:"09 54 19 65 04",d:"34 rue Bouquière 33000. Accompagnement trans, asile LGBT+, soutien psy.",h:"Permanences"},
+        {n:"[Strasbourg] La Station (Centre LGBTI+)",u:"https://www.lastation-lgbti.eu",t:"09 50 51 13 29",d:"7 rue des Écrivains 67000. Permanence juridique, médiathèque.",h:"Mar–sam après-midi"},
+        {n:"[Lille] J'en suis J'y reste",u:"https://www.jensuisjyreste.org",t:"03 20 52 38 35",d:"19 rue de Condé 59000. Centre LGBTQI+ historique du Nord.",h:"Permanences"},
+        {n:"[Lille] Entr'Actes (TDS)",u:"https://itineraires.asso.fr/entractes",t:"03 20 55 64 66",d:"10 rue du Metz 59800. Santé communautaire avec et pour les TDS.",h:"Permanences"}
       ]
     }},
     {code:"BE",flag:"🇧🇪",name:"Belgique",cats:{
@@ -3925,7 +3942,24 @@ const PREV_DATA = {
       psy:[
         {n:"The Trevor Project",u:"https://www.thetrevorproject.org",t:"1-866-488-7386 · text 678-678",d:"Crisis intervention for LGBTQ youth under 25.",h:"24/7"},
         {n:"LGBT National Help Center",u:"https://www.lgbthotline.org",t:"1-888-843-4564",d:"Peer support all ages: coming out, isolation.",h:"M–F 16h–24h ET"},
-        {n:"Trans Lifeline",u:"https://translifeline.org",t:"1-877-565-8860",d:"Peer support hotline by and for trans people.",h:"Varies"}
+        {n:"Trans Lifeline",u:"https://translifeline.org",t:"1-877-565-8860",d:"Peer support hotline by and for trans people.",h:"Varies"},
+        {n:"[New York] Callen-Lorde Community Health",u:"https://callen-lorde.org",t:"+1 212-271-7200",d:"356 W 18th St. Largest LGBTQ+ primary care in NYC, HIV, PrEP, trans health.",h:"Mon–Sat"},
+        {n:"[New York] The Center NYC",u:"https://gaycenter.org",t:"+1 212-620-7310",d:"208 W 13th St. LGBT community center, recovery, youth, advocacy.",h:"Daily"},
+        {n:"[New York] Hetrick-Martin Institute (LGBTQ youth)",u:"https://hmi.org",t:"+1 212-674-2400",d:"Drop-in 13–24, crisis support, education.",h:"Mon–Fri"},
+        {n:"[Miami] Pridelines",u:"https://pridelines.org",t:"+1 305-571-9601",d:"6360 NE 4th Ct. LGBTQ center, youth services, HIV testing.",h:"Mon–Sat"},
+        {n:"[Miami] SAVE",u:"https://savelgbt.org",t:"+1 305-751-7283",d:"LGBTQ advocacy and resources in South Florida.",h:"Mon–Fri"},
+        {n:"[Los Angeles] LA LGBT Center",u:"https://lalgbtcenter.org",t:"+1 323-993-7400",d:"World's largest LGBT center: health, housing, legal, youth.",h:"Various 24/7"},
+        {n:"[Los Angeles] APLA Health",u:"https://aplahealth.org",t:"+1 213-201-1500",d:"HIV care, PrEP, sexual health, free dental for HIV+.",h:"Mon–Sat"},
+        {n:"[San Francisco] SF AIDS Foundation",u:"https://www.sfaf.org",t:"+1 415-487-3000",d:"HIV/STI testing, PrEP, harm reduction, Stonewall Project (chemsex).",h:"Mon–Sat"},
+        {n:"[San Francisco] SF LGBT Center",u:"https://www.sfcenter.org",t:"+1 415-865-5555",d:"1800 Market St. Community programs, economic services, youth.",h:"Daily"},
+        {n:"[Seattle] Gay City",u:"https://gaycity.org",t:"+1 206-860-6969",d:"517 E Pike St. LGBTQ wellness: HIV testing, PrEP navigation.",h:"Mon–Sat"},
+        {n:"[Seattle] Lambert House (LGBTQ youth)",u:"https://www.lamberthouse.org",t:"+1 206-322-2515",d:"Center for LGBTQ+ youth ages 11–22, drop-in.",h:"Variable"},
+        {n:"[Chicago] Howard Brown Health",u:"https://howardbrown.org",t:"+1 773-388-1600",d:"Largest LGBTQ healthcare network in Midwest: HIV, trans, youth.",h:"Multiple sites"},
+        {n:"[Chicago] Center on Halsted",u:"https://centeronhalsted.org",t:"+1 773-472-6469",d:"3656 N Halsted. Midwest's largest LGBTQ+ community center.",h:"Daily"},
+        {n:"[Atlanta] AID Atlanta",u:"https://www.aidatlanta.org",t:"+1 404-870-7700",d:"Largest HIV/AIDS service org in the Southeast.",h:"Mon–Fri"},
+        {n:"[Atlanta] Lost-N-Found Youth",u:"https://lnfy.org",t:"+1 678-856-7825",d:"Housing and services for LGBTQ+ youth 13–25.",h:"24/7 crisis"},
+        {n:"[Boston] Fenway Health",u:"https://fenwayhealth.org",t:"+1 617-267-0900",d:"LGBTQ+ primary care, HIV/STI, behavioral health.",h:"Mon–Sat"},
+        {n:"[Boston] BAGLY (LGBTQ+ youth)",u:"https://www.bagly.org",t:"+1 617-227-4313",d:"Youth-led LGBTQ+ youth services and advocacy.",h:"Mon–Fri"}
       ]
     }},
     {code:"CA",flag:"🇨🇦",name:"Canada (English)",cats:{
@@ -3993,8 +4027,452 @@ const PREV_DATA = {
         {n:"MensLine Australia",u:"https://mensline.org.au",t:"1300 78 99 78",d:"Support for men: family, relationships, emotions.",h:"24/7"}
       ]
     }}
+  ],
+  ES:[
+    {code:"ES",flag:"🇪🇸",name:"España",cats:{
+      suicide:[
+        {n:"024 — Línea de Atención a la Conducta Suicida",u:"https://www.sanidad.gob.es/linea024/home.htm",t:"024",d:"Línea oficial del Ministerio de Sanidad, gratuita y confidencial.",h:"24/7"},
+        {n:"Teléfono de la Esperanza",u:"https://telefonodelaesperanza.org",t:"717 003 717",d:"ONG histórica de escucha en crisis emocional.",h:"24/7"}
+      ],
+      minors:[
+        {n:"116 111 — ANAR Ayuda Niños y Adolescentes",u:"https://www.anar.org",t:"116 111",d:"Línea gratuita y anónima para menores en riesgo.",h:"24/7"},
+        {n:"116 000 — Menores desaparecidos",u:"https://www.116000.es",t:"116 000",d:"Línea europea de menores desaparecidos.",h:"24/7"},
+        {n:"ANAR Familias y Centros Educativos",u:"https://www.anar.org",t:"600 50 51 52",d:"Asesoramiento a adultos preocupados por un menor.",h:"L-V 9-21h"},
+        {n:"Cruz Roja — MENA",u:"https://www.cruzroja.es",t:"900 22 11 22",d:"Programas de menores extranjeros no acompañados.",h:"Variables"}
+      ],
+      health:[
+        {n:"CESIDA — Coordinadora estatal VIH/sida",u:"https://cesida.org",t:"+34 91 522 45 17",d:"Federación nacional, derivación a centros locales.",h:"Oficina"},
+        {n:"Apoyo Positivo",u:"https://apoyopositivo.org",t:"+34 91 358 14 44",d:"VIH/ITS, PrEP, salud mental, chemsex.",h:"L-V"},
+        {n:"Sanidad Sexual SNS — Buscador centros",u:"https://www.sanidad.gob.es",t:"Via web",d:"Centros públicos ITS/VIH gratuitos por CCAA.",h:"Variables"}
+      ],
+      sw:[
+        {n:"OTRAS — Sindicato Trabajadoras Sexuales",u:"https://www.sindicatootras.org",t:"Vía web",d:"Primer sindicato estatal pro-derechos.",h:"Vía web"},
+        {n:"CATS — Comité Apoyo Trabajadoras del Sexo",u:"https://www.asociacioncats.es",t:"+34 968 26 18 99",d:"ONG pro-derechos por y para TDS (Murcia, estatal).",h:"Oficina"},
+        {n:"Genera (Barcelona)",u:"https://www.genera.org.es",t:"+34 93 442 84 49",d:"Asociación pro-derechos TDS, atención integral.",h:"L-V"},
+        {n:"Médicos del Mundo España",u:"https://www.medicosdelmundo.org",t:"+34 91 543 60 33",d:"Atención sanitaria sin condiciones, programa TDS.",h:"Variables"}
+      ],
+      addict:[
+        {n:"Plan Nacional sobre Drogas — Info",u:"https://pnsd.sanidad.gob.es",t:"Vía web",d:"Información oficial, recursos por CCAA.",h:"Vía web"},
+        {n:"Energy Control (ABD)",u:"https://energycontrol.org",t:"+34 900 13 80 80",d:"Análisis sustancias, info reducción de daños.",h:"Variables"},
+        {n:"Apoyo Positivo — Chemsex",u:"https://apoyopositivo.org/chemsex",t:"+34 91 358 14 44",d:"Programa específico chemsex HSH.",h:"L-V"}
+      ],
+      psy:[
+        {n:"Teléfono de la Esperanza",u:"https://telefonodelaesperanza.org",t:"717 003 717",d:"Escucha general anónima.",h:"24/7"},
+        {n:"FELGTBIQ+ — Federación estatal",u:"https://felgtbi.org",t:"+34 91 360 46 05",d:"Federación nacional LGTBI+, derivación territorial.",h:"Oficina"},
+        {n:"Servicio LGTBI+ Comunidad de Madrid",u:"https://www.comunidad.madrid",t:"900 720 569",d:"Atención psicológica, jurídica y social, gratuita.",h:"L-V"}
+      ],
+      local:[
+        {n:"[Madrid] COGAM — Colectivo LGTBI+ Madrid",u:"https://cogam.es",t:"+34 91 523 00 70",d:"Centro Pedro Zerolo, c/Puebla 9. Asesoría, prueba VIH, salud sexual.",h:"L-V 10-22h"},
+        {n:"[Madrid] Servicio LGTBI+ Comunidad Madrid",u:"https://www.comunidad.madrid",t:"900 720 569",d:"Línea regional gratuita, atención integral.",h:"L-V"},
+        {n:"[Madrid] Apoyo Positivo",u:"https://apoyopositivo.org",t:"+34 91 358 14 44",d:"VIH/PrEP/chemsex/salud mental, sede Madrid.",h:"L-V"},
+        {n:"[Madrid] Clínica Sandoval — ITS",u:"https://www.comunidad.madrid",t:"+34 91 588 84 06",d:"Centro de referencia ITS/VIH público CAM.",h:"L-V"},
+        {n:"[Barcelona] Casal Lambda",u:"https://lambda.cat",t:"+34 933 195 550",d:"Centro LGTBIQA+ histórico, c/Comte Borrell 22.",h:"L-V"},
+        {n:"[Barcelona] Centre LGTBI Barcelona",u:"https://ajuntament.barcelona.cat/lgtbi",t:"+34 93 304 47 30",d:"Servicio municipal, atención integral.",h:"L-V"},
+        {n:"[Barcelona] BCN Checkpoint",u:"https://www.bcncheckpoint.com",t:"+34 93 318 20 56",d:"Centro detección VIH/ITS comunitario HSH/trans.",h:"L-S sobre cita"},
+        {n:"[Barcelona] Stop Sida",u:"https://stopsida.org",t:"+34 93 458 26 41",d:"Asociación HSH: salud sexual, chemsex, PrEP.",h:"L-V"},
+        {n:"[Barcelona] Genera — TDS",u:"https://www.genera.org.es",t:"+34 93 442 84 49",d:"Atención pro-derechos personas TDS.",h:"L-V"},
+        {n:"[Barcelona] Trànsit (ICS)",u:"https://transit.cat",t:"+34 93 270 24 27",d:"Servicio salud personas trans, gratuito público.",h:"L-V sobre cita"}
+      ]
+    }},
+    {code:"MX",flag:"🇲🇽",name:"México",cats:{
+      suicide:[
+        {n:"SAPTEL",u:"http://www.saptel.org.mx",t:"55 5259-8121",d:"Línea nacional de crisis emocional Cruz Roja Mexicana.",h:"24/7"},
+        {n:"Línea de la Vida (CONADIC)",u:"https://www.gob.mx/salud/conadic",t:"800 911 2000",d:"Línea federal salud mental y adicciones.",h:"24/7"}
+      ],
+      minors:[
+        {n:"DIF — Denuncia maltrato infantil",u:"https://www.gob.mx/difnacional",t:"800 888 9743",d:"Sistema Nacional para Desarrollo Integral Familia.",h:"24/7"},
+        {n:"Locatel CDMX",u:"https://www.locatel.cdmx.gob.mx",t:"55 5658-1111",d:"Información social y emergencias CDMX.",h:"24/7"},
+        {n:"Save the Children México",u:"https://www.savethechildren.mx",t:"+52 55 5554 3107",d:"Protección de infancia y adolescencia.",h:"Oficina"}
+      ],
+      health:[
+        {n:"Clínica Especializada Condesa",u:"https://condesadf.mx",t:"+52 55 5515 8311",d:"Referencia VIH/ITS/PrEP CDMX, atención gratuita.",h:"L-V"},
+        {n:"CENSIDA — Centro Nacional",u:"https://www.gob.mx/censida",t:"800 712 0886",d:"Centro Nacional para Prevención y Control VIH/sida.",h:"L-V"},
+        {n:"AHF México",u:"https://ahfmexico.org",t:"800 712 0886",d:"AIDS Healthcare Foundation, pruebas y tratamiento.",h:"Variables"}
+      ],
+      sw:[
+        {n:"Brigada Callejera Elisa Martínez",u:"https://brigadacallejera.org",t:"+52 55 5740 6228",d:"Pro-derechos TDS, salud, contra trata.",h:"L-V"},
+        {n:"APROASE",u:"https://aproase.org",t:"Vía web",d:"Apoyo a mujeres en situación de prostitución, CDMX.",h:"L-V"}
+      ],
+      addict:[
+        {n:"Centros de Integración Juvenil",u:"https://www.gob.mx/salud/cij",t:"800 011 2210",d:"Red nacional de tratamiento de adicciones.",h:"24/7"},
+        {n:"Línea de la Vida",u:"https://www.gob.mx/salud/conadic",t:"800 911 2000",d:"Adicciones y salud mental, gratuita.",h:"24/7"}
+      ],
+      psy:[
+        {n:"Yaaj México",u:"https://yaajmexico.org",t:"+52 55 7095 9908",d:"Jóvenes LGBT+, salud mental, terapia afirmativa.",h:"L-V"},
+        {n:"Cuenta Conmigo Diversidad",u:"https://cuentaconmigodiversidad.org",t:"Vía web",d:"Red de psicólogues LGBT-afirmativxs.",h:"Variables"},
+        {n:"Letra S",u:"https://letraese.org.mx",t:"+52 55 5672 7096",d:"Sida, cultura y vida cotidiana — info derechos VIH.",h:"L-V"}
+      ]
+    }},
+    {code:"AR",flag:"🇦🇷",name:"Argentina",cats:{
+      suicide:[
+        {n:"Centro de Asistencia al Suicida (CABA)",u:"https://www.casbuenosaires.com.ar",t:"135",d:"Gratuita CABA y GBA, escucha en crisis.",h:"24/7"},
+        {n:"CAS — Resto del país",u:"https://www.casbuenosaires.com.ar",t:"+54 11 5275 1135",d:"Centro de Asistencia al Suicida, llamadas desde todo el país.",h:"24/7"}
+      ],
+      minors:[
+        {n:"Línea 102 — Derechos NNA",u:"https://www.argentina.gob.ar/desarrollosocial",t:"102",d:"Programa Nacional Niñez, Adolescencia y Familia.",h:"24/7"},
+        {n:"Línea 137 — Víctimas violencia familiar/sexual",u:"https://www.argentina.gob.ar/justicia/atencionvictimas",t:"137",d:"Ministerio Justicia, atención inmediata.",h:"24/7"}
+      ],
+      health:[
+        {n:"Línea Salud Sexual",u:"https://www.argentina.gob.ar/salud",t:"0800 222 3444",d:"Línea oficial salud sexual y reproductiva.",h:"L-V 9-21h"},
+        {n:"Fundación Huésped",u:"https://www.huesped.org.ar",t:"+54 11 4981 7777",d:"VIH/ITS, info, testeo, derechos, PrEP.",h:"L-V"},
+        {n:"AHF Argentina",u:"https://ahfargentina.org",t:"+54 11 4773 4422",d:"Tratamiento y prevención VIH gratuitos.",h:"L-V"}
+      ],
+      sw:[
+        {n:"AMMAR — Asociación Mujeres Meretrices",u:"https://www.ammar.org.ar",t:"+54 11 4381 8696",d:"Sindicato pro-derechos TDS, CTA Autónoma.",h:"L-V"},
+        {n:"RedTraSex Argentina",u:"https://redtrasex.org",t:"Vía web",d:"Red regional de trabajadoras sexuales.",h:"N/A"}
+      ],
+      addict:[
+        {n:"SEDRONAR — Línea 141",u:"https://www.argentina.gob.ar/sedronar",t:"141",d:"Línea nacional gratuita, consumo problemático.",h:"24/7"}
+      ],
+      psy:[
+        {n:"FALGBT — Federación Argentina LGBT+",u:"https://falgbt.org",t:"+54 11 4953 1115",d:"Federación nacional, asesoría y derivación.",h:"L-V"},
+        {n:"100% Diversidad y Derechos",u:"https://100porciento.org",t:"+54 11 4361 7773",d:"ONG nacional, asesoría legal y social.",h:"L-V"},
+        {n:"Casa Trans (CABA)",u:"https://www.buenosaires.gob.ar",t:"+54 11 5236 3000",d:"Espacio integral personas trans, CABA.",h:"L-V"}
+      ]
+    }},
+    {code:"CL",flag:"🇨🇱",name:"Chile",cats:{
+      suicide:[
+        {n:"Salud Responde — Salud Mental",u:"https://saludresponde.minsal.cl",t:"600 360 7777 opción 1",d:"Línea oficial MINSAL, gratuita desde fijo.",h:"24/7"},
+        {n:"*4141 desde móvil",u:"https://saludresponde.minsal.cl",t:"*4141",d:"Acceso desde celular, mismo servicio MINSAL.",h:"24/7"}
+      ],
+      minors:[
+        {n:"Fono Niñez",u:"https://www.minsegpres.gob.cl",t:"800 730 800",d:"Subsecretaría de la Niñez, denuncias y orientación.",h:"24/7"},
+        {n:"Fonoinfancia (INTEGRA)",u:"https://www.fonoinfancia.cl",t:"800 200 818",d:"Atención psicosocial gratuita niños y familias.",h:"L-V"}
+      ],
+      health:[
+        {n:"Vivo Positivo",u:"https://vivopositivo.cl",t:"+56 2 2236 3038",d:"Agrupación nacional personas VIH+.",h:"L-V"},
+        {n:"ASOSIDA",u:"https://www.asosida.cl",t:"+56 2 2222 6322",d:"Coalición chilena de organizaciones VIH/sida.",h:"L-V"},
+        {n:"AHF Chile",u:"https://ahfchile.org",t:"+56 2 2236 2160",d:"Test VIH y tratamiento gratuito.",h:"L-V"}
+      ],
+      sw:[
+        {n:"Sindicato Ángela Lina (Iquique)",u:"https://redtrasex.org",t:"Vía web",d:"Sindicato regional TDS norte de Chile.",h:"Variables"},
+        {n:"Fundación Margen",u:"https://www.fundacionmargen.cl",t:"+56 2 2632 6433",d:"Acompañamiento mujeres en situación de prostitución.",h:"L-V"}
+      ],
+      addict:[
+        {n:"SENDA — Fono Drogas",u:"https://www.senda.gob.cl",t:"1412",d:"Servicio Nacional Drogas, gratuito.",h:"24/7"}
+      ],
+      psy:[
+        {n:"MOVILH",u:"https://www.movilh.cl",t:"+56 2 2671 4855",d:"Movimiento Integración Liberación Homosexual.",h:"L-V"},
+        {n:"Fundación Iguales",u:"https://www.iguales.cl",t:"+56 2 2245 8455",d:"Derechos LGBTI+, asesoría jurídica.",h:"L-V"},
+        {n:"OTD Chile",u:"https://otdchile.org",t:"+56 9 9874 0987",d:"Organizando Trans Diversidades.",h:"L-V"}
+      ]
+    }},
+    {code:"CO",flag:"🇨🇴",name:"Colombia",cats:{
+      suicide:[
+        {n:"Línea 192 — Salud para el Alma",u:"https://www.minsalud.gov.co",t:"192 opción 4",d:"MinSalud, atención psicosocial gratuita.",h:"24/7"},
+        {n:"Línea Psicológica Bogotá",u:"https://www.saludcapital.gov.co",t:"+57 601 364 9666",d:"Secretaría de Salud Bogotá, atención en crisis.",h:"24/7"}
+      ],
+      minors:[
+        {n:"ICBF — Línea 141",u:"https://www.icbf.gov.co",t:"141",d:"Instituto Colombiano Bienestar Familiar, gratuita.",h:"24/7"},
+        {n:"Línea Púrpura (Bogotá)",u:"https://sdmujer.gov.co",t:"018000 112 137",d:"Mujeres, niñas y adolescentes en situación de violencia.",h:"24/7"}
+      ],
+      health:[
+        {n:"Profamilia",u:"https://profamilia.org.co",t:"+57 601 339 0900",d:"Red nacional salud sexual y reproductiva.",h:"L-S"},
+        {n:"Liga Colombiana de Lucha contra el SIDA",u:"https://ligasida.org.co",t:"+57 601 644 8888",d:"VIH/ITS, testeo, derechos.",h:"L-V"},
+        {n:"RedSomos",u:"https://www.redsomos.org",t:"+57 313 481 6011",d:"Fundación VIH y diversidad sexual.",h:"L-V"}
+      ],
+      sw:[
+        {n:"ASMUBULI — Mujeres Buscando Libertad",u:"https://www.asmubuli.com",t:"+57 320 884 2225",d:"Asociación nacional TDS pro-derechos.",h:"L-V"}
+      ],
+      addict:[
+        {n:"Línea 192 opción 4",u:"https://www.minsalud.gov.co",t:"192",d:"MinSalud, salud mental incluye consumo.",h:"24/7"},
+        {n:"CAMAD (Bogotá)",u:"https://www.saludcapital.gov.co",t:"+57 601 364 9090",d:"Centros Atención Móvil Drogodependientes.",h:"Variables"}
+      ],
+      psy:[
+        {n:"Colombia Diversa",u:"https://colombiadiversa.org",t:"+57 601 483 1237",d:"Defensa de derechos LGBT+ nacional.",h:"L-V"},
+        {n:"Caribe Afirmativo",u:"https://caribeafirmativo.lgbt",t:"+57 605 690 3083",d:"LGBT Caribe colombiano (Cartagena, Barranquilla).",h:"L-V"},
+        {n:"Santamaría Fundación (Cali)",u:"https://www.santamariafundacion.com",t:"+57 320 678 5891",d:"Mujeres trans, suroccidente colombiano.",h:"L-V"}
+      ]
+    }}
+  ],
+  PT:[
+    {code:"PT",flag:"🇵🇹",name:"Portugal",cats:{
+      suicide:[
+        {n:"SOS Voz Amiga",u:"https://www.sosvozamiga.org",t:"213 544 545 / 912 802 669",d:"Linha de escuta em crise emocional.",h:"15:30-00:30"},
+        {n:"SNS 24 — Saúde 24",u:"https://www.sns24.gov.pt",t:"808 24 24 24",d:"Serviço Nacional de Saúde, aconselhamento.",h:"24/7"},
+        {n:"Conversa Amiga",u:"https://www.conversaamiga.com",t:"808 237 327",d:"Linha de apoio emocional.",h:"15-22h"}
+      ],
+      minors:[
+        {n:"SOS Criança — IAC",u:"https://www.iacrianca.pt",t:"116 111",d:"Instituto Apoio à Criança, escuta e proteção.",h:"L-S 9-22h"},
+        {n:"Linha Nacional Emergência Social",u:"https://www.seg-social.pt",t:"144",d:"Segurança Social, emergência 24/7.",h:"24/7"},
+        {n:"APAV — Apoio à Vítima",u:"https://apav.pt",t:"116 006",d:"Apoio integral a vítimas, inclui menores.",h:"L-S 9-21h"}
+      ],
+      health:[
+        {n:"GAT Portugal",u:"https://www.gatportugal.org",t:"+351 21 822 5346",d:"Grupo Activistas em Tratamentos, VIH/ITS.",h:"L-V"},
+        {n:"Checkpoint LX (Lisboa)",u:"https://www.checkpointlx.com",t:"+351 211 010 102",d:"Centro comunitário deteção VIH/ITS/PrEP, HSH/trans.",h:"L-S"},
+        {n:"APF — Planeamento Familiar",u:"https://www.apf.pt",t:"+351 21 385 3993",d:"Saúde sexual e reprodutiva nacional.",h:"L-V"}
+      ],
+      sw:[
+        {n:"APDES — Porto G",u:"https://www.apdes.pt",t:"+351 22 372 7080",d:"Programa redução de danos com TDS no Porto.",h:"L-V"},
+        {n:"Liga Portuguesa Contra a SIDA",u:"https://www.sida.pt",t:"+351 21 845 9610",d:"Outreach e apoio TDS Lisboa.",h:"L-V"}
+      ],
+      addict:[
+        {n:"SICAD — Linha Vida",u:"https://www.sicad.pt",t:"1414",d:"Serviço Intervenção Comportamentos Aditivos.",h:"L-V 10-20h"},
+        {n:"Checkpoint LX — Chemsex",u:"https://www.checkpointlx.com",t:"+351 211 010 102",d:"Apoio específico chemsex HSH.",h:"L-S"}
+      ],
+      psy:[
+        {n:"ILGA Portugal — Casa Arco-Íris",u:"https://ilga-portugal.pt",t:"+351 218 873 918",d:"Apoio LGBT histórico, sede Lisboa.",h:"L-V"},
+        {n:"rede ex aequo",u:"https://www.rea.pt",t:"+351 916 911 533",d:"Jovens LGBTI até 30 anos, apoio entre pares.",h:"Variável"},
+        {n:"APAV — Linha LGBTI+",u:"https://apav.pt/lgbti",t:"116 006",d:"Apoio a vítimas LGBTI+ de crimes ou discriminação.",h:"L-S 9-21h"},
+        {n:"ATA — Associação Trans e Intersexo",u:"https://atportugal.org",t:"Via site",d:"Apoio comunidade trans e intersexo.",h:"Variável"}
+      ],
+      local:[
+        {n:"[Lisboa] ILGA Portugal",u:"https://ilga-portugal.pt",t:"+351 218 873 918",d:"Sede histórica, Casa Arco-Íris, atendimento.",h:"L-V"},
+        {n:"[Lisboa] Checkpoint LX",u:"https://www.checkpointlx.com",t:"+351 211 010 102",d:"Saúde sexual comunitária HSH/trans.",h:"L-S"},
+        {n:"[Porto] APDES Porto G",u:"https://www.apdes.pt",t:"+351 22 372 7080",d:"Redução de danos TDS e LGBT.",h:"L-V"},
+        {n:"[Porto] Casa Qui",u:"https://www.casaqui.org",t:"+351 22 339 5810",d:"Apoio jovens LGBTI+ em rutura familiar.",h:"L-V"}
+      ]
+    }},
+    {code:"BR",flag:"🇧🇷",name:"Brasil",cats:{
+      suicide:[
+        {n:"CVV — Centro de Valorização da Vida",u:"https://cvv.org.br",t:"188",d:"Gratuito nacional, apoio emocional 24/7, chat e e-mail.",h:"24/7"}
+      ],
+      minors:[
+        {n:"Disque 100 — Direitos Humanos",u:"https://www.gov.br/mdh",t:"100",d:"Denúncia de violações contra crianças/adolescentes.",h:"24/7"},
+        {n:"Conselho Tutelar (municipal)",u:"https://www.gov.br/mdh",t:"Local — buscar na prefeitura",d:"Atendimento de violações em cada município.",h:"Variável"},
+        {n:"Childhood Brasil",u:"https://www.childhood.org.br",t:"+55 11 2061 8888",d:"ONG proteção contra abuso e exploração sexual.",h:"Comercial"}
+      ],
+      health:[
+        {n:"Disque Saúde",u:"https://www.gov.br/saude",t:"136",d:"Ministério da Saúde, info nacional.",h:"24/7"},
+        {n:"ABIA — Assoc. Brasileira Interdisciplinar AIDS",u:"https://abiaids.org.br",t:"+55 21 2223 1040",d:"Histórica, direitos e prevenção VIH (RJ).",h:"Comercial"},
+        {n:"Grupo Pela VIDDA Brasil",u:"https://pelavidda.org.br",t:"+55 21 2253 6111",d:"Pessoas vivendo com HIV/AIDS, vários estados.",h:"Variável"},
+        {n:"AHF Brasil",u:"https://ahfbrasil.org",t:"+55 11 3253 2566",d:"Test e tratamento VIH gratuitos.",h:"L-V"}
+      ],
+      sw:[
+        {n:"ANTRA — Trans e Travestis",u:"https://antrabrasil.org",t:"Via site",d:"Articulação Nacional Trav. e Transexuais.",h:"Variável"},
+        {n:"Rede Brasileira de Prostitutas",u:"https://redeprostitutas.org.br",t:"Via site",d:"Rede histórica pro-direitos TDS.",h:"Variável"},
+        {n:"Davida (Rio)",u:"https://www.facebook.com/davidaprostituicaodireitoscivissaude",t:"Via site",d:"Prostituição, Direitos Civis e Saúde, Rio.",h:"Variável"}
+      ],
+      addict:[
+        {n:"CAPS-AD (rede SUS local)",u:"https://www.gov.br/saude",t:"Via 136",d:"Centros Atenção Psicossocial Álcool e Drogas.",h:"Variável"},
+        {n:"ABRAMD",u:"https://abramd.org",t:"+55 11 4111 1144",d:"Associação Multidisciplinar Estudos Drogas.",h:"Comercial"}
+      ],
+      psy:[
+        {n:"CVV — apoio emocional",u:"https://cvv.org.br",t:"188",d:"Escuta geral 24/7, gratuita.",h:"24/7"},
+        {n:"Aliança Nacional LGBTI+",u:"https://aliancalgbti.org.br",t:"Via site",d:"Articulação política nacional LGBTI+.",h:"Comercial"},
+        {n:"ABGLT",u:"https://abglt.org",t:"+55 41 3033 3437",d:"Associação Brasileira LGBTI histórica.",h:"Comercial"},
+        {n:"Grupo Dignidade",u:"https://grupodignidade.org.br",t:"+55 41 3222 3999",d:"Cidadania LGBTI, sede Curitiba PR, alcance nacional.",h:"L-V"}
+      ],
+      local:[
+        {n:"[São Paulo] Casa 1",u:"https://www.casaum.org",t:"contato@casaum.org",d:"Acolhida LGBT+ expulsxs de casa, R. Adoniran Barbosa 151.",h:"L-S 10-19h"},
+        {n:"[São Paulo] Centro de Cidadania LGBT",u:"https://www.prefeitura.sp.gov.br",t:"+55 11 3397 1377",d:"Serviço municipal, atendimento integral.",h:"L-V"},
+        {n:"[São Paulo] CRD — Centro Referência Diversidade",u:"https://www.prefeitura.sp.gov.br",t:"+55 11 3258 6218",d:"Saúde, jurídico, social para LGBT+ e PVHA.",h:"L-V"},
+        {n:"[Rio de Janeiro] Grupo Pela VIDDA-RJ",u:"https://pelavidda.org.br",t:"+55 21 2253 6111",d:"Histórico, R. das Marrecas, pessoas VIH+ e LGBT+.",h:"L-V"},
+        {n:"[Rio de Janeiro] Grupo Arco-Íris",u:"https://www.arco-iris.org.br",t:"+55 21 2222 9292",d:"ONG LGBT histórica do Rio.",h:"L-V"},
+        {n:"[Rio de Janeiro] Damas",u:"https://www.instagram.com/damasong",t:"Via Instagram",d:"Dignidade, Atitude, Mulheres, Acolhimento, Solidariedade — travestis.",h:"Variável"},
+        {n:"[Belo Horizonte] Centro Ref. LGBT BH",u:"https://prefeitura.pbh.gov.br",t:"+55 31 3277 4789",d:"Serviço municipal LGBT+, jurídico/psicológico.",h:"L-V"},
+        {n:"[Belo Horizonte] Casa Tina Martins",u:"https://www.instagram.com/casatinamartins",t:"Via Instagram",d:"Centro referência mulheres, abrange travestis/trans.",h:"Variável"},
+        {n:"[Porto Alegre] Nuances",u:"https://nuances.com.br",t:"+55 51 3221 2734",d:"Grupo pela Livre Expressão Sexual, histórico RS.",h:"L-V"},
+        {n:"[Porto Alegre] Igualdade RS",u:"https://igualdaders.org.br",t:"+55 51 3221 2734",d:"Associação Travestis e Transexuais RS.",h:"L-V"},
+        {n:"[Porto Alegre] GAPA RS",u:"https://www.gapars.org.br",t:"+55 51 3221 6549",d:"Grupo Apoio Prevenção AIDS Rio Grande do Sul.",h:"L-V"},
+        {n:"[Recife] Centro Ref. LGBTQIA+",u:"https://www2.recife.pe.gov.br",t:"+55 81 3355 8126",d:"Serviço municipal, atendimento psicossocial e jurídico.",h:"L-V"},
+        {n:"[Recife] GTP+",u:"https://gtpmais.org",t:"+55 81 3221 4744",d:"Pessoas vivendo com HIV/AIDS, Pernambuco.",h:"L-V"},
+        {n:"[Salvador/Bahia] GGB — Grupo Gay da Bahia",u:"https://grupogaydabahia.com.br",t:"+55 71 3322 2552",d:"ONG LGBT histórica do Brasil, fundada 1980.",h:"L-V"},
+        {n:"[Salvador/Bahia] ATRAS",u:"https://www.facebook.com/AtrasBahia",t:"Via Facebook",d:"Associação de Travestis de Salvador.",h:"Variável"}
+      ]
+    }}
+  ],
+  IT:[
+    {code:"IT",flag:"🇮🇹",name:"Italia",cats:{
+      suicide:[
+        {n:"Telefono Amico Italia",u:"https://www.telefonoamico.it",t:"02 2327 2327",d:"Linea storica di sostegno emotivo.",h:"10–24h"},
+        {n:"Telefono Azzurro Adulti",u:"https://www.azzurro.it",t:"19696",d:"Linea per crisi e disagio.",h:"24/7"}
+      ],
+      minors:[
+        {n:"Telefono Azzurro — 19696",u:"https://www.azzurro.it",t:"19696",d:"Linea ascolto bambini e adolescenti.",h:"24/7"},
+        {n:"114 Emergenza Infanzia",u:"https://www.114.it",t:"114",d:"Servizio pubblico ministeriale.",h:"24/7"},
+        {n:"Save the Children Italia",u:"https://www.savethechildren.it",t:"+39 06 480701",d:"Protezione minori, MSNA.",h:"Ufficio"}
+      ],
+      health:[
+        {n:"Telefono Verde AIDS",u:"https://www.iss.it",t:"800 861 061",d:"Istituto Superiore di Sanità, info HIV/IST.",h:"Lun–ven 13–18h"},
+        {n:"LILA — Lega Italiana Lotta AIDS",u:"https://www.lila.it",t:"+39 06 4544 9100",d:"Test, PrEP, info, sedi locali.",h:"Variabile"},
+        {n:"Plus Onlus",u:"https://www.plus-onlus.it",t:"+39 051 097 1671",d:"Persone LGBT+ con HIV, advocacy.",h:"Ufficio"}
+      ],
+      sw:[
+        {n:"Comitato per i Diritti Civili delle Prostitute",u:"https://www.lucciole.org",t:"+39 0541 700 102",d:"Storico comitato pro-diritti, Pordenone.",h:"Variabile"},
+        {n:"Ala Milano",u:"https://www.alaonlus.it",t:"+39 02 6680 7220",d:"Ass. di Lotta all'AIDS, lavoro sessuale.",h:"Ufficio"}
+      ],
+      addict:[
+        {n:"Telefono Verde Droga",u:"https://www.iss.it",t:"800 186 070",d:"ISS, info anonima sulle droghe.",h:"Lun–ven 10–16h"},
+        {n:"Mario Mieli — ChemSafe (Roma)",u:"https://www.mariomieli.org",t:"+39 06 541 3985",d:"Programma chemsex.",h:"Variabile"}
+      ],
+      psy:[
+        {n:"Gay Help Line — Arcigay",u:"https://gaycenter.it",t:"800 713 713",d:"Numero verde nazionale anti-omofobia/transfobia.",h:"Lun–sab 16–20h"},
+        {n:"Arcigay (nazionale)",u:"https://www.arcigay.it",t:"+39 051 095 7241",d:"Sede nazionale Bologna, advocacy LGBT+.",h:"Ufficio"},
+        {n:"MIT — Movimento Identità Trans",u:"https://mit-italia.it",t:"+39 051 271 277",d:"Storica associazione trans, Bologna.",h:"Ufficio"},
+        {n:"[Roma] Gay Center",u:"https://gaycenter.it",t:"800 713 713",d:"Via Zabaglia 14. Help Line e supporto presenza.",h:"Lun–ven 16–20h"},
+        {n:"[Roma] Circolo Mario Mieli",u:"https://www.mariomieli.org",t:"+39 06 541 3985",d:"Centro storico LGBTQIA+ Roma.",h:"Variabile"},
+        {n:"[Milano] CIG Arcigay Milano",u:"https://www.arcigaymilano.org",t:"02 5412 2227",d:"Via Bezzecca 3. Linea Amica Gay/Trans, chat.",h:"Lu–ve 20–23h"},
+        {n:"[Milano] ASA Milano",u:"https://www.asamilano.org",t:"+39 02 5810 1402",d:"Test HIV/IST gratuiti, riduzione del danno.",h:"Variabile"},
+        {n:"[Napoli] Arcigay Antinoo",u:"https://www.arcigaynapoli.org",t:"081 552 8815",d:"Via San Geronimo alle Monache 19. Prima accoglienza, Linea Amica.",h:"Me/ve 17–20h"},
+        {n:"[Napoli] I Ken Onlus",u:"https://www.ikenonlus.com",t:"+39 081 1925 5598",d:"Centro antiviolenza LGBT+ Campania.",h:"Variabile"},
+        {n:"[Palermo] Arcigay Palermo",u:"https://www.arcigaypalermo.it",t:"+39 091 324917",d:"Via Genova 7. Fondatore storico di Arcigay (1980).",h:"Permanenze"}
+      ]
+    }},
+    {code:"CH-IT",flag:"🇨🇭",name:"Svizzera italiana",cats:{
+      suicide:[{n:"Telefono Amico",u:"https://www.telefonoamico.ch",t:"143",d:"Linea nazionale anonima.",h:"24/7"}],
+      minors:[{n:"Pro Juventute — 147",u:"https://www.147.ch",t:"147",d:"Linea giovani professionale.",h:"24/7"}],
+      health:[
+        {n:"Aiuto AIDS Ticino",u:"https://www.aids.ch",t:"+41 91 923 80 40",d:"Test, PrEP, consulenza, Lugano.",h:"Lu–ve"},
+        {n:"Checkpoint Ticino",u:"https://www.mycheckpoint.ch",t:"+41 91 923 80 40",d:"Salute sessuale HSH/trans.",h:"Su appuntamento"}
+      ],
+      sw:[{n:"ProKoRe",u:"https://www.prokore.ch",t:"Via membri",d:"Rete svizzera pro-diritti TDS.",h:"Ufficio"}],
+      psy:[
+        {n:"Imbarco Immediato",u:"https://www.imbarcoimmediato.org",t:"+41 79 246 02 27",d:"Associazione LGBTIQ+ ticinese.",h:"Variabile"},
+        {n:"Pink Cross",u:"https://www.pinkcross.ch",t:"+41 31 372 33 00",d:"Org nazionale uomini gay/bi.",h:"Ufficio"}
+      ]
+    }}
+  ],
+  DE:[
+    {code:"DE",flag:"🇩🇪",name:"Deutschland",cats:{
+      suicide:[
+        {n:"Telefonseelsorge",u:"https://www.telefonseelsorge.de",t:"0800 111 0 111 · 0800 111 0 222",d:"Bundesweite Hotline, kostenlos und anonym.",h:"24/7"},
+        {n:"Nummer gegen Kummer (Kinder/Jugend)",u:"https://www.nummergegenkummer.de",t:"116 111",d:"Jugend-Hotline.",h:"Mo–Sa"}
+      ],
+      minors:[
+        {n:"Hilfetelefon Sexueller Missbrauch",u:"https://www.hilfe-portal-missbrauch.de",t:"0800 22 55 530",d:"UBSKM, sexueller Missbrauch.",h:"Mo–Fr"},
+        {n:"BumF — Junge Geflüchtete",u:"https://b-umf.de",t:"+49 30 8209 7430",d:"Bundesfachverband unbegleitete minderjährige Geflüchtete.",h:"Bürozeiten"}
+      ],
+      health:[
+        {n:"Deutsche Aidshilfe",u:"https://www.aidshilfe.de",t:"0180 33 19 411",d:"Bundesweite HIV/AIDS/STI-Hotline.",h:"Mo–Fr 9–21h"},
+        {n:"Gay Health Chat",u:"https://www.gayhealthchat.de",t:"Online-Chat",d:"Anonyme sexuelle Gesundheitsberatung für MSM.",h:"Geplant"}
+      ],
+      sw:[
+        {n:"Bundesverband Sexuelle Dienstleistungen",u:"https://www.bsd-ev.info",t:"+49 30 23 60 39 18",d:"Bundesverband pro Rechte von Sexarbeitenden.",h:"Bürozeiten"},
+        {n:"Hydra Berlin",u:"https://www.hydra-ev.org",t:"+49 30 611 00 23",d:"Historische Beratungsstelle für Sexarbeitende.",h:"Variabel"}
+      ],
+      addict:[
+        {n:"Sucht & Drogen Hotline",u:"https://www.sucht-und-drogen-hotline.de",t:"01806 313 031",d:"Bundesweite Sucht-Hotline.",h:"24/7"},
+        {n:"Mann-O-Meter — Chemsex (Berlin)",u:"https://www.mann-o-meter.de",t:"+49 30 216 80 08",d:"Chemsex-Programm für MSM.",h:"Mo–Fr 17–22h"}
+      ],
+      psy:[
+        {n:"LSVD+ Verband Queere Vielfalt",u:"https://www.lsvd.de",t:"+49 30 78 95 47 78",d:"Bundesweiter LGBT+-Verband.",h:"Bürozeiten"},
+        {n:"Bundesverband Trans*",u:"https://www.bundesverband-trans.de",t:"+49 30 6781 1888",d:"Nationale Trans*-Organisation.",h:"Bürozeiten"},
+        {n:"[Berlin] Mann-O-Meter",u:"https://www.mann-o-meter.de",t:"+49 30 216 80 08",d:"Bülowstr. 106. HIV/STI-Tests, PrEP, Chemsex, schwules Beratungszentrum.",h:"Mo–Fr 17–22h · Sa 16–20h"},
+        {n:"[Berlin] Schwulenberatung Berlin",u:"https://schwulenberatungberlin.de",t:"+49 30 23 36 90 70",d:"Niebuhrstr. 59/60. Professionelle Beratung.",h:"Mo–Fr"},
+        {n:"[Berlin] MANEO — Schwules Überfalltelefon",u:"https://www.maneo.de",t:"+49 30 216 33 36",d:"Hilfe für Opfer homophober Gewalt.",h:"17–19h"},
+        {n:"[Berlin] Lesbenberatung Berlin",u:"https://www.lesbenberatung-berlin.de",t:"+49 30 215 20 00",d:"Beratungsstelle für Lesben.",h:"Variabel"},
+        {n:"[Köln] anyway",u:"https://www.anyway-koeln.de",t:"+49 221 92 39 75 70",d:"Jugendzentrum LGBTQI* 14–27 Jahre.",h:"Variabel"},
+        {n:"[Köln] rubicon",u:"https://rubicon-koeln.de",t:"+49 221 27 66 999 0",d:"LSBTIQ*-Beratungsstelle Köln.",h:"Mo–Fr"},
+        {n:"[Köln] LSVD+ NRW",u:"https://nrw.lsvd.de",t:"+49 221 92 59 61 0",d:"Rheingasse 6. Regionaler Sitz NRW.",h:"Bürozeiten"},
+        {n:"[München] Sub e.V.",u:"https://subonline.org",t:"+49 89 8563 4640",d:"Müllerstr. 14. Schwules Kommunikations- und Kulturzentrum.",h:"Mo–Fr abends"},
+        {n:"[München] Münchner Aids-Hilfe",u:"https://muenchner-aidshilfe.de",t:"+49 89 54333-0",d:"Lindwurmstr. 71. Tests, Beratung, PrEP.",h:"Mo–Fr"},
+        {n:"[München] LeTRa Lesbenberatungsstelle",u:"https://letra.de",t:"+49 89 725 4272",d:"Historisches Zentrum für Lesben, München.",h:"Variabel"},
+        {n:"[Düsseldorf] queeres Zentrum Düsseldorf",u:"https://www.queeres-zentrum-duesseldorf.de",t:"Über Webseite",d:"Lokales LGBTQI*-Zentrum.",h:"Variabel"},
+        {n:"[Düsseldorf] Aidshilfe Düsseldorf",u:"https://www.duesseldorf.aidshilfe.de",t:"+49 211 770 95 0",d:"Tests, Beratung, Prävention.",h:"Bürozeiten"}
+      ]
+    }},
+    {code:"AT",flag:"🇦🇹",name:"Österreich",cats:{
+      suicide:[
+        {n:"Telefonseelsorge",u:"https://www.telefonseelsorge.at",t:"142",d:"Bundesweite gebührenfreie Hotline.",h:"24/7"},
+        {n:"Rat auf Draht",u:"https://www.rataufdraht.at",t:"147",d:"Jugend-Hotline.",h:"24/7"}
+      ],
+      minors:[
+        {n:"Rat auf Draht — 147",u:"https://www.rataufdraht.at",t:"147",d:"Kinder und Jugendliche in Not.",h:"24/7"}
+      ],
+      health:[
+        {n:"Aids Hilfe Wien",u:"https://www.aids.at",t:"+43 1 599 37",d:"Tests, PrEP, Beratung.",h:"Mo–Fr"},
+        {n:"Checkpoint Vienna",u:"https://www.checkpoint.lgbt",t:"+43 1 595 23 11",d:"Sexuelle Gesundheit MSM/Trans.",h:"Nach Vereinbarung"}
+      ],
+      sw:[
+        {n:"SOPHIE",u:"https://www.sophie.or.at",t:"+43 1 897 55 36",d:"Unterstützung für Sexarbeitende, Wien.",h:"Mo–Fr"}
+      ],
+      addict:[
+        {n:"Suchthilfe Wien",u:"https://www.suchthilfe.wien",t:"+43 1 4000 53510",d:"Sucht-Hotline.",h:"Variabel"}
+      ],
+      psy:[
+        {n:"HOSI Wien",u:"https://www.hosiwien.at",t:"+43 1 216 66 04",d:"Historische LGBTQI+-Organisation Österreich.",h:"Variabel"},
+        {n:"Türkis Rosa Lila Villa",u:"https://www.dievilla.at",t:"+43 1 586 81 50",d:"Historisches LGBTI+-Zentrum Wien.",h:"Variabel"}
+      ]
+    }},
+    {code:"CH-DE",flag:"🇨🇭",name:"Schweiz (deutsch)",cats:{
+      suicide:[{n:"Dargebotene Hand",u:"https://www.143.ch",t:"143",d:"Bundesweite anonyme Hotline.",h:"24/7"}],
+      minors:[{n:"Pro Juventute — 147",u:"https://www.147.ch",t:"147",d:"Professionelle Jugend-Hotline.",h:"24/7"}],
+      health:[
+        {n:"Aids-Hilfe Schweiz",u:"https://www.aids.ch",t:"+41 44 447 11 11",d:"HIV-Dachverband.",h:"Bürozeiten"},
+        {n:"Checkpoint Zürich",u:"https://www.mycheckpoint.ch",t:"+41 44 455 59 10",d:"Sexuelle Gesundheit MSM/Trans.",h:"Nach Vereinbarung"}
+      ],
+      sw:[{n:"ProKoRe",u:"https://www.prokore.ch",t:"Über Mitglieder",d:"Schweizer Netzwerk pro Rechte Sexarbeitender.",h:"Bürozeiten"}],
+      psy:[
+        {n:"Pink Cross",u:"https://www.pinkcross.ch",t:"+41 31 372 33 00",d:"Nationaler Dachverband schwule/bi Männer.",h:"Bürozeiten"},
+        {n:"LOS — Lesbenorganisation Schweiz",u:"https://www.los.ch",t:"+41 31 318 18 50",d:"Nationale Lesbenorganisation.",h:"Bürozeiten"},
+        {n:"TGNS — Transgender Network",u:"https://www.tgns.ch",t:"+41 31 311 22 11",d:"Schweizer Trans-Netzwerk.",h:"Bürozeiten"}
+      ]
+    }}
+  ],
+  NL:[
+    {code:"NL",flag:"🇳🇱",name:"Nederland",cats:{
+      suicide:[
+        {n:"113 Zelfmoordpreventie",u:"https://www.113.nl",t:"113 · 0800-0113",d:"Nationale lijn voor suïcidepreventie.",h:"24/7"},
+        {n:"Sensoor",u:"https://www.sensoor.nl",t:"0900-0767",d:"Anonieme telefonische hulpdienst.",h:"24/7"}
+      ],
+      minors:[
+        {n:"Kindertelefoon",u:"https://www.kindertelefoon.nl",t:"0800-0432",d:"Voor kinderen tot 18, anoniem en gratis.",h:"Dag 11–21h"},
+        {n:"Stichting Nidos",u:"https://www.nidos.nl",t:"+31 88 50 11 200",d:"Voogdij voor alleenstaande minderjarige vluchtelingen.",h:"Kantoor"}
+      ],
+      health:[
+        {n:"Soa Aids Nederland",u:"https://www.soaaids.nl",t:"088-7775577",d:"Nationale lijn soa/hiv, MSM-specifiek.",h:"Werkdagen 14–22h"},
+        {n:"Hiv Vereniging",u:"https://www.hivvereniging.nl",t:"020-6160160",d:"Belangenvereniging mensen met hiv.",h:"Kantoor"},
+        {n:"GGD checkpoint",u:"https://www.man-tot-man.nl",t:"Lokale GGD",d:"Anonieme hiv/soa-test voor MSM.",h:"Variabel"}
+      ],
+      sw:[
+        {n:"PROUD",u:"https://www.wijzijnproud.nl",t:"Via website",d:"Belangenvereniging voor en door sekswerkers.",h:"Online"},
+        {n:"P&G292 Amsterdam",u:"https://www.gghamsterdam.nl",t:"+31 20 555 5822",d:"Gezondheidsvoorlichting voor sekswerkers.",h:"Werkdagen"}
+      ],
+      addict:[
+        {n:"Mainline",u:"https://www.mainline.nl",t:"+31 20 682 26 60",d:"Harm reduction, drugsgebruik, chemsex.",h:"Werkdagen"},
+        {n:"Brijder/Jellinek (verslavingszorg)",u:"https://www.jellinek.nl",t:"088-505 1220",d:"Verslavingszorg.",h:"Werkdagen"}
+      ],
+      psy:[
+        {n:"COC Nederland",u:"https://www.coc.nl",t:"020-623 4596",d:"Oudste LGBTI-organisatie ter wereld, 1946.",h:"Werkdagen"},
+        {n:"Switchboard / Gay & Lesbian Switchboard Amsterdam",u:"https://switchboard.nl",t:"020-623 6565",d:"Telefonische ondersteuning LGBTI+.",h:"Werkdagen avond"},
+        {n:"Transvisie",u:"https://www.transvisie.nl",t:"030-303 1290",d:"Belangenvereniging trans personen.",h:"Werkdagen"},
+        {n:"TNN — Transgender Netwerk",u:"https://www.tnnonline.nl",t:"+31 88 122 99 88",d:"Netwerk en advocacy trans/non-binair.",h:"Kantoor"}
+      ]
+    }},
+    {code:"BE-VL",flag:"🇧🇪",name:"België (Vlaanderen)",cats:{
+      suicide:[
+        {n:"Zelfmoordlijn 1813",u:"https://www.zelfmoord1813.be",t:"1813",d:"Nationale crisislijn suïcidepreventie.",h:"24/7"},
+        {n:"Tele-Onthaal",u:"https://www.tele-onthaal.be",t:"106",d:"Anonieme luisterlijn.",h:"24/7"}
+      ],
+      minors:[
+        {n:"Awel (Kinder- en jongerentelefoon)",u:"https://www.awel.be",t:"102",d:"Voor kinderen en jongeren.",h:"Dag"},
+        {n:"Child Focus",u:"https://www.childfocus.be",t:"116 000",d:"Vermiste en seksueel uitgebuite kinderen.",h:"24/7"}
+      ],
+      health:[
+        {n:"Sensoa",u:"https://www.sensoa.be",t:"+32 3 238 68 68",d:"Vlaams expertisecentrum seksuele gezondheid.",h:"Werkdagen"},
+        {n:"Helpcenter ITG Antwerpen",u:"https://www.helpcenter.be",t:"+32 3 247 64 65",d:"Hiv/soa testen, PrEP, anoniem.",h:"Werkdagen"}
+      ],
+      sw:[
+        {n:"UTSOPI",u:"https://www.utsopi.be",t:"+32 2 219 98 74",d:"Belangenvereniging sekswerkers (FR/NL).",h:"Permanenties"},
+        {n:"Boysproject Antwerpen",u:"https://www.boysproject.be",t:"+32 3 293 96 28",d:"Mannelijke sekswerkers, gezondheid.",h:"Werkdagen"}
+      ],
+      addict:[
+        {n:"De DrugLijn",u:"https://www.druglijn.be",t:"078 15 10 20",d:"Vlaams infolijn drugs, alcohol, gokken.",h:"Werkdagen 10–20h"}
+      ],
+      psy:[
+        {n:"çavaria",u:"https://cavaria.be",t:"+32 9 223 69 29",d:"Vlaamse koepelorganisatie LGBTI+.",h:"Werkdagen"},
+        {n:"Lumi (Holebifoon)",u:"https://www.lumi.be",t:"0800 99 533",d:"Anonieme LGBTI+-luisterlijn (NL).",h:"Werkdagen 18–21h"},
+        {n:"Transgender Infopunt",u:"https://www.transgenderinfo.be",t:"+32 9 332 50 23",d:"Info en doorverwijzing trans personen.",h:"Werkdagen"}
+      ]
+    }},
+    {code:"SR",flag:"🇸🇷",name:"Suriname",cats:{
+      suicide:[{n:"Helpdesk Stichting Lobi",u:"https://www.lobi.sr",t:"+597 400 444",d:"Algemene gezondheidsdienst.",h:"Werkdagen"}],
+      minors:[{n:"Bureau voor de Rechten van het Kind",u:"https://www.gov.sr",t:"+597 477 002",d:"Overheidsbureau kinderrechten.",h:"Kantoor"}],
+      health:[
+        {n:"Stichting Lobi",u:"https://www.lobi.sr",t:"+597 400 444",d:"Seksuele en reproductieve gezondheid.",h:"Werkdagen"},
+        {n:"Mamio Namen Project",u:"https://www.facebook.com/mamionamenproject",t:"Via Facebook",d:"Hiv-preventie en steun.",h:"Variabel"}
+      ],
+      sw:[],
+      addict:[],
+      psy:[
+        {n:"LGBT Platform Suriname",u:"https://www.facebook.com/LGBTPlatformSuriname",t:"Via Facebook",d:"Koepel LGBT-organisaties.",h:"Variabel"},
+        {n:"He+HIV",u:"https://www.facebook.com/heplushiv",t:"Via netwerk",d:"Steun MSM en trans.",h:"Variabel"}
+      ]
+    }}
   ]
 };
+
 
 
 // ── COMPONENTS ────────────────────────────────────────────────────────────────
@@ -6349,11 +6827,10 @@ export default function App(){
 
       {/* ══ PRÉVENTION & URGENCE ════════════════════════════════════════════ */}
       {sec==="prevention"&&(()=>{
-        const isFR = lang==="FR";
-        const useLang = isFR ? "FR" : "EN";
-        const L = PREV_LABELS[useLang];
-        const countries = PREV_DATA[useLang];
-        const showPh3 = !["FR","EN"].includes(lang);
+        const useLang = PREV_DATA[lang] ? lang : "EN";
+        const L = PREV_LABELS[useLang] || PREV_LABELS.EN;
+        const countries = PREV_DATA[useLang] || PREV_DATA.EN;
+        const showPh3 = !PREV_DATA[lang];
         return (
           <div style={{maxWidth:1100,margin:"0 auto",padding:"0 18px 60px"}}>
             {/* Bandeau rouge URGENCE - toujours visible en tête */}
@@ -6404,7 +6881,7 @@ export default function App(){
             {/* Affichage des ressources pour le pays sélectionné */}
             {(()=>{
               const sel = countries.find(c=>c.code===prevCountry) || countries[0];
-              const order = ["suicide","minors","health","sw","addict","psy"];
+              const order = ["suicide","minors","health","sw","addict","psy","local"];
               return (
                 <div>
                   {order.map(catKey=>{
