@@ -4848,6 +4848,318 @@ const PREV_DATA = {
 
 
 
+
+// ── LEGAL : ce que dit la loi ─────────────────────────────────────────────────
+const LEGAL_LABELS = {
+  FR:{title:"Ce que dit la loi",sub:"Cadre légal selon les sources officielles, pays par pays. Sélectionnez votre pays.",pickCountry:"Choisir un pays",backHome:"Retour",according:"Selon",sourcesLbl:"Sources institutionnelles",helpLbl:"Aide juridique et associative",note:"Sources institutionnelles citées explicitement. Pour les pays sans ressource étatique fiable, références neutres : Human Dignity Trust et Equaldex. Mise à jour mai 2026.",ph3:"Autres langues en préparation. Le contenu français reste disponible ci-dessous."},
+  EN:{title:"What the law says",sub:"Legal framework according to official sources, country by country. Select your country.",pickCountry:"Choose a country",backHome:"Back",according:"According to",sourcesLbl:"Institutional sources",helpLbl:"Legal aid and associations",note:"Institutional sources explicitly cited. For countries without reliable state resources, neutral references: Human Dignity Trust and Equaldex. Updated May 2026.",ph3:"Other languages in preparation. English content remains available below."},
+  ES:{title:"Lo que dice la ley",sub:"Marco legal según las fuentes oficiales, país por país. Seleccione su país.",pickCountry:"Elegir un país",backHome:"Volver",according:"Según",sourcesLbl:"Fuentes institucionales",helpLbl:"Ayuda jurídica y asociativa",note:"Fuentes institucionales citadas explícitamente. Para países sin recursos estatales fiables, referencias neutrales: Human Dignity Trust y Equaldex. Actualizado mayo 2026.",ph3:"Otras lenguas en preparación. El contenido en inglés sigue disponible abajo."},
+  PT:{title:"O que diz a lei",sub:"Quadro legal segundo as fontes oficiais, país a país. Selecione seu país.",pickCountry:"Escolher um país",backHome:"Voltar",according:"Segundo",sourcesLbl:"Fontes institucionais",helpLbl:"Apoio jurídico e associativo",note:"Fontes institucionais citadas explicitamente. Para países sem recursos estatais confiáveis, referências neutras: Human Dignity Trust e Equaldex. Atualizado maio 2026.",ph3:"Outras línguas em preparação. O conteúdo em inglês permanece disponível abaixo."},
+  DE:{title:"Was das Gesetz sagt",sub:"Rechtlicher Rahmen gemäß den offiziellen Quellen, Land für Land. Wählen Sie Ihr Land.",pickCountry:"Land wählen",backHome:"Zurück",according:"Laut",sourcesLbl:"Institutionelle Quellen",helpLbl:"Rechtshilfe und Vereine",note:"Institutionelle Quellen ausdrücklich zitiert. Für Länder ohne zuverlässige staatliche Ressourcen, neutrale Referenzen: Human Dignity Trust und Equaldex. Aktualisiert Mai 2026.",ph3:"Andere Sprachen in Vorbereitung. Englische Inhalte bleiben unten verfügbar."},
+  IT:{title:"Cosa dice la legge",sub:"Quadro giuridico secondo le fonti ufficiali, paese per paese. Selezionate il vostro paese.",pickCountry:"Scegliere un paese",backHome:"Indietro",according:"Secondo",sourcesLbl:"Fonti istituzionali",helpLbl:"Assistenza giuridica e associativa",note:"Fonti istituzionali esplicitamente citate. Per i paesi senza risorse statali affidabili, riferimenti neutrali: Human Dignity Trust ed Equaldex. Aggiornato maggio 2026.",ph3:"Altre lingue in preparazione. Il contenuto in inglese resta disponibile sotto."},
+  NL:{title:"Wat de wet zegt",sub:"Wettelijk kader volgens officiële bronnen, per land. Kies uw land.",pickCountry:"Kies een land",backHome:"Terug",according:"Volgens",sourcesLbl:"Institutionele bronnen",helpLbl:"Juridische hulp en verenigingen",note:"Institutionele bronnen expliciet aangehaald. Voor landen zonder betrouwbare staatsmiddelen, neutrale referenties: Human Dignity Trust en Equaldex. Bijgewerkt mei 2026.",ph3:"Andere talen in voorbereiding. Engelse inhoud blijft beschikbaar."},
+  KO:{title:"법이 말하는 것",sub:"공식 출처에 따른 국가별 법적 틀. 국가를 선택하세요.",pickCountry:"국가 선택",backHome:"뒤로",according:"따르면",sourcesLbl:"공식 출처",helpLbl:"법률 지원 및 단체",note:"공식 출처를 명시적으로 인용. 신뢰할 수 있는 국가 자원이 없는 국가의 경우: Human Dignity Trust 및 Equaldex. 2026년 5월 업데이트.",ph3:"다른 언어는 준비 중. 영어 콘텐츠는 아래에 계속 제공됩니다."},
+  "日":{title:"法律が定めること",sub:"公的情報源に基づく国別の法的枠組み。国を選択してください。",pickCountry:"国を選択",backHome:"戻る",according:"によると",sourcesLbl:"公的情報源",helpLbl:"法的支援と団体",note:"公的情報源を明示的に引用。信頼できる国家リソースがない国については、Human Dignity Trust および Equaldex。2026年5月更新。",ph3:"他の言語は準備中。英語のコンテンツは下記に引き続き利用可能。"},
+  "中":{title:"法律的规定",sub:"根据官方资料的各国法律框架。请选择您的国家。",pickCountry:"选择国家",backHome:"返回",according:"根据",sourcesLbl:"机构来源",helpLbl:"法律援助和组织",note:"明确引用机构来源。对于没有可靠国家资源的国家：Human Dignity Trust 和 Equaldex。2026年5月更新。",ph3:"其他语言准备中。英文内容继续在下方可用。"},
+  HE:{title:"מה החוק אומר",sub:"מסגרת חוקית לפי מקורות רשמיים, מדינה אחר מדינה. בחר את המדינה שלך.",pickCountry:"בחר מדינה",backHome:"חזרה",according:"לפי",sourcesLbl:"מקורות מוסדיים",helpLbl:"סיוע משפטי ועמותות",note:"מקורות מוסדיים מצוטטים במפורש. עבור מדינות ללא משאבי מדינה מהימנים, הפניות נייטרליות: Human Dignity Trust ו-Equaldex. עודכן במאי 2026.",ph3:"שפות נוספות בהכנה. תוכן באנגלית נשאר זמין מטה."},
+  LT:{title:"Ką sako įstatymas",sub:"Teisinė sistema pagal oficialius šaltinius, šalis po šalies. Pasirinkite šalį.",pickCountry:"Pasirinkti šalį",backHome:"Atgal",according:"Pagal",sourcesLbl:"Instituciniai šaltiniai",helpLbl:"Teisinė pagalba ir organizacijos",note:"Instituciniai šaltiniai aiškiai cituojami. Šalims be patikimų valstybinių išteklių, neutralios nuorodos: Human Dignity Trust ir Equaldex. Atnaujinta 2026 m. gegužę.",ph3:"Kitos kalbos rengiamos. Anglų kalbos turinys lieka prieinamas žemiau."},
+  EL:{title:"Τι λέει ο νόμος",sub:"Νομικό πλαίσιο σύμφωνα με επίσημες πηγές, ανά χώρα. Επιλέξτε τη χώρα σας.",pickCountry:"Επιλέξτε χώρα",backHome:"Πίσω",according:"Σύμφωνα με",sourcesLbl:"Θεσμικές πηγές",helpLbl:"Νομική βοήθεια και σύλλογοι",note:"Θεσμικές πηγές αναφέρονται ρητά. Για χώρες χωρίς αξιόπιστους κρατικούς πόρους, ουδέτερες αναφορές: Human Dignity Trust και Equaldex. Ενημερώθηκε Μάιος 2026.",ph3:"Άλλες γλώσσες σε προετοιμασία. Το αγγλικό περιεχόμενο παραμένει διαθέσιμο παρακάτω."},
+  PL:{title:"Co mówi prawo",sub:"Ramy prawne według oficjalnych źródeł, kraj po kraju. Wybierz swój kraj.",pickCountry:"Wybierz kraj",backHome:"Powrót",according:"Według",sourcesLbl:"Źródła instytucjonalne",helpLbl:"Pomoc prawna i organizacje",note:"Źródła instytucjonalne wyraźnie cytowane. Dla krajów bez wiarygodnych zasobów państwowych, neutralne odniesienia: Human Dignity Trust i Equaldex. Zaktualizowano w maju 2026.",ph3:"Inne języki w przygotowaniu. Treści po angielsku pozostają dostępne poniżej."},
+  RU:{title:"Что говорит закон",sub:"Правовая база по официальным источникам, по странам. Выберите вашу страну.",pickCountry:"Выберите страну",backHome:"Назад",according:"Согласно",sourcesLbl:"Институциональные источники",helpLbl:"Юридическая помощь и организации",note:"Институциональные источники цитируются явно. Для стран без надёжных государственных ресурсов нейтральные ссылки: Human Dignity Trust и Equaldex. Обновлено в мае 2026.",ph3:"Другие языки в подготовке. Англоязычный контент остаётся доступен ниже."},
+  UK:{title:"Що каже закон",sub:"Правова база за офіційними джерелами, по країнах. Оберіть країну.",pickCountry:"Оберіть країну",backHome:"Назад",according:"Згідно з",sourcesLbl:"Інституційні джерела",helpLbl:"Юридична допомога та організації",note:"Інституційні джерела чітко цитуються. Для країн без надійних державних ресурсів — нейтральні посилання: Human Dignity Trust та Equaldex. Оновлено у травні 2026.",ph3:"Інші мови готуються. Англійський контент залишається доступним нижче."},
+  TR:{title:"Yasa ne diyor",sub:"Resmi kaynaklara göre ülke ülke hukuki çerçeve. Ülkenizi seçin.",pickCountry:"Ülke seçin",backHome:"Geri",according:"\u2019a göre",sourcesLbl:"Kurumsal kaynaklar",helpLbl:"Hukuki destek ve dernekler",note:"Kurumsal kaynaklar açıkça alıntılanır. Güvenilir devlet kaynağı olmayan ülkeler için nötr referanslar: Human Dignity Trust ve Equaldex. Mayıs 2026\u2019da güncellendi.",ph3:"Diğer diller hazırlanıyor. İngilizce içerik aşağıda kullanılabilir."},
+  AR:{title:"ما يقوله القانون",sub:"الإطار القانوني حسب المصادر الرسمية، بلداً ببلد. اختر بلدك.",pickCountry:"اختر بلداً",backHome:"رجوع",according:"وفقاً لـ",sourcesLbl:"المصادر المؤسسية",helpLbl:"المساعدة القانونية والجمعيات",note:"المصادر المؤسسية مذكورة صراحة. للبلدان التي تفتقر إلى موارد حكومية موثوقة، مراجع محايدة: Human Dignity Trust وEqualdex. تم التحديث في مايو 2026.",ph3:"لغات أخرى قيد الإعداد. يبقى المحتوى الإنجليزي متاحاً أدناه."},
+  FA:{title:"قانون چه می\u200cگوید",sub:"چارچوب قانونی بر اساس منابع رسمی، کشور به کشور. کشور خود را انتخاب کنید.",pickCountry:"کشور را انتخاب کنید",backHome:"بازگشت",according:"بر اساس",sourcesLbl:"منابع رسمی",helpLbl:"کمک حقوقی و سازمان\u200cها",note:"منابع رسمی به\u200cصراحت ذکر شده\u200cاند. برای کشورهای فاقد منابع دولتی قابل اعتماد، مراجع بی\u200cطرف: Human Dignity Trust و Equaldex. به\u200cروزرسانی مه 2026.",ph3:"زبان\u200cهای دیگر در حال آماده\u200cسازی. محتوای انگلیسی در زیر در دسترس است."}
+};
+
+// LEGAL_DATA : structure {code,flag,name,intro,help[]} par pays.
+// FR rempli. EN rempli (fallback pour autres langues).
+const LEGAL_DATA = {
+  FR:[
+    {code:"FR",flag:"🇫🇷",name:"France",
+     intro:"Selon le site service-public.gouv.fr (administration officielle française), la prostitution exercée par une personne majeure est licite en France et la personne qui se prostitue ne peut pas être punie par la loi. En revanche, la loi du 13 avril 2016 interdit le recours aux services d'une personne qui se prostitue : le « client » risque 1 500 € d'amende, 3 750 € en cas de récidive. Les peines sont alourdies jusqu'à 7 ans de prison et 100 000 € d'amende si la personne est mineure de 15 à 17 ans, et 10 ans et 150 000 € si elle a moins de 15 ans. Le proxénétisme (favoriser ou tirer profit de la prostitution d'autrui) est passible de 7 à 20 ans de prison selon les circonstances. Selon le site questionsexualite.fr (Santé Publique France), la loi prévoit également un parcours de sortie de la prostitution pour les personnes qui le souhaitent, avec accompagnement social et hébergement.",
+     help:[
+       {n:"Mouvement du Nid France",u:"https://mouvementdunid.org",t:"01 42 70 92 40",d:"Accompagnement social et juridique des personnes prostituées, parcours de sortie."},
+       {n:"STRASS — Syndicat du Travail Sexuel",u:"https://strass-syndicat.org",t:"Via le site",d:"Syndicat des travailleur·euses du sexe, défense juridique et plaidoyer."},
+       {n:"Médecins du Monde — Lotus Bus",u:"https://www.medecinsdumonde.org",t:"01 44 92 15 15",d:"Accès aux soins, conseils juridiques pour les TDS, notamment migrants."},
+       {n:"Service-Public.gouv.fr — Fiche officielle",u:"https://www.service-public.gouv.fr/particuliers/vosdroits/F2532",t:"Site officiel",d:"Récapitulatif officiel des infractions liées à la prostitution."}
+     ]
+    },
+    {code:"BE",flag:"🇧🇪",name:"Belgique",
+     intro:"Selon le site justice.belgium.be (Service public fédéral Justice), la Belgique a décriminalisé le travail du sexe en juin 2022 par la loi modifiant le Code pénal : le travail du sexe pour adultes consentants n'est plus une infraction. Depuis mai 2024, la loi instaure également un statut social pour les travailleur·euses du sexe avec contrats de travail, sécurité sociale et droits du travail — une première mondiale. Selon le site UTSOPI (Union des Travailleur·euses du Sexe Organisé·es Pour l'Indépendance), syndicat reconnu, le proxénétisme abusif et la traite des êtres humains restent évidemment des infractions graves, mais le client n'est pas pénalisé sauf en cas de mineur ou de personne en situation de vulnérabilité.",
+     help:[
+       {n:"UTSOPI — Union des Travailleur·euses du Sexe",u:"https://www.utsopi.be",t:"+32 484 67 65 22",d:"Bruxelles. Syndicat belge des TDS, conseil juridique et plaidoyer."},
+       {n:"Espace P (Bruxelles, Liège, Namur, Charleroi)",u:"https://www.espacep.be",t:"+32 2 219 98 74",d:"Accompagnement médico-social et juridique des TDS."},
+       {n:"Boysproject (Anvers)",u:"https://www.boysproject.be",t:"+32 3 293 96 73",d:"TDS masculins/trans, conseil juridique et santé."}
+     ]
+    },
+    {code:"CH",flag:"🇨🇭",name:"Suisse",
+     intro:"Selon le site admin.ch (Confédération suisse), la prostitution exercée librement par une personne majeure est légale en Suisse depuis 1942 ; elle est considérée comme une activité indépendante reconnue. Les cantons sont compétents pour la réglementation locale : Genève, Vaud, Zurich, Berne ont chacun des règles propres (zones autorisées, déclaration à la police, taxes). Le proxénétisme et l'encouragement à la prostitution restent réprimés (art. 195 du Code pénal suisse), de même que la traite d'êtres humains (art. 182). Le client n'est pas pénalisé. Selon le site ProCoRe (Prostitution Collective Reflexion, plateforme suisse des organisations TDS), la décriminalisation n'efface pas la stigmatisation : un travail considérable reste à faire pour l'accès aux droits sociaux et à la santé.",
+     help:[
+       {n:"ProCoRe — Prostitution Collective Reflexion",u:"https://www.procore-info.ch",t:"Via le site",d:"Plateforme suisse des organisations TDS."},
+       {n:"Aspasie (Genève)",u:"https://www.aspasie.ch",t:"+41 22 732 68 28",d:"Association genevoise pour les droits des TDS depuis 1982."},
+       {n:"Fleur de Pavé (Lausanne)",u:"https://www.fleurdepave.ch",t:"+41 21 661 10 80",d:"Accompagnement médico-social, juridique, prévention."},
+       {n:"Isla Victoria (Berne)",u:"https://www.islavictoria.ch",t:"+41 31 311 12 32",d:"Conseil et soutien aux TDS dans le canton de Berne."}
+     ]
+    },
+    {code:"CA-QC",flag:"🇨🇦",name:"Canada / Québec",
+     intro:"Selon le site justice.gc.ca (gouvernement du Canada), la loi C-36 de 2014 (Loi sur la protection des collectivités et des personnes victimes d'exploitation) a transformé le cadre légal : la prostitution elle-même n'est pas illégale, mais l'achat de services sexuels est désormais une infraction criminelle (jusqu'à 5 ans de prison). La publicité de services sexuels, le proxénétisme et la traite restent également criminels. Selon Stella, l'amie de Maimie (organisme montréalais par et pour les TDS), cette loi inspirée du modèle « nordique » a aggravé la précarité et l'isolement, et est contestée devant les tribunaux ; en mars 2023 la Cour supérieure de l'Ontario a déclaré inconstitutionnels certains articles, décision portée en appel.",
+     help:[
+       {n:"Stella, l'amie de Maimie (Montréal)",u:"https://chezstella.org",t:"+1 514 285 1599",d:"Organisme par et pour les TDS, conseil juridique et défense."},
+       {n:"Maggie's Toronto Sex Workers Action Project",u:"https://maggiestoronto.org",t:"+1 416 964 0150",d:"TDS de Toronto, conseil juridique et plaidoyer."},
+       {n:"PIVOT Legal Society (Vancouver)",u:"https://www.pivotlegal.org",t:"+1 604 255 9700",d:"Aide juridique pour les communautés marginalisées dont les TDS."}
+     ]
+    }
+  ],
+  EN:[
+    {code:"GB",flag:"🇬🇧",name:"United Kingdom",
+     intro:"According to the UK government website gov.uk and the Crown Prosecution Service (cps.gov.uk), selling and buying sex itself is legal in England, Wales and Scotland (different rules in Northern Ireland where buying sex was criminalised in 2015), but many related activities are not: street solicitation, brothel-keeping (defined as more than one sex worker working from the same premises), kerb-crawling and pimping are criminal offences. According to the English Collective of Prostitutes (ECP), the legal patchwork forces many sex workers to work alone for safety, increasing risks, and the organisation campaigns for full decriminalisation following the New Zealand model.",
+     help:[
+       {n:"English Collective of Prostitutes (ECP)",u:"https://prostitutescollective.net",t:"+44 20 7482 2496",d:"London. Self-help organisation for sex workers, legal advice."},
+       {n:"National Ugly Mugs (NUM)",u:"https://nationaluglymugs.org",t:"+44 161 629 9861",d:"National reporting scheme for crimes against sex workers."},
+       {n:"SWARM Collective",u:"https://www.swarmcollective.org",t:"Via website",d:"Sex Worker Advocacy and Resistance Movement, UK-wide."}
+     ]
+    },
+    {code:"US",flag:"🇺🇸",name:"United States",
+     intro:"According to the Department of Justice (justice.gov) and state-level statutes, prostitution is criminalised across the entire United States except in some rural counties of Nevada where licensed brothels operate (Nevada Revised Statutes 201.354). Federal law criminalises trafficking (Trafficking Victims Protection Act 2000) and interstate prostitution (Mann Act). According to SWOP-USA (Sex Workers Outreach Project), full decriminalisation is gaining political support in states like New York, Oregon and Massachusetts, but no state has yet enacted it. Maine adopted partial decriminalisation in 2023 (no penalty for sex workers, only for buyers).",
+     help:[
+       {n:"SWOP-USA (Sex Workers Outreach Project)",u:"https://swopusa.org",t:"Via website",d:"National network with local chapters, legal advocacy."},
+       {n:"Decriminalize Sex Work (DSW)",u:"https://decriminalizesexwork.com",t:"Via website",d:"National advocacy for full decriminalisation."},
+       {n:"Sex Workers Project at the Urban Justice Center (NYC)",u:"https://swp.urbanjustice.org",t:"+1 646 602 5617",d:"Free legal services for sex workers and trafficking survivors."},
+       {n:"St James Infirmary (San Francisco)",u:"https://stjamesinfirmary.org",t:"+1 415 554 8494",d:"Health and legal services by and for sex workers."}
+     ]
+    },
+    {code:"AU",flag:"🇦🇺",name:"Australia",
+     intro:"According to the Attorney-General's Department (ag.gov.au), Australian sex work law is state-based and varies widely. New South Wales fully decriminalised in 1995; Victoria followed in 2022; Queensland in 2024. Other states use licensing (Northern Territory) or criminalisation models. According to Scarlet Alliance (national peak body for sex worker organisations), decriminalisation has demonstrably improved health, safety and labour rights outcomes — the WHO and UNAIDS cite the NSW model as a global best practice.",
+     help:[
+       {n:"Scarlet Alliance",u:"https://scarletalliance.org.au",t:"+61 2 9690 0551",d:"Australian Sex Workers Association, national peak body."},
+       {n:"SWOP NSW",u:"https://swop.org.au",t:"+61 2 9319 4866",d:"Sydney-based, peer-led service for sex workers."},
+       {n:"Vixen Collective (Victoria)",u:"https://vixencollective.org",t:"Via website",d:"Victoria's peer-only sex worker organisation."}
+     ]
+    }
+  ]
+  ,
+  ES:[
+    {code:"ES",flag:"🇪🇸",name:"España",
+     intro:"Según el sitio mjusticia.gob.es (Ministerio de Justicia de España), el ejercicio voluntario de la prostitución por personas mayores de edad no constituye delito en España, ya que el Código Penal no la sanciona como tal. Sí están penalizados el proxenetismo coactivo (art. 187 CP), la tercería locativa lucrativa y la trata de seres humanos con fines de explotación sexual (art. 177 bis). La consulta a personas prostituidas en la vía pública en zonas próximas a centros docentes está sancionada por ordenanzas municipales. Según el sitio APRAMP (Asociación para la Prevención, Reinserción y Atención de la Mujer Prostituida), las propuestas abolicionistas en curso desde 2022 buscan extender la penalización al cliente, sin consenso parlamentario.",
+     help:[
+       {n:"APRAMP",u:"https://apramp.org",t:"+34 91 530 23 16",d:"Madrid. Atención integral a mujeres víctimas de explotación sexual y trata."},
+       {n:"Médicos del Mundo España",u:"https://www.medicosdelmundo.org",t:"+34 91 543 60 33",d:"Programa de atención socio-sanitaria a personas en situación de prostitución."},
+       {n:"Proyecto Esperanza Adoratrices",u:"https://www.proyectoesperanza.org",t:"+34 91 378 01 93",d:"Acompañamiento a víctimas de trata con fines de explotación sexual."}
+     ]
+    }
+  ],
+  PT:[
+    {code:"PT",flag:"🇵🇹",name:"Portugal",
+     intro:"Segundo o site dgpj.justica.gov.pt (Direção-Geral da Política de Justiça), em Portugal a prostituição exercida por adultos não é crime e a pessoa prostituída não pode ser punida. O Código Penal sanciona o lenocínio (art. 169.º, até 5 anos de prisão), o tráfico de pessoas (art. 160.º) e o lenocínio de menores (art. 175.º, até 10 anos). O cliente não é criminalizado, exceto se a pessoa for menor. Segundo o site Movimento Pelo Apoio à Problemática da SIDA (MAPS) e o Espaço Pessoa do Porto, as TDS continuam a sofrer forte estigma e dificuldades de acesso à saúde, com várias organizações a defender modelos de descriminalização plena.",
+     help:[
+       {n:"Espaço Pessoa (Porto)",u:"https://espacopessoa.norteapoiosocial.pt",t:"+351 222 020 053",d:"Apoio social, jurídico e sanitário a TDS no Porto."},
+       {n:"MAPS — Movimento Pelo Apoio à Problemática da SIDA",u:"https://www.maps.com.pt",t:"+351 252 372 502",d:"V. N. Famalicão. Prevenção HIV, apoio a TDS."},
+       {n:"APF — Associação para o Planeamento da Família",u:"https://www.apf.pt",t:"+351 213 853 993",d:"Lisboa. Saúde sexual, apoio a populações vulneráveis."}
+     ]
+    },
+    {code:"BR",flag:"🇧🇷",name:"Brasil",
+     intro:"Segundo o site planalto.gov.br (Presidência da República), no Brasil a prostituição não é crime — pessoas adultas podem exercer a atividade livremente (reconhecida como ocupação pela CBO 5198-05 do Ministério do Trabalho). O Código Penal criminaliza o rufianismo (art. 230), a manutenção de casa de prostituição (art. 229) e o tráfico interno e internacional de pessoas para exploração sexual (arts. 231 e 231-A). Segundo o site da Rede Brasileira de Prostitutas (RBP), articulada por Gabriela Leite, há mobilização ativa pela aprovação do PL Gabriela Leite (4211/2012) que regulamentaria a profissão e ampliaria direitos sociais.",
+     help:[
+       {n:"Rede Brasileira de Prostitutas (RBP)",u:"https://www.facebook.com/redeprostitutasbrasil",t:"Via Facebook",d:"Rede nacional articulando associações estaduais."},
+       {n:"Davida — Prostituição, Direitos Civis, Saúde (Rio)",u:"http://www.davida.org.br",t:"+55 21 2253-2845",d:"Rio de Janeiro. Defesa dos direitos das TDS, projeto Daspu."},
+       {n:"APROSMIG (Belo Horizonte)",u:"https://www.facebook.com/aprosmig",t:"Via Facebook",d:"Associação das prostitutas de Minas Gerais."}
+     ]
+    }
+  ],
+  IT:[
+    {code:"IT",flag:"🇮🇹",name:"Italia",
+     intro:"Secondo il sito giustizia.it (Ministero della Giustizia italiano), in Italia l'esercizio individuale e volontario della prostituzione da parte di persone maggiorenni non è reato. La legge Merlin del 1958 (n. 75/1958) ha invece chiuso le case di tolleranza e penalizza lo sfruttamento, il favoreggiamento e l'induzione alla prostituzione altrui, con pene fino a 6 anni di reclusione (art. 3). La tratta di esseri umani è punita dall'art. 601 c.p. (fino a 20 anni). Il cliente non è penalizzato, salvo nel caso di minori (art. 600-bis c.p.). Secondo il sito del Comitato per i Diritti Civili delle Prostitute, attivo dagli anni '80 a Pordenone, la legge Merlin va riformata per garantire piena dignità e diritti del lavoro.",
+     help:[
+       {n:"Comitato per i Diritti Civili delle Prostitute",u:"https://lucciole.org",t:"+39 0434 64 02 58",d:"Pordenone. Comitato storico, conseil giuridico e politico."},
+       {n:"Ass. On the Road (Martinsicuro)",u:"https://www.ontheroadonlus.it",t:"+39 0861 79 62 66",d:"Assistenza vittime di tratta, sportelli legali."},
+       {n:"Differenza Donna ONG (Roma)",u:"https://www.differenzadonna.org",t:"800 90 13 13",d:"Antiviolenza nazionale, supporto giuridico TDS."}
+     ]
+    }
+  ],
+  DE:[
+    {code:"DE",flag:"🇩🇪",name:"Deutschland",
+     intro:"Laut der Website bmfsfj.de (Bundesministerium für Familie, Senioren, Frauen und Jugend) ist Prostitution in Deutschland seit 2002 (Prostitutionsgesetz) als Erwerbstätigkeit legal anerkannt. Das Prostituiertenschutzgesetz (ProstSchG) von 2017 verpflichtet zur Anmeldung, gesundheitlichen Beratung und Mindeststandards für Betriebe. Strafbar bleiben Menschenhandel (§ 232 StGB), Zuhälterei (§ 181a StGB) und Förderung der Prostitution unter Zwang. Laut dem Berufsverband erotische und sexuelle Dienstleistungen (BesD), inzwischen die wichtigste Selbstorganisation, kritisieren Sexarbeiter:innen das ProstSchG als bevormundend und fordern eine Reform.",
+     help:[
+       {n:"BesD — Berufsverband erotische und sexuelle Dienstleistungen",u:"https://www.berufsverband-sexarbeit.de",t:"Über die Website",d:"Berlin. Berufsverband der Sexarbeiter:innen in Deutschland."},
+       {n:"Hydra e.V. (Berlin)",u:"https://www.hydra-berlin.de",t:"+49 30 611 00 23",d:"Beratungsstelle für Sexarbeiter:innen seit 1980."},
+       {n:"Kassandra e.V. (Nürnberg)",u:"https://www.kassandra-nbg.de",t:"+49 911 99 30 88",d:"Fachberatung für Sexarbeiterinnen."}
+     ]
+    },
+    {code:"AT",flag:"🇦🇹",name:"Österreich",
+     intro:"Laut der Website oesterreich.gv.at (Bundesregierung Österreich) ist freiwillige Prostitution durch volljährige Personen legal, jedoch durch Landesgesetze unterschiedlich reglementiert (Gesundheitskontrollen, Anmeldepflicht, erlaubte Zonen). Strafbar sind Zuhälterei (§ 216 StGB), Menschenhandel (§ 104a StGB) und grenzüberschreitender Prostitutionshandel (§ 217). Laut dem Verein LEFÖ (Beratung, Bildung und Begleitung für Migrantinnen), insbesondere LEFÖ-IBF, leiden migrantische Sexarbeiterinnen besonders unter prekären Aufenthaltslagen.",
+     help:[
+       {n:"LEFÖ-IBF (Wien)",u:"https://www.lefoe.at",t:"+43 1 796 92 98",d:"Wien. Interventionsstelle für Betroffene des Frauenhandels."},
+       {n:"SOPHIE BildungsRaum (Wien)",u:"https://www.sophie.or.at",t:"+43 1 897 55 36",d:"Beratungs- und Bildungsraum für Sexarbeiter:innen."}
+     ]
+    }
+  ],
+  NL:[
+    {code:"NL",flag:"🇳🇱",name:"Nederland",
+     intro:"Volgens de website rijksoverheid.nl (Nederlandse Rijksoverheid) is prostitutie in Nederland sinds 2000 een legaal beroep na opheffing van het bordeelverbod. Sekswerkers boven de 21 jaar mogen zelfstandig of in vergunde bedrijven werken; uitbating zonder gemeentelijke vergunning is strafbaar. Mensenhandel (art. 273f Sr) en het uitbuiten van minderjarigen (art. 248b Sr — leeftijdsgrens 18 jaar) blijven strafbaar. Volgens de Wet regulering sekswerk (Wrs), in behandeling sinds 2022, komt er een vergunningsplicht voor alle sekswerkers, wat de belangenvereniging PROUD fel bekritiseert als criminaliserend.",
+     help:[
+       {n:"PROUD — Belangenvereniging voor sekswerkers",u:"https://www.wijzijnproud.nl",t:"Via website",d:"Landelijke belangenvereniging, juridische steun en lobby."},
+       {n:"Soa Aids Nederland — Sekswerk",u:"https://soaaids.nl",t:"+31 20 626 26 69",d:"Gezondheid, juridische informatie voor sekswerkers."},
+       {n:"P&G292 (Amsterdam)",u:"https://pg292.nl",t:"+31 20 624 79 70",d:"Spreekuren voor sekswerkers, gezondheid en recht."}
+     ]
+    },
+    {code:"BE-NL",flag:"🇧🇪",name:"België (Vlaanderen)",
+     intro:"Volgens de website justitie.belgium.be (FOD Justitie) heeft België in juni 2022 sekswerk gedecriminaliseerd: het Strafwetboek straft niet langer vrijwillig sekswerk tussen meerderjarigen. Sinds mei 2024 voorziet de wet bovendien een arbeidsstatuut voor sekswerkers met arbeidscontracten, sociale zekerheid en arbeidsrechten — een wereldprimeur. Volgens de website van UTSOPI blijven mensenhandel (art. 433quinquies Sw.) en pooierschap met dwang of misbruik strafbaar; de klant wordt niet vervolgd behalve bij minderjarigen of personen in kwetsbare situatie.",
+     help:[
+       {n:"UTSOPI",u:"https://www.utsopi.be",t:"+32 484 67 65 22",d:"Belgische sekswerkersvakbond, juridisch advies en lobby."},
+       {n:"Pasop vzw (Gent)",u:"https://www.pasop.be",t:"+32 9 233 47 67",d:"Outreach, gezondheid en juridische steun voor sekswerkers in Vlaanderen."},
+       {n:"Boysproject (Antwerpen)",u:"https://www.boysproject.be",t:"+32 3 293 96 73",d:"Mannelijke en trans sekswerkers, juridische bijstand."}
+     ]
+    }
+  ],
+  KO:[
+    {code:"KR",flag:"🇰🇷",name:"대한민국",
+     intro:"한국 법무부 사이트(moj.go.kr)에 따르면, 대한민국에서는 2004년 \"성매매방지 및 피해자보호 등에 관한 법률\" 및 \"성매매알선 등 행위의 처벌에 관한 법률\"이 시행 중이며, 성매매 자체뿐 아니라 알선·강요·광고 등이 모두 형사처벌 대상입니다. 성매매를 한 자는 1년 이하 징역 또는 300만 원 이하 벌금에 처해질 수 있고, 알선·강요는 더 무거운 형이 부과됩니다. 단, 강요·인신매매 피해자는 처벌 대상이 아니라 보호 대상으로 분류됩니다. 한국여성인권진흥원 사이트(stop.or.kr)에 따르면, 자발적 종사자에 대한 형사처벌이 인권 침해라는 비판이 지속되어 왔으며 2016년 헌법재판소가 처벌 조항을 합헌으로 결정한 이후로도 폐지·개정 논의가 계속됩니다.",
+     help:[
+       {n:"한국여성인권진흥원 (Korean Women's Human Rights Institute)",u:"https://www.stop.or.kr",t:"1366",d:"여성긴급전화 1366. 성매매·성폭력 피해자 지원."},
+       {n:"막달레나의 집",u:"http://magdalena1985.or.kr",t:"02-794-9119",d:"용산구. 성매매 피해 여성 쉼터 및 자활 지원."},
+       {n:"한국여성단체연합",u:"https://women21.or.kr",t:"02-313-1632",d:"여성 인권 단체 연합. 정책 옹호."}
+     ]
+    }
+  ],
+  "日":[
+    {code:"JP",flag:"🇯🇵",name:"日本",
+     intro:"日本法務省サイト(moj.go.jp)によれば、1956年の売春防止法（昭和31年法律118号）が現行法であり、第3条で「何人も、売春をし、又はその相手方となつてはならない」と定めている一方、自発的な売春行為自体には罰則がなく、罰則は勧誘・周旋・場所提供・強要等にのみ適用されます（5条勧誘罪等）。風俗営業法では性的サービスの提供形態を限定的に許可しており、ソープランド・デリヘル等は届出制で営業されています。人身取引（人身売買罪、刑法226条の2）は7年以上の懲役。SWASHウェブサイト(swashweb.net)によれば、当事者団体は売春防止法第5条の廃止と労働者としての権利保障を求める運動を続けています。",
+     help:[
+       {n:"SWASH（セックスワーク・アンド・セクシュアル・ヘルス）",u:"https://swashweb.net",t:"info@swashweb.net",d:"性労働者主体の健康・人権団体。"},
+       {n:"ぱっぷす（人身取引被害者サポートセンター）",u:"https://paps.jp",t:"050-3177-5432",d:"性的搾取・人身取引被害者支援。"},
+       {n:"夜のかけこみ寺",u:"https://yorunokakekomi.com",t:"03-6809-2069",d:"夜の仕事に従事する女性のための相談窓口。"}
+     ]
+    }
+  ],
+  "中":[
+    {code:"TW",flag:"🇹🇼",name:"臺灣 Taiwan",
+     intro:"根據中華民國司法院網站（judicial.gov.tw），臺灣的《社會秩序維護法》第80條規定，從事性交易者及與其交易者均處新臺幣3萬元以下罰鍰；但同條也授權地方政府劃設「性交易專區」，於專區內合法經營，至2025年仍無縣市實際劃設專區，導致實質上仍處於罰款狀態。《刑法》第231條罰圖利使人為性交（圖利媒介、引誘）。根據日日春關懷互助協會（COSWAS, coswas.org）的長期主張，目前的「罰娼罰嫖」制度造成從業者更加邊緣化，協會推動全面除罪化。",
+     help:[
+       {n:"日日春 COSWAS",u:"https://coswas.org",t:"02-2553-0959",d:"臺北。性產業勞動者權益促進。"},
+       {n:"勵馨基金會",u:"https://www.goh.org.tw",t:"02-8911-8595",d:"新北。性剝削受害者支援。"},
+       {n:"婦女救援基金會",u:"https://www.twrf.org.tw",t:"02-2555-8595",d:"臺北。婦女人身安全、法律支援。"}
+     ]
+    },
+    {code:"CN",flag:"🇨🇳",name:"中國大陸 / 中性參考",
+     intro:"根據 Human Dignity Trust 國家檔案（humandignitytrust.org/country-profile/china）及 Equaldex 數據庫（equaldex.com/region/china），中華人民共和國《中華人民共和國治安管理處罰法》第66條規定，賣淫嫖娼者可處10至15日拘留、5000元以下罰款；情節較輕的處5日以下拘留或500元以下罰款。同性性行為自1997年起非刑事化、2001年起非病理化，但無同性婚姻或反歧視保護。性工作者組織在中國大陸不可公開存在，倡導活動由海外華語社群進行。",
+     help:[
+       {n:"Human Dignity Trust — China Profile",u:"https://www.humandignitytrust.org/country-profile/china",t:"資料庫",d:"中國 LGBT 法律狀況的中性事實參考。"},
+       {n:"Equaldex — China",u:"https://www.equaldex.com/region/china",t:"資料庫",d:"中國權利與法律變化的協作追蹤。"},
+       {n:"Rainbow Railroad（加拿大）",u:"https://www.rainbowrailroad.org",t:"網站申請",d:"高風險地區 LGBT 人士緊急援助。"}
+     ]
+    }
+  ],
+  HE:[
+    {code:"IL",flag:"🇮🇱",name:"ישראל",
+     intro:"לפי האתר justice.gov.il (משרד המשפטים), \"החוק לאיסור צריכת זנות\" שנכנס לתוקף ביולי 2020 הפך את ישראל למדינה במודל הנורדי: צריכת זנות אסורה ועונשה קנס מינהלי של 2,000 ש\"ח לעבירה ראשונה, 4,000 לחוזרת, או הליך פלילי. עיסוק בזנות עצמו אינו עבירה, אך סרסרות (סעיף 199 לחוק העונשין), הבאת אדם לעסוק בזנות (סעיף 201), והחזקת מקום לזנות (סעיף 204) הן עבירות חמורות. לפי אתר \"לא לחיות בזנות\" (לחנ\"ץ, lhz.co.il), ההתאחדות הפועלת בליווי משרד הרווחה, החוק מלווה בתוכניות לפינוי מהזנות עם ליווי פסיכוסוציאלי.",
+     help:[
+       {n:"לא לחיות בזנות — לחנ\"ץ",u:"https://www.lhz.co.il",t:"03-944-6420",d:"ארגון פעולה ופינוי מהזנות, שיתוף עם משרד הרווחה."},
+       {n:"סלעית — מרכז סיוע לנפגעות זנות (אסף הרופא)",u:"https://www.saleet.org.il",t:"בדיקת אתר",d:"מרכז טיפול בנפגעות זנות."},
+       {n:"עמותת תודעה",u:"https://todaa.org.il",t:"03-535-1655",d:"ליווי משפטי ופסיכוסוציאלי לנשים בזנות."}
+     ]
+    }
+  ],
+  LT:[
+    {code:"LT",flag:"🇱🇹",name:"Lietuva",
+     intro:"Pagal Lietuvos Respublikos teisingumo ministerijos svetainę (tm.lrv.lt), Lietuvoje pati prostitucija nėra nusikalstama, tačiau pagal Administracinių nusižengimų kodekso 487 straipsnį ji yra administracinis pažeidimas, baudžiamas bauda nuo 90 iki 290 eurų; pakartotinis pažeidimas — nuo 290 iki 580 eurų arba administracinis areštas. Baudžiamasis kodeksas baudžia sąvadavimą (307 str., iki 4 metų laisvės atėmimo), prekybą žmonėmis (147 str., iki 12 metų) ir vaiko įtraukimą į prostituciją (162 str.). Pagal Žmogaus teisių stebėjimo instituto svetainę (hrmi.lt), priimtos teisinės nuostatos kritikuojamos kaip didinančios sekso darbuotojų pažeidžiamumą.",
+     help:[
+       {n:"Žmogaus teisių stebėjimo institutas",u:"https://hrmi.lt",t:"+370 5 231 4676",d:"Vilnius. Žmogaus teisių stebėsena ir advokacija."},
+       {n:"Caritas Lietuva — kovos su prekyba žmonėmis programa",u:"https://www.caritas.lt",t:"+370 670 50 555",d:"Pagalba prekybos žmonėmis aukoms."},
+       {n:"Dingusių žmonių šeimų paramos centras",u:"https://www.missing.lt",t:"8 800 26 161",d:"Pagalba prekybos žmonėmis aukoms ir dingusiems."}
+     ]
+    }
+  ],
+  EL:[
+    {code:"GR",flag:"🇬🇷",name:"Ελλάδα",
+     intro:"Σύμφωνα με τον ιστότοπο ministryofjustice.gr (Υπουργείο Δικαιοσύνης) και τον νόμο 2734/1999, η πορνεία στην Ελλάδα είναι νόμιμη υπό αυστηρές προϋποθέσεις: η εργαζόμενη πρέπει να είναι ενήλικη Ελληνίδα ή νόμιμη μετανάστρια, να μην είναι παντρεμένη, να έχει άδεια από την αστυνομία, να εργάζεται σε αδειοδοτημένο οίκο (όχι κοντά σε σχολεία, εκκλησίες κ.λπ.). Η σύσταση οίκου ανοχής χωρίς άδεια, η μαστροπεία (άρθρο 349 ΠΚ) και η εμπορία ανθρώπων (άρθρο 323Α ΠΚ) τιμωρούνται με κάθειρξη. Σύμφωνα με την οργάνωση Red Umbrella Athens, οι αυστηροί όροι αδειοδότησης σημαίνουν ότι η μεγάλη πλειονότητα των εργαζομένων του σεξ εργάζεται παράνομα.",
+     help:[
+       {n:"Red Umbrella Athens",u:"https://redumbrellaath.gr",t:"Μέσω ιστοτόπου",d:"Αθήνα. Οργάνωση εργαζομένων του σεξ."},
+       {n:"Διοτίμα — Κέντρο Γυναικείων Μελετών",u:"https://diotima.org.gr",t:"+30 210 729 2090",d:"Νομική συμβουλευτική, υποστήριξη γυναικών θυμάτων."},
+       {n:"Praksis (κλινική για ευάλωτους)",u:"https://praksis.gr",t:"+30 210 520 5200",d:"Ιατρικός και κοινωνικός μηχανισμός."}
+     ]
+    }
+  ],
+  PL:[
+    {code:"PL",flag:"🇵🇱",name:"Polska",
+     intro:"Według strony gov.pl (Ministerstwo Sprawiedliwości RP), w Polsce sama prostytucja świadczona przez osobę pełnoletnią nie jest przestępstwem ani wykroczeniem. Kodeks karny penalizuje natomiast stręczycielstwo (art. 204 § 1, do 3 lat pozbawienia wolności), kuplerstwo (art. 204 § 2) oraz handel ludźmi (art. 189a, od 3 do 15 lat). Klient nie jest karany, z wyjątkiem korzystania z usług seksualnych małoletnich poniżej 15 lat (art. 199 § 2). Według strony Sex Work Polska (sexworkpolska.org), grupy działającej na rzecz osób świadczących usługi seksualne, brak regulacji statusu pracy powoduje wykluczenie społeczne i utrudniony dostęp do opieki zdrowotnej.",
+     help:[
+       {n:"Sex Work Polska",u:"https://sexworkpolska.org",t:"Przez stronę",d:"Grupa rzecznicza osób świadczących usługi seksualne."},
+       {n:"Fundacja La Strada (Warszawa)",u:"https://strada.org.pl",t:"+48 22 628 99 99",d:"Ofiary handlu ludźmi i przemocy seksualnej."},
+       {n:"PARASOL (Kraków)",u:"https://parasol.org.pl",t:"+48 692 415 661",d:"Pomoc osobom świadczącym usługi seksualne."}
+     ]
+    }
+  ],
+  RU:[
+    {code:"RU",flag:"🇷🇺",name:"Россия — нейтральная справка",
+     intro:"Согласно странице Human Dignity Trust (humandignitytrust.org/country-profile/russia) и базе Equaldex (equaldex.com/region/russia), в Российской Федерации сама проституция является административным правонарушением (ст. 6.11 КоАП РФ, штраф от 1500 до 2000 рублей). Уголовно наказуемы вовлечение в проституцию (ст. 240 УК РФ, до 6 лет), организация проституции (ст. 241 УК РФ, до 10 лет) и торговля людьми (ст. 127.1 УК РФ, до 20 лет). Согласно тем же источникам, гомосексуальные отношения декриминализованы в 1993 году, но с 2013 года действует закон о «гей-пропаганде», расширенный в 2023 году на всё ЛГБТ-сообщество, а в ноябре 2023 года Верховный суд признал «международное ЛГБТ-движение» экстремистским. Любая ассоциация с этим «движением» влечёт уголовную ответственность до 10 лет лишения свободы. По соображениям безопасности мы не указываем здесь местные организации.",
+     help:[
+       {n:"Human Dignity Trust — Russia Profile",u:"https://www.humandignitytrust.org/country-profile/russia",t:"База данных",d:"Нейтральная фактическая справка о российском законодательстве."},
+       {n:"Equaldex — Russia",u:"https://www.equaldex.com/region/russia",t:"База данных",d:"Совместное отслеживание прав и законов в России."},
+       {n:"Rainbow Railroad (Канада)",u:"https://www.rainbowrailroad.org",t:"Через сайт",d:"Срочная помощь ЛГБТК+ людям, спасающимся от преследования. Сайт заблокирован в РФ — доступ через Tor/VPN."}
+     ]
+    }
+  ],
+  UK:[
+    {code:"UA",flag:"🇺🇦",name:"Україна",
+     intro:"Згідно з сайтом minjust.gov.ua (Міністерство юстиції України), в Україні проституція не є кримінально караним діянням, але є адміністративним правопорушенням за статтею 181-1 КУпАП (штраф до 119 грн або громадські роботи). Кримінальний кодекс карає сутенерство (стаття 302 ККУ, до 8 років позбавлення волі при обтяжуючих обставинах) та торгівлю людьми (стаття 149 ККУ, до 15 років). Згідно з сайтом ВБО \"Легалайф Україна\" (legalife.com.ua), всеукраїнської асоціації секс-працівниць, чинна модель створює умови для зловживань з боку поліції та закликає до повної декриміналізації відповідно до рекомендацій ВООЗ.",
+     help:[
+       {n:"ВБО Легалайф Україна (LegaLife)",u:"https://legalife.com.ua",t:"Через сайт",d:"Київ. Всеукраїнська асоціація секс-працівниць."},
+       {n:"Альянс громадського здоров\u2019я",u:"https://aph.org.ua",t:"+38 044 490 5485",d:"ВІЛ/СНІД, програми для груп ризику."},
+       {n:"Ла Страда-Україна",u:"https://www.la-strada.org.ua",t:"0 800 500 335",d:"Гаряча лінія з протидії торгівлі людьми."}
+     ]
+    }
+  ],
+  TR:[
+    {code:"TR",flag:"🇹🇷",name:"Türkiye",
+     intro:"İçişleri Bakanlığı sitesine (icisleri.gov.tr) ve 1933 tarihli Genel Kadınlar ve Genel Evlerin Tabi Olacakları Hükümler ve Fuhuş Yüzünden Bulaşan Zührevi Hastalıklarla Mücadele Tüzüğü\u2019ne göre, Türkiye\u2019de fuhuş ruhsatlı genelevlerde yasaldır, kayıtlı seks işçileri (\"vesikalı\") periyodik sağlık kontrolünden geçer. Ancak yeni vesika verilmediği 1990lardan beri vesikalı sayısı sürekli düşmektedir. Türk Ceza Kanunu fuhuşa teşviki (227. madde, 2-4 yıl hapis), insan ticaretini (80. madde, 8-12 yıl) ve çocukların fuhşa sürüklenmesini (227/3-4) ağır cezalarla karşılar. Kırmızı Şemsiye Derneği sitesine (kirmizisemsiye.org) göre, mevcut sistem seks işçilerini fiilen kriminalize etmekte ve sağlık ile hukuki desteğe erişimi zorlaştırmaktadır.",
+     help:[
+       {n:"Kırmızı Şemsiye (Red Umbrella)",u:"https://kirmizisemsiye.org",t:"Web sitesinden",d:"Seks işçilerinin cinsel sağlık ve insan hakları derneği."},
+       {n:"Pembe Hayat",u:"https://www.pembehayat.org",t:"+90 312 215 60 30",d:"Ankara. Trans hakları ve seks işçileri için hukuki destek."},
+       {n:"Mor Çatı Kadın Sığınağı Vakfı",u:"https://www.morcati.org.tr",t:"+90 212 292 52 31/32",d:"İstanbul. Kadına yönelik şiddet, hukuki destek."}
+     ]
+    }
+  ],
+  AR:[
+    {code:"LB",flag:"🇱🇧",name:"لبنان",
+     intro:"وفقاً لموقع وزارة العدل اللبنانية (justice.gov.lb) وقانون العقوبات اللبناني، تنظم المواد 523-534 الدعارة في لبنان: تُجرَّم الدعارة السرية وممارستها خارج المنازل المرخصة (المادة 523، السجن من شهر إلى سنة)، كما يُعاقَب التحريض والقوادة (المادة 524). المنازل المرخصة كانت قانونية تاريخياً لكن لم تُمنح تراخيص جديدة منذ عقود. تجارة البشر مُجرَّمة بموجب القانون 164/2011 (السجن من 5 إلى 15 سنة). وفقاً لموقع كفى — KAFA (kafa.org.lb)، تعمل المنظمة على إلغاء تجريم النساء في الدعارة وملاحقة المسؤولين عن استغلالهن.",
+     help:[
+       {n:"KAFA (كفى عنف واستغلال)",u:"https://www.kafa.org.lb",t:"+961 1 39 22 20",d:"بيروت. خط مساعدة 03-018019. دعم قانوني ونفسي."},
+       {n:"Marsa Sexual Health Center",u:"https://www.marsa.me",t:"+961 1 35 60 22",d:"بيروت. صحة جنسية، فحوصات، ودعم نفسي."},
+       {n:"Mosaic (مساحة آمنة LGBTQ+)",u:"https://mosaicmena.org",t:"+961 81 31 32 32",d:"بيروت. دعم وحماية مجتمع الميم في منطقة سوانا."}
+     ]
+    },
+    {code:"TN",flag:"🇹🇳",name:"تونس",
+     intro:"وفقاً لموقع وزارة العدل التونسية (e-justice.tn) والمجلة الجزائية، تُنظم المواد 231-235 الدعارة في تونس: الدعارة خارج المنازل المرخصة (نظام الـ\"Maisons closes\" الموروث من العصر الفرنسي) جريمة جنحية، كما تُعاقَب القوادة والتحريض. الفصل 230 من المجلة الجزائية يجرّم \"اللواط والمساحقة\" بالسجن إلى 3 سنوات — وهو ما تنتقده باستمرار منظمات حقوق الإنسان كأداة ملاحقة لمجتمع الميم. وفقاً لموقع جمعية موجودين (mawjoudin.org)، يستمر العمل من أجل إلغاء الفصل 230 ودعم النساء في الدعارة.",
+     help:[
+       {n:"موجودين (Mawjoudin)",u:"https://www.mawjoudin.org",t:"عبر الموقع",d:"تونس. دعم نفسي وقانوني، حملة لإلغاء الفصل 230."},
+       {n:"الجمعية التونسية للنساء الديمقراطيات",u:"https://atfd-tunisie.org",t:"+216 71 891 866",d:"تونس. دعم قانوني للنساء وضحايا العنف."},
+       {n:"ATL MST/Sida",u:"https://www.atl-mst-sida.org.tn",t:"+216 71 333 343",d:"تونس. وقاية وعلاج الأمراض المنقولة جنسياً."}
+     ]
+    },
+    {code:"EG",flag:"🇪🇬",name:"مصر — مرجع محايد",
+     intro:"وفقاً لـ Human Dignity Trust (humandignitytrust.org/country-profile/egypt) وقاعدة بيانات Equaldex (equaldex.com/region/egypt)، يُجرَّم البغاء في مصر بموجب القانون رقم 10 لسنة 1961 الخاص بمكافحة الدعارة: العقوبة من 3 أشهر إلى 3 سنوات، مع غرامة. التحريض والقوادة عقوبتها أشد. لا يوجد قانون يُجرَّم صراحةً المثلية الجنسية، لكن المثليين يُلاحَقون عادةً بتهمة \"الفجور\" بموجب القانون 10/1961، وتهمة \"خدش الحياء العام\". وفقاً للمنظمات الدولية كالعفو الدولية وهيومن رايتس ووتش، شهدت السنوات الأخيرة موجات اعتقالات منهجية لأفراد مجتمع الميم.",
+     help:[
+       {n:"Human Dignity Trust — Egypt Profile",u:"https://www.humandignitytrust.org/country-profile/egypt",t:"قاعدة بيانات",d:"مرجع محايد للوضع القانوني في مصر."},
+       {n:"Equaldex — Egypt",u:"https://www.equaldex.com/region/egypt",t:"قاعدة بيانات",d:"متابعة تشاركية للحقوق والقوانين."},
+       {n:"Rainbow Railroad",u:"https://www.rainbowrailroad.org",t:"عبر الموقع",d:"مساعدة عاجلة عبر الحدود لأفراد LGBTQI+ المعرضين للخطر."}
+     ]
+    }
+  ],
+  FA:[
+    {code:"IR",flag:"🇮🇷",name:"ایران — مرجع بی‌طرف",
+     intro:"بر اساس Human Dignity Trust (humandignitytrust.org/country-profile/iran) و پایگاه داده Equaldex (equaldex.com/region/iran)، در جمهوری اسلامی ایران، \"فحشا\" بر اساس قانون مجازات اسلامی به عنوان عمل ضد عفت عمومی جرم محسوب می‌شود و می‌تواند به مجازات شلاق منجر شود؛ \"قوادی\" (مواد 242-244) با شلاق و در صورت تکرار اعدام مجازات می‌شود. روابط همجنس‌گرایانه (\"لواط\" مواد 233-241 و \"مساحقه\" مواد 238-241) قابل اعدام است. بر اساس همان منابع، گزارش‌های 6Rang و IRQR، اقدامات قانونی شامل اجبار به جراحی تغییر جنس برای مردان همجنس‌گرا برای فرار از اعدام نیز ثبت شده است. به دلایل امنیتی، در اینجا هیچ سازمان داخلی ذکر نمی‌شود — فقط سازمان‌های در تبعید.",
+     help:[
+       {n:"Human Dignity Trust — Iran Profile",u:"https://www.humandignitytrust.org/country-profile/iran",t:"پایگاه داده",d:"مرجع بی‌طرف برای وضعیت قانونی در ایران."},
+       {n:"6Rang — نه به تبعیض ایرانی",u:"https://6rang.org",t:"info@6rang.org",d:"شبکه ایرانی LGBTI در تبعید، گزارش‌های حقوق بشری."},
+       {n:"IRQR (کانادا)",u:"https://irqr.net",t:"info@irqr.ca · +1-416-985-7456",d:"حمایت از پناه‌جویان ایرانی LGBTQIA+، خدمات به فارسی."}
+     ]
+    }
+  ]
+
+};
+
+
 // ── COMPONENTS ────────────────────────────────────────────────────────────────
 
 function PImg({src,ageOk,bz=[],style={},onClick,fit=false}){
@@ -6283,14 +6595,18 @@ export default function App(){
             </span>
           </div>
 
+          {/* Center controls : SOS + Balance ensemble */}
+          <div style={{display:"flex",alignItems:"center",gap:8,flexShrink:0}}>
+            <SOSButton onClick={()=>goSec("prevention")} size={26}/>
+            <LegalButton onClick={()=>goSec("legal")} size={26}/>
+          </div>
+
           {/* Right controls */}
           <div style={{display:"flex",alignItems:"center",gap:6,flexShrink:0}}>
 
-            {/* Réseaux sociaux + SOS */}
+            {/* Réseaux sociaux */}
             <div style={{marginRight:4,display:"flex",alignItems:"center",gap:6}}>
               <SocialButtons size={26}/>
-              <SOSButton onClick={()=>goSec("prevention")} size={26}/>
-              <LegalButton onClick={()=>{}} size={26}/>
             </div>
 
             {/* Lang dropdown · drapeau */}
@@ -7216,12 +7532,92 @@ export default function App(){
             <div style={{marginTop:24,display:"flex",justifyContent:"center",alignItems:"center",gap:8}}>
               <SocialButtons size={36}/>
               <SOSButton onClick={()=>goSec("prevention")} size={36}/>
-              <LegalButton onClick={()=>{}} size={36}/>
+              <LegalButton onClick={()=>goSec("legal")} size={36}/>
             </div>
           </div>
           <SimpleContactForm t={t} lang={lang}/>
         </div>
       )}
+
+      {/* ══ LEGAL — Ce que dit la loi ══════════════════════════════════════ */}
+      {sec==="legal"&&(()=>{
+        const useLang = LEGAL_DATA[lang] ? lang : "FR";
+        const L = LEGAL_LABELS[lang] || LEGAL_LABELS["EN"];
+        const countries = LEGAL_DATA[useLang];
+        const showPh3 = !LEGAL_DATA[lang];
+        return (
+          <div style={{maxWidth:920,margin:"100px auto 60px",padding:"0 16px"}}>
+            <h2 style={{fontFamily:"'Libre Baskerville',serif",fontStyle:"italic",fontWeight:400,
+              fontSize:"clamp(24px,4.5vw,42px)",color:"#0a1228",marginBottom:14,textAlign:"center"}}>
+              {L.title}
+            </h2>
+            <div style={{width:48,height:1,background:"#0a1228",margin:"0 auto 18px"}}/>
+            <p style={{color:"#0a1228",fontSize:13,letterSpacing:0.5,lineHeight:1.6,
+              fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,marginBottom:14,
+              textAlign:"center",maxWidth:680,marginLeft:"auto",marginRight:"auto"}}>
+              {L.sub}
+            </p>
+            {showPh3&&(
+              <p style={{color:"#5b6680",fontSize:11,letterSpacing:0.4,lineHeight:1.5,
+                fontFamily:"'Space Grotesk',sans-serif",fontStyle:"italic",
+                textAlign:"center",margin:"0 auto 24px",maxWidth:620}}>
+                {L.ph3}
+              </p>
+            )}
+            <div style={{display:"flex",flexDirection:"column",gap:18,marginTop:26}}>
+              {countries.map((country,idx)=>(
+                <div key={country.code} style={{border:"1px solid #0a1228",padding:"18px 20px",background:"#fafafa"}}>
+                  <h3 style={{fontFamily:"'Libre Baskerville',serif",fontWeight:400,
+                    fontSize:18,color:"#0a1228",marginBottom:10,letterSpacing:0.5}}>
+                    {country.flag} {country.name}
+                  </h3>
+                  <p style={{color:"#0a1228",fontSize:13,lineHeight:1.65,
+                    fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,marginBottom:14}}>
+                    {country.intro}
+                  </p>
+                  {country.help&&country.help.length>0&&(
+                    <>
+                      <h4 style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:600,
+                        fontSize:11,letterSpacing:2,color:"#0a1228",marginTop:8,marginBottom:8,
+                        textTransform:"uppercase"}}>
+                        {L.helpLbl}
+                      </h4>
+                      <ul style={{listStyle:"none",padding:0,margin:0,
+                        display:"flex",flexDirection:"column",gap:8}}>
+                        {country.help.map((h,i)=>(
+                          <li key={i} style={{fontSize:12,lineHeight:1.5,
+                            fontFamily:"'Space Grotesk',sans-serif",color:"#0a1228"}}>
+                            <a href={h.u} target="_blank" rel="noopener noreferrer"
+                              style={{color:"#0a1228",textDecoration:"underline",fontWeight:600}}>
+                              {h.n}
+                            </a>
+                            <span style={{color:"#5b6680"}}> · {h.t}</span>
+                            <div style={{color:"#0a1228",fontSize:11.5,marginTop:2}}>{h.d}</div>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
+                </div>
+              ))}
+            </div>
+            <p style={{color:"#5b6680",fontSize:10.5,letterSpacing:0.3,lineHeight:1.5,
+              fontFamily:"'Space Grotesk',sans-serif",fontStyle:"italic",
+              textAlign:"center",marginTop:36}}>
+              {L.note}
+            </p>
+            <div style={{textAlign:"center",marginTop:30}}>
+              <button onClick={()=>goSec("portfolio")}
+                style={{background:"none",border:"1px solid #0a1228",color:"#0a1228",
+                  padding:"10px 24px",fontSize:11,letterSpacing:2,
+                  fontFamily:"'Space Grotesk',sans-serif",fontWeight:500,
+                  cursor:"pointer",textTransform:"uppercase"}}>
+                ← {L.backHome}
+              </button>
+            </div>
+          </div>
+        );
+      })()}
 
       {/* ══ PRÉVENTION & URGENCE ════════════════════════════════════════════ */}
       {sec==="prevention"&&(()=>{
