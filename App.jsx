@@ -3749,7 +3749,14 @@ const PREV_LABELS = {
   PT:{title:"Prevenção e Emergência",sub:"Se estiveres em perigo imediato, liga para os números de emergência no topo da página.",pickCountry:"Escolher um país",backHome:"Voltar",cat:{vital:"EMERGÊNCIAS VITAIS",suicide:"Crise psicológica · Suicídio",minors:"Menores em perigo",health:"Saúde sexual · IST · VIH/HIV",sw:"Proteção de trabalhadoras/es do sexo",addict:"Vícios · Chemsex",psy:"Escuta · Apoio LGBTI+",local:"Recursos locais por cidade"},h24:"24/7",free:"gratuito",call:"Ligar",visit:"Site",note:"Recursos atualizados em maio de 2026. É realizada uma revisão semestral. Para reportar uma linha encerrada ou informação errada: contact@moneypenis.com",ph3:"Outros idiomas em preparação. Os recursos internacionais abaixo continuam úteis."},
   IT:{title:"Prevenzione ed Emergenza",sub:"Se sei in pericolo immediato, chiama i numeri di emergenza in cima alla pagina.",pickCountry:"Scegli un paese",backHome:"Indietro",cat:{vital:"EMERGENZE VITALI",suicide:"Crisi psicologica · Suicidio",minors:"Minori in pericolo",health:"Salute sessuale · IST · HIV",sw:"Tutela lavoratrici/ori del sesso",addict:"Dipendenze · Chemsex",psy:"Ascolto · Supporto LGBT+",local:"Risorse locali per città"},h24:"24/7",free:"gratis",call:"Chiama",visit:"Sito",note:"Risorse aggiornate a maggio 2026. Revisione semestrale. Per segnalare una linea chiusa o un errore: contact@moneypenis.com",ph3:"Altre lingue in preparazione. Le risorse internazionali sotto restano utili."},
   DE:{title:"Prävention & Notfall",sub:"Wenn Sie in unmittelbarer Gefahr sind, rufen Sie die Notrufnummern oben auf der Seite an.",pickCountry:"Land wählen",backHome:"Zurück",cat:{vital:"LEBENSGEFAHR",suicide:"Psychische Krise · Suizid",minors:"Kinder in Gefahr",health:"Sexuelle Gesundheit · STI · HIV",sw:"Schutz von Sexarbeitenden",addict:"Sucht · Chemsex",psy:"Zuhören · LGBT+-Unterstützung",local:"Lokale Angebote nach Stadt"},h24:"24/7",free:"kostenlos",call:"Anrufen",visit:"Website",note:"Stand Mai 2026, halbjährliche Überprüfung. Geschlossene Linie oder Fehler melden: contact@moneypenis.com",ph3:"Weitere Sprachen in Vorbereitung. Die internationalen Ressourcen unten bleiben verfügbar."},
-  NL:{title:"Preventie & Noodgeval",sub:"Als u in direct gevaar verkeert, bel dan de noodnummers bovenaan de pagina.",pickCountry:"Kies een land",backHome:"Terug",cat:{vital:"LEVENSGEVAARLIJKE NOODGEVALLEN",suicide:"Psychische crisis · Suïcide",minors:"Minderjarigen in gevaar",health:"Seksuele gezondheid · soa · hiv",sw:"Bescherming sekswerkers",addict:"Verslavingen · Chemsex",psy:"Luisteren · LGBT+-steun",local:"Lokale hulpbronnen per stad"},h24:"24/7",free:"gratis",call:"Bellen",visit:"Website",note:"Bronnen bijgewerkt mei 2026. Halfjaarlijkse herziening. Gesloten lijn of fout melden: contact@moneypenis.com",ph3:"Andere talen in voorbereiding. De internationale bronnen hieronder blijven beschikbaar."}
+  NL:{title:"Preventie & Noodgeval",sub:"Als u in direct gevaar verkeert, bel dan de noodnummers bovenaan de pagina.",pickCountry:"Kies een land",backHome:"Terug",cat:{vital:"LEVENSGEVAARLIJKE NOODGEVALLEN",suicide:"Psychische crisis · Suïcide",minors:"Minderjarigen in gevaar",health:"Seksuele gezondheid · soa · hiv",sw:"Bescherming sekswerkers",addict:"Verslavingen · Chemsex",psy:"Luisteren · LGBT+-steun",local:"Lokale hulpbronnen per stad"},h24:"24/7",free:"gratis",call:"Bellen",visit:"Website",note:"Bronnen bijgewerkt mei 2026. Halfjaarlijkse herziening. Gesloten lijn of fout melden: contact@moneypenis.com",ph3:"Andere talen in voorbereiding. De internationale bronnen hieronder blijven beschikbaar."},
+  KO:{title:"예방 및 응급",sub:"즉각적인 위험에 처해 있다면 페이지 상단의 비상 번호로 전화하세요.",pickCountry:"국가 선택",backHome:"뒤로",cat:{vital:"생명 응급",suicide:"심리적 위기 · 자살",minors:"위험에 처한 미성년자",health:"성 건강 · STI · HIV",sw:"성노동자 보호",addict:"중독 · 켐섹스",psy:"경청 · LGBT+ 지원",local:"도시별 지역 자원"},h24:"24/7",free:"무료",call:"전화",visit:"웹사이트",note:"2026년 5월 업데이트. 반기별 검토. 닫힌 회선이나 잘못된 정보 신고: contact@moneypenis.com",ph3:"다른 언어 준비 중. 아래 국제 자원은 계속 유용합니다."},
+  "日":{title:"予防と緊急対応",sub:"即時の危険にある場合は、ページ上部の緊急番号にお電話ください。",pickCountry:"国を選択",backHome:"戻る",cat:{vital:"生命の緊急事態",suicide:"心理的危機・自殺",minors:"危険にさらされた未成年者",health:"性の健康・STI・HIV",sw:"セックスワーカー保護",addict:"依存症・ケムセックス",psy:"傾聴・LGBT+サポート",local:"都市別ローカルリソース"},h24:"24/7",free:"無料",call:"電話する",visit:"ウェブサイト",note:"2026年5月更新。半期ごとに見直し。閉鎖された回線や誤情報の報告：contact@moneypenis.com",ph3:"他の言語準備中。下記の国際リソースは引き続き利用可能です。"},
+  "中":{title:"预防与紧急援助",sub:"如您面临即时危险，请拨打页面顶部的紧急电话。",pickCountry:"选择国家",backHome:"返回",cat:{vital:"生命危急",suicide:"心理危机·自杀",minors:"处于危险中的未成年人",health:"性健康·性传染病·艾滋病",sw:"性工作者保护",addict:"成瘾·化学性派对",psy:"倾听·LGBT+支持",local:"按城市分类的本地资源"},h24:"24/7",free:"免费",call:"电话",visit:"网站",note:"2026年5月更新。每半年审核。如发现关闭线路或错误信息，请联系：contact@moneypenis.com",ph3:"其他语言准备中。下方国际资源仍然有效。"},
+  HE:{title:"מניעה וחירום",sub:"אם אתה בסכנה מיידית, התקשר למספרי החירום בראש העמוד.",pickCountry:"בחר מדינה",backHome:"חזרה",cat:{vital:"מקרי חירום מסכני חיים",suicide:"מצוקה נפשית · התאבדות",minors:"קטינים בסיכון",health:"בריאות מינית · מחלות מין · HIV",sw:"הגנה על עובדי מין",addict:"התמכרויות · כימסקס",psy:"הקשבה · תמיכת להט\"ב+",local:"משאבים מקומיים לפי עיר"},h24:"24/7",free:"חינם",call:"חיוג",visit:"אתר",note:"משאבים עודכנו במאי 2026. ביקורת חצי-שנתית. לדיווח על קו סגור או מידע שגוי: contact@moneypenis.com",ph3:"שפות נוספות בהכנה. המשאבים הבינלאומיים מטה נותרים שימושיים."},
+  LT:{title:"Prevencija ir pagalba",sub:"Jei jums gresia tiesioginis pavojus, skambinkite puslapio viršuje nurodytais pagalbos numeriais.",pickCountry:"Pasirinkti šalį",backHome:"Atgal",cat:{vital:"GYVYBĖS PAVOJUS",suicide:"Psichologinė krizė · Savižudybė",minors:"Pavojuje esantys nepilnamečiai",health:"Lytinė sveikata · LPL · ŽIV",sw:"Sekso darbuotojų apsauga",addict:"Priklausomybės · Chemsex",psy:"Išklausymas · LGBT+ parama",local:"Vietos ištekliai pagal miestą"},h24:"24/7",free:"nemokama",call:"Skambinti",visit:"Svetainė",note:"Ištekliai atnaujinti 2026 m. gegužę. Pusmetinė peržiūra. Pranešti apie uždarytą liniją ar klaidingą informaciją: contact@moneypenis.com",ph3:"Kitos kalbos rengiamos. Tarptautiniai ištekliai žemiau lieka naudingi."},
+  EL:{title:"Πρόληψη και Έκτακτη Ανάγκη",sub:"Αν βρίσκεστε σε άμεσο κίνδυνο, καλέστε τους αριθμούς έκτακτης ανάγκης στο επάνω μέρος της σελίδας.",pickCountry:"Επιλέξτε χώρα",backHome:"Πίσω",cat:{vital:"ΖΩΤΙΚΕΣ ΕΚΤΑΚΤΕΣ ΑΝΑΓΚΕΣ",suicide:"Ψυχολογική κρίση · Αυτοκτονία",minors:"Ανήλικοι σε κίνδυνο",health:"Σεξουαλική υγεία · ΣΜΝ · HIV",sw:"Προστασία εργαζομένων του σεξ",addict:"Εξαρτήσεις · Chemsex",psy:"Ακρόαση · Υποστήριξη LGBT+",local:"Τοπικοί πόροι ανά πόλη"},h24:"24/7",free:"δωρεάν",call:"Καλέστε",visit:"Ιστότοπος",note:"Πόροι ενημερώθηκαν τον Μάιο 2026. Εξαμηνιαία αναθεώρηση. Για αναφορά κλειστής γραμμής ή λάθος πληροφορίας: contact@moneypenis.com",ph3:"Άλλες γλώσσες σε προετοιμασία. Οι διεθνείς πόροι παρακάτω παραμένουν χρήσιμοι."},
+  PL:{title:"Prewencja i Pomoc Pilna",sub:"Jeśli grozi Ci bezpośrednie niebezpieczeństwo, zadzwoń pod numery alarmowe podane na górze strony.",pickCountry:"Wybierz kraj",backHome:"Powrót",cat:{vital:"ZAGROŻENIE ŻYCIA",suicide:"Kryzys psychiczny · Samobójstwo",minors:"Nieletni w niebezpieczeństwie",health:"Zdrowie seksualne · IPP · HIV",sw:"Ochrona osób świadczących usługi seksualne",addict:"Uzależnienia · Chemsex",psy:"Wysłuchanie · Wsparcie LGBT+",local:"Lokalne zasoby według miasta"},h24:"24/7",free:"bezpłatnie",call:"Zadzwoń",visit:"Strona",note:"Zasoby zaktualizowane w maju 2026. Półroczny przegląd. Aby zgłosić zamkniętą linię lub błędną informację: contact@moneypenis.com",ph3:"Inne języki w przygotowaniu. Zasoby międzynarodowe poniżej pozostają przydatne."}
 };
 
 // Données ressources, format compact. n=nom, u=url, t=téléphone, d=description courte, h=heures
@@ -4471,6 +4478,228 @@ const PREV_DATA = {
       ]
     }}
   ]
+  ,
+  KO:[
+    {code:"KR",flag:"🇰🇷",name:"대한민국",cats:{
+      suicide:[
+        {n:"자살예방상담전화 1393",u:"https://www.lifeline.or.kr",t:"1393",d:"보건복지부 운영 24시간 자살예방 상담.",h:"24/7"},
+        {n:"보건복지상담센터 129",u:"http://www.129.go.kr",t:"129",d:"긴급복지지원, 정신건강 상담.",h:"24/7"},
+        {n:"마음연결 (친구사이)",u:"https://www.chingusai.net",t:"문의 02-745-7942",d:"LGBT 자살예방 동료지원 프로그램.",h:"운영시간"}
+      ],
+      minors:[
+        {n:"청소년상담전화 1388",u:"https://www.cyber1388.kr",t:"1388",d:"여성가족부 청소년 위기 상담.",h:"24/7"},
+        {n:"띵동 (청소년 성소수자 위기지원)",u:"https://ddingdong.kr",t:"02-924-1224 · 위기 02-924-1227",d:"성소수자 청소년 위기지원센터, 마포구.",h:"평일"}
+      ],
+      health:[
+        {n:"iSHAP (한국에이즈퇴치연맹)",u:"https://www.ishap.org",t:"문의 웹사이트",d:"HSH 대상 HIV 검진 및 예방.",h:"평일"},
+        {n:"한국에이즈퇴치연맹",u:"https://www.kaids.or.kr",t:"02-927-4322",d:"전국 HIV/AIDS 정보 및 검진 안내.",h:"평일"}
+      ],
+      sw:[
+        {n:"한국여성단체연합 — 성노동 이슈",u:"https://women21.or.kr",t:"02-313-1632",d:"성노동자 인권 옹호 단체.",h:"평일"}
+      ],
+      psy:[
+        {n:"친구사이 (Chingusai)",u:"https://www.chingusai.net",t:"02-745-7942",d:"종로구 묘동 183. 한국 게이 인권운동단체.",h:"평일"},
+        {n:"행성인 (LGBT 인권연대)",u:"https://lgbtpride.tistory.com",t:"070-7592-9984",d:"성소수자 인권연대.",h:"운영시간"},
+        {n:"한국레즈비언상담소",u:"https://lsangdam.org",t:"02-718-3542",d:"레즈비언 전문 상담.",h:"평일"},
+        {n:"KSCRC 한국성적소수자문화인권센터",u:"https://kscrc.org",t:"02-715-9984",d:"마포구. 문화 · 인권 옹호.",h:"평일"}
+      ]
+    }}
+  ],
+  "日":[
+    {code:"JP",flag:"🇯🇵",name:"日本",cats:{
+      suicide:[
+        {n:"いのちの電話",u:"https://www.inochinodenwa.org",t:"0570-783-556",d:"全国共通ナビダイヤル、自殺予防相談。",h:"10時–22時"},
+        {n:"よりそいホットライン",u:"https://yorisoi-chat.jp",t:"0120-279-338",d:"全国共通、LGBT専門ガイダンス3番。",h:"24/7"},
+        {n:"チャイルドライン",u:"https://childline.or.jp",t:"0120-99-7777",d:"18歳までの子ども専門電話。",h:"16時–21時"}
+      ],
+      minors:[
+        {n:"チャイルドライン",u:"https://childline.or.jp",t:"0120-99-7777",d:"子どもの相談電話、無料匿名。",h:"16時–21時"},
+        {n:"よりそいホットライン",u:"https://yorisoi-chat.jp",t:"0120-279-338",d:"全国共通、子ども・若者にも対応。",h:"24/7"}
+      ],
+      health:[
+        {n:"akta コミュニティセンター",u:"https://www.akta.jp",t:"03-3226-8998",d:"新宿2-15-13 中江ビル3F。HIV/STI予防、MSM向け。",h:"火–土"},
+        {n:"PLACE TOKYO",u:"https://www.ptokyo.org",t:"03-3361-8964",d:"新宿。HIV/AIDS 当事者・家族支援。",h:"平日"},
+        {n:"JFAP (エイズ予防財団)",u:"https://www.jfap.or.jp",t:"03-5259-1811",d:"日本エイズ予防財団、全国情報。",h:"平日"}
+      ],
+      sw:[
+        {n:"SWASH",u:"https://swashweb.net",t:"info@swashweb.net",d:"性労働者主体の健康・人権団体。",h:"メール対応"},
+        {n:"QWRC (大阪)",u:"https://qwrc.org",t:"06-6353-8221",d:"クィア女性・トランスのリソースセンター。",h:"運営時間"}
+      ],
+      psy:[
+        {n:"OCCUR ホットライン",u:"https://www.occur.or.jp",t:"03-3383-5556",d:"日本最古のLGBT人権団体、相談電話。",h:"運営時間"},
+        {n:"Rebit (NPO法人)",u:"https://rebitlgbt.org",t:"03-6240-1184",d:"LGBT若者・トランス支援、教育。",h:"平日"},
+        {n:"Stonewall Japan",u:"https://stonewalljapan.org",t:"Via website",d:"在日外国人LGBT+のコミュニティ。",h:"オンライン"}
+      ],
+      local:[
+        {n:"[東京] akta",u:"https://www.akta.jp",t:"03-3226-8998",d:"新宿2-15-13。MSM向けHIV/STI検査、ピアサポート。",h:"火–土"},
+        {n:"[東京] OCCUR",u:"https://www.occur.or.jp",t:"03-3383-5556",d:"動くゲイとレズビアンの会、相談ホットライン。",h:"運営時間"},
+        {n:"[東京] PLACE TOKYO",u:"https://www.ptokyo.org",t:"03-3361-8964",d:"新宿区。HIV陽性者・家族の長期サポート。",h:"平日"},
+        {n:"[大阪] QWRC",u:"https://qwrc.org",t:"06-6353-8221",d:"大阪市北区。クィア女性・トランス。",h:"運営時間"}
+      ]
+    }}
+  ],
+  "中":[
+    {code:"TW",flag:"🇹🇼",name:"臺灣 Taiwan",cats:{
+      suicide:[
+        {n:"安心專線 1925",u:"https://www.mohw.gov.tw",t:"1925",d:"衛福部24小時安心專線。",h:"24/7"},
+        {n:"張老師 1980",u:"https://www.1980.org.tw",t:"1980",d:"全國心理輔導熱線。",h:"日間"},
+        {n:"生命線 1995",u:"https://www.life1995.org.tw",t:"1995",d:"生命線協會。",h:"24/7"}
+      ],
+      minors:[
+        {n:"113 婦幼保護專線",u:"https://www.mohw.gov.tw",t:"113",d:"婦女兒少保護專線。",h:"24/7"}
+      ],
+      health:[
+        {n:"露德協會 Lourdes",u:"https://www.lourdes.org.tw",t:"02-2371-1406",d:"台北市。HIV/AIDS、心理支持。",h:"週一至週五"},
+        {n:"愛滋感染者權益促進會",u:"https://praatw.org",t:"02-2557-1011",d:"愛滋感染者權益促進。",h:"上班時間"}
+      ],
+      sw:[
+        {n:"日日春 COSWAS",u:"https://coswas.org",t:"02-2553-0959",d:"性產業勞動者權益促進。",h:"辦公時間"}
+      ],
+      psy:[
+        {n:"同志諮詢熱線 Taiwan Tongzhi Hotline",u:"https://hotline.org.tw",t:"02-2392-1969",d:"1998年成立，全國LGBT諮詢熱線。",h:"週一至週六晚間"},
+        {n:"伴侶盟 TAPCPR",u:"https://tapcpr.org",t:"02-2935-6790",d:"婚姻平權、法律諮詢。",h:"上班時間"}
+      ]
+    }},
+    {code:"HK",flag:"🇭🇰",name:"香港 Hong Kong",cats:{
+      suicide:[
+        {n:"撒瑪利亞會 Samaritans",u:"https://www.samaritans.org.hk",t:"2389-2222",d:"多語言情緒支援熱線。",h:"24/7"},
+        {n:"生命熱線",u:"https://www.sps.org.hk",t:"2382-0000",d:"生命熱線、自殺預防。",h:"24/7"}
+      ],
+      health:[
+        {n:"關懷愛滋 AIDS Concern",u:"https://aidsconcern.org.hk",t:"2898-4422",d:"HIV預防、檢測、社群支援。",h:"辦公時間"}
+      ],
+      sw:[
+        {n:"紫藤 Zi Teng",u:"https://www.ziteng.org.hk",t:"2332-7182",d:"性工作者支援組織。",h:"辦公時間"},
+        {n:"午夜藍 Midnight Blue",u:"https://www.mnbhk.org",t:"2185-1603",d:"男性性工作者外展。",h:"辦公時間"}
+      ],
+      psy:[
+        {n:"Pink Alliance 粉紅同盟",u:"https://www.pinkalliance.hk",t:"Via website",d:"香港LGBT倡權聯盟。",h:"線上"}
+      ]
+    }},
+    {code:"SG",flag:"🇸🇬",name:"新加坡 Singapore",cats:{
+      suicide:[
+        {n:"Samaritans of Singapore (SOS)",u:"https://www.sos.org.sg",t:"1767 · 9151 1767",d:"24小時自殺預防熱線。",h:"24/7"}
+      ],
+      health:[
+        {n:"Action for AIDS",u:"https://afa.org.sg",t:"6254-0212",d:"HIV預防、檢測、PrEP。",h:"辦公時間"}
+      ],
+      sw:[
+        {n:"Project X",u:"https://theprojectx.org",t:"6534-0721",d:"性工作者外展與支援。",h:"辦公時間"}
+      ],
+      psy:[
+        {n:"Oogachaga",u:"https://oogachaga.com",t:"6226-2002",d:"1999年成立，新加坡LGBTQ+輔導。",h:"營業時間"},
+        {n:"T Project",u:"https://www.tprojectsg.org",t:"6970-0123",d:"跨性別社群支援。",h:"營業時間"},
+        {n:"Pink Dot SG",u:"https://pinkdot.sg",t:"Via website",d:"年度LGBTQ+集會與倡權。",h:"線上"}
+      ]
+    }},
+    {code:"CN",flag:"🇨🇳",name:"中國大陸 / 安全提醒",cats:{
+      suicide:[
+        {n:"北京心理危機研究與干預中心",u:"https://www.crisis.org.cn",t:"010-82951332",d:"24小時心理危機干預熱線。",h:"24/7"},
+        {n:"全國心理援助熱線 12320",u:"http://www.12320.gov.cn",t:"12320",d:"國家衛健委公共衛生熱線。",h:"日間"}
+      ],
+      psy:[
+        {n:"Rainbow Railroad (加拿大)",u:"https://www.rainbowrailroad.org",t:"Via website",d:"高風險地區LGBT人士緊急援助。",h:"線上申請"},
+        {n:"ILGA Asia",u:"https://ilgaasia.org",t:"Via website",d:"亞洲LGBTI區域聯盟、資源。",h:"線上"},
+        {n:"ORAM (美國)",u:"https://oramrefugee.org",t:"Via website",d:"LGBTQ難民與庇護援助。",h:"線上"}
+      ]
+    }}
+  ],
+  HE:[
+    {code:"IL",flag:"🇮🇱",name:"ישראל",cats:{
+      suicide:[
+        {n:"ער\"ן ERAN",u:"https://www.eran.org.il",t:"1201",d:"עזרה ראשונה נפשית 24/7, אנונימי וחינם.",h:"24/7"},
+        {n:"סהר SAHAR",u:"https://www.sahar.org.il",t:"צ׳אט באתר",d:"תמיכה רגשית בצ׳אט, אנונימי.",h:"שעות מגוונות"}
+      ],
+      minors:[
+        {n:"איגי IGY",u:"https://www.igy.org.il",t:"1-800-377-377",d:"ארגון נוער גאה, קו חירום.",h:"שעות פעילות"},
+        {n:"קו פתוח של ער\"ן לבני נוער",u:"https://www.eran.org.il",t:"1201",d:"קו חירום בני נוער.",h:"24/7"}
+      ],
+      health:[
+        {n:"הוועד למלחמה באיידס Israel AIDS Task Force",u:"https://www.aidsisrael.org.il",t:"03-561-3148",d:"בדיקות HIV, PrEP, תמיכה.",h:"שעות עבודה"}
+      ],
+      psy:[
+        {n:"האגודה למען הלהט\"ב Aguda",u:"https://lgbt.org.il",t:"03-620-5591",d:"תל אביב. ארגון הוותיק, תמיכה ועזרה.",h:"שעות עבודה"},
+        {n:"חוש\"ן Hoshen",u:"https://www.hoshen.org",t:"03-7951099",d:"חינוך לקבלה, סדנאות.",h:"שעות עבודה"},
+        {n:"הבית הפתוח ירושלים",u:"https://joh.org.il",t:"02-625-0502",d:"קהילה להט\"בית, ירושלים.",h:"שעות עבודה"},
+        {n:"איגי IGY",u:"https://www.igy.org.il",t:"1-800-377-377",d:"נוער להט\"ב, ייעוץ.",h:"שעות פעילות"}
+      ]
+    }}
+  ],
+  LT:[
+    {code:"LT",flag:"🇱🇹",name:"Lietuva",cats:{
+      suicide:[
+        {n:"Vilties linija",u:"https://www.vilties-linija.lt",t:"116 123",d:"Emocinės paramos linija suaugusiems.",h:"16h–07h"},
+        {n:"Jaunimo linija",u:"https://www.jaunimolinija.lt",t:"8 800 28 888",d:"Emocinė parama jaunimui.",h:"24/7"}
+      ],
+      minors:[
+        {n:"Vaikų linija",u:"https://www.vaikulinija.lt",t:"116 111",d:"Pagalbos linija vaikams.",h:"11h–23h"},
+        {n:"Caritas Lietuva — migrantai",u:"https://www.caritas.lt",t:"+370 5 261 0541",d:"Pagalba migrantams, nelydimiems nepilnamečiams.",h:"Darbo dienos"}
+      ],
+      health:[
+        {n:"Demetra (Pozityvių žmonių asociacija)",u:"https://demetra.lt",t:"+370 5 273 1145",d:"ŽIV pozityvių žmonių parama.",h:"Darbo dienos"}
+      ],
+      psy:[
+        {n:"LGL — Lithuanian Gay League",u:"https://www.lgl.lt",t:"+370 5 261 0314",d:"Pylimo g. 21, Vilnius. Vyriausia LGBT+ organizacija.",h:"Darbo dienos"},
+        {n:"Vilnius Pride",u:"https://www.vilniuspride.lt",t:"Per svetainę",d:"Pride organizatoriai, advokacija.",h:"Internetu"}
+      ]
+    }}
+  ],
+  EL:[
+    {code:"GR",flag:"🇬🇷",name:"Ελλάδα",cats:{
+      suicide:[
+        {n:"Γραμμή Παρέμβασης για την Αυτοκτονία — Κλίμακα",u:"https://www.klimaka.org.gr",t:"1018",d:"Εθνική γραμμή πρόληψης αυτοκτονιών.",h:"24/7"},
+        {n:"Χαμόγελο του Παιδιού — Νοητική υγεία",u:"https://www.hamogelo.gr",t:"116 111",d:"Γραμμή ψυχικής υποστήριξης παιδιών/εφήβων.",h:"24/7"}
+      ],
+      minors:[
+        {n:"Χαμόγελο του Παιδιού — 1056",u:"https://www.hamogelo.gr",t:"1056",d:"Παιδιά σε κίνδυνο, εθνική γραμμή.",h:"24/7"},
+        {n:"Color Youth Athens",u:"https://colouryouth.gr",t:"6932-588-805",d:"Κοινότητα LGBTQ νέων Αθήνας.",h:"Διαφορετικές"}
+      ],
+      health:[
+        {n:"Θετική Φωνή Positive Voice",u:"https://positivevoice.gr",t:"+30 210 882 0566",d:"Σύλλογος οροθετικών, Checkpoint Αθήνα/Θεσσαλονίκη.",h:"Δευ–Παρ"},
+        {n:"Κέντρο Ζωής",u:"https://kentrozois.gr",t:"+30 210 770 0815",d:"Υποστήριξη ατόμων με HIV.",h:"Γραφείο"}
+      ],
+      psy:[
+        {n:"Athens Pride",u:"https://athenspride.eu",t:"Μέσω ιστοτόπου",d:"Φεστιβάλ και κοινότητα ΛΟΑΤΚΙ+.",h:"Διαδικτυακά"},
+        {n:"Orlando LGBT+",u:"https://orlandolgbt.gr",t:"+30 210 924 3214",d:"Σύλλογος ΛΟΑΤΚΙ+ για ψυχική υγεία.",h:"Γραφείο"},
+        {n:"Rainbow Families Greece",u:"https://rainbowfamilies.gr",t:"Μέσω ιστοτόπου",d:"Οικογένειες ΛΟΑΤΚΙ+ στην Ελλάδα.",h:"Διαδικτυακά"},
+        {n:"Color Youth",u:"https://colouryouth.gr",t:"6932-588-805",d:"Νέοι ΛΟΑΤΚΙ+, ψυχοκοινωνική υποστήριξη.",h:"Διαφορετικές"}
+      ]
+    }},
+    {code:"CY",flag:"🇨🇾",name:"Κύπρος",cats:{
+      suicide:[
+        {n:"Γραμμή Ζωής 1410",u:"https://www.suicide-help.cy",t:"1410",d:"Γραμμή στήριξης Κύπρου, 24/7.",h:"24/7"}
+      ],
+      psy:[
+        {n:"Accept LGBTI Cyprus",u:"https://www.acceptcy.org",t:"+357 22 444050",d:"Λευκωσία. Σύλλογος ΛΟΑΤΚΙ+ Κύπρου.",h:"Γραφείο"}
+      ]
+    }}
+  ],
+  PL:[
+    {code:"PL",flag:"🇵🇱",name:"Polska",cats:{
+      suicide:[
+        {n:"ITAKA — Telefon Zaufania dla osób w kryzysie",u:"https://www.itaka.org.pl",t:"116 123",d:"Bezpłatna linia zaufania dla osób dorosłych w kryzysie.",h:"14h–22h"},
+        {n:"Telefon Zaufania dla Dzieci i Młodzieży",u:"https://116111.pl",t:"116 111",d:"Linia dla dzieci i młodzieży, prowadzona przez Empowering Children Foundation.",h:"24/7"}
+      ],
+      minors:[
+        {n:"Telefon Zaufania dla Dzieci 116 111",u:"https://116111.pl",t:"116 111",d:"Linia dla dzieci i młodzieży, bezpłatna i anonimowa.",h:"24/7"},
+        {n:"Niebieska Linia — przemoc",u:"https://www.niebieskalinia.pl",t:"800 12 00 02",d:"Ogólnopolska linia dla ofiar przemocy.",h:"24/7"}
+      ],
+      health:[
+        {n:"Stowarzyszenie Wolontariuszy Wobec AIDS \"Bądź z nami\"",u:"https://www.aids.org.pl",t:"+48 22 332 49 90",d:"Wsparcie osób żyjących z HIV.",h:"Dni robocze"},
+        {n:"Krajowe Centrum ds. AIDS",u:"https://aids.gov.pl",t:"+48 22 331 77 79",d:"Krajowy ośrodek, informacja o testach.",h:"Dni robocze"}
+      ],
+      sw:[
+        {n:"Stowarzyszenie Damska Grupa Filmowa",u:"https://www.dgf.org.pl",t:"Przez stronę",d:"Wsparcie kobiet w prostytucji.",h:"Zmienne"}
+      ],
+      psy:[
+        {n:"Lambda Warszawa",u:"https://lambdawarszawa.org",t:"22 628 52 22",d:"Linia zaufania LGBT+, czwartki 18-21.",h:"Czw 18h–21h"},
+        {n:"KPH — Kampania Przeciw Homofobii",u:"https://kph.org.pl",t:"+48 22 423 64 38",d:"Krajowa organizacja antyhomofobiczna.",h:"Dni robocze"},
+        {n:"Trans-Fuzja",u:"https://www.transfuzja.org",t:"+48 22 295 56 80",d:"Fundacja na rzecz osób transpłciowych.",h:"Dni robocze"},
+        {n:"TADA Tolerada (Łódź)",u:"https://tolerada.pl",t:"Przez stronę",d:"Łódzkie stowarzyszenie LGBT+.",h:"Zmienne"}
+      ]
+    }}
+  ]
+
 };
 
 
@@ -5204,6 +5433,29 @@ function SOSButton({onClick,size=26}){
   );
 }
 
+function LegalButton({onClick,size=26}){
+  return (
+    <button onClick={onClick}
+      title="Ce que dit la loi / What the law says"
+      aria-label="Legal"
+      style={{display:"inline-flex",alignItems:"center",justifyContent:"center",
+        width:size,height:size,background:"#0a1228",color:"#ffffff",
+        border:"none",borderRadius:4,
+        cursor:"pointer",fontFamily:"'Space Grotesk',sans-serif",
+        transition:"opacity .2s,transform .2s"}}
+      onMouseEnter={e=>{e.currentTarget.style.opacity="0.85";e.currentTarget.style.transform="scale(1.05)";}}
+      onMouseLeave={e=>{e.currentTarget.style.opacity="1";e.currentTarget.style.transform="scale(1)";}}>
+      <svg width={size*0.6} height={size*0.6} viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 3v18"/>
+        <path d="M5 8h14"/>
+        <path d="M5 8l-3 8h6z"/>
+        <path d="M19 8l-3 8h6z"/>
+        <path d="M8 21h8"/>
+      </svg>
+    </button>
+  );
+}
+
 function CS({title,soon,contact}){
   return(
     <div style={{maxWidth:680,margin:"100px auto",padding:"0 24px",textAlign:"center"}}>
@@ -5894,6 +6146,7 @@ export default function App(){
             <div style={{marginRight:4,display:"flex",alignItems:"center",gap:6}}>
               <SocialButtons size={26}/>
               <SOSButton onClick={()=>goSec("prevention")} size={26}/>
+              <LegalButton onClick={()=>{}} size={26}/>
             </div>
 
             {/* Lang dropdown · drapeau */}
@@ -6819,6 +7072,7 @@ export default function App(){
             <div style={{marginTop:24,display:"flex",justifyContent:"center",alignItems:"center",gap:8}}>
               <SocialButtons size={36}/>
               <SOSButton onClick={()=>goSec("prevention")} size={36}/>
+              <LegalButton onClick={()=>{}} size={36}/>
             </div>
           </div>
           <SimpleContactForm t={t} lang={lang}/>
