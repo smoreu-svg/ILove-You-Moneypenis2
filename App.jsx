@@ -6585,14 +6585,8 @@ export default function App(){
         <div style={{height:52,display:"flex",alignItems:"center",
           justifyContent:"space-between",padding:"0 14px",gap:8,position:"relative"}}>
 
-          {/* AVSM PRINTS · plus gros, sans logo Moneypenis à côté */}
-          <div style={{display:"flex",alignItems:"center",cursor:"pointer",flexShrink:0}}
-            onClick={()=>goSec("portfolio")}>
-            <span style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:500,
-              fontSize:11,letterSpacing:3.5,color:"#0a1228",whiteSpace:"nowrap"}}>
-              A.V.S.M PRINTS
-            </span>
-          </div>
+          {/* spacer gauche (vide) — ancienne zone A.V.S.M PRINTS retirée pour mobile */}
+          <div style={{flexShrink:0,width:1}}/>
 
           {/* Center controls : SOS + Balance — centres absolument */}
           <div style={{position:"absolute",left:"50%",top:"50%",
@@ -6935,7 +6929,7 @@ export default function App(){
           </div>
           <div style={{background:"#ffffff",marginBottom:24}}>
             <img src={ageOk?IMG.inside:IMG.inside_blur} alt="" draggable={false}
-              onContextMenu={e=>e.preventDefault()} style={{width:"100%",display:"block"}}/>
+              onContextMenu={e=>e.preventDefault()} style={{width:"100%",display:"block",filter:"saturate(1.18) contrast(1.06) brightness(1.04)"}}/>
             <p style={{padding:"6px 12px",color:"#0a1228",fontSize:9,
               fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>
               Les 11 tirages encadrés · Chambre · Paris
@@ -6943,7 +6937,7 @@ export default function App(){
           </div>
           <div style={{background:"#ffffff",marginBottom:24}}>
             <img src={ageOk?IMG.outside:IMG.outside_blur} alt="" draggable={false}
-              onContextMenu={e=>e.preventDefault()} style={{width:"100%",display:"block"}}/>
+              onContextMenu={e=>e.preventDefault()} style={{width:"100%",display:"block",filter:"saturate(1.18) contrast(1.06) brightness(1.04)"}}/>
             <p style={{padding:"6px 12px",color:"#0a1228",fontSize:9,
               fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>
               Les 11 tirages encadrés · Atelier · Paris
@@ -7409,7 +7403,7 @@ export default function App(){
               {src:"/sign-07.jpg",bz:[{t:48,l:0,w:52,h:46,lb:""}]},
               {src:"/sign-08.jpg",bz:[]},
             ].map((s,i)=>(
-              <div key={i} style={{background:"#ffffff"}}>
+              <div key={i} style={{background:"#ffffff",filter:"saturate(1.15) contrast(1.08) brightness(1.1)"}}>
                 <PImg src={s.src} ageOk={ageOk} bz={s.bz}/>
               </div>
             ))}
