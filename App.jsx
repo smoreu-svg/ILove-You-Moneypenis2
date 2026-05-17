@@ -3756,7 +3756,12 @@ const PREV_LABELS = {
   HE:{title:"מניעה וחירום",sub:"אם אתה בסכנה מיידית, התקשר למספרי החירום בראש העמוד.",pickCountry:"בחר מדינה",backHome:"חזרה",cat:{vital:"מקרי חירום מסכני חיים",suicide:"מצוקה נפשית · התאבדות",minors:"קטינים בסיכון",health:"בריאות מינית · מחלות מין · HIV",sw:"הגנה על עובדי מין",addict:"התמכרויות · כימסקס",psy:"הקשבה · תמיכת להט\"ב+",local:"משאבים מקומיים לפי עיר"},h24:"24/7",free:"חינם",call:"חיוג",visit:"אתר",note:"משאבים עודכנו במאי 2026. ביקורת חצי-שנתית. לדיווח על קו סגור או מידע שגוי: contact@moneypenis.com",ph3:"שפות נוספות בהכנה. המשאבים הבינלאומיים מטה נותרים שימושיים."},
   LT:{title:"Prevencija ir pagalba",sub:"Jei jums gresia tiesioginis pavojus, skambinkite puslapio viršuje nurodytais pagalbos numeriais.",pickCountry:"Pasirinkti šalį",backHome:"Atgal",cat:{vital:"GYVYBĖS PAVOJUS",suicide:"Psichologinė krizė · Savižudybė",minors:"Pavojuje esantys nepilnamečiai",health:"Lytinė sveikata · LPL · ŽIV",sw:"Sekso darbuotojų apsauga",addict:"Priklausomybės · Chemsex",psy:"Išklausymas · LGBT+ parama",local:"Vietos ištekliai pagal miestą"},h24:"24/7",free:"nemokama",call:"Skambinti",visit:"Svetainė",note:"Ištekliai atnaujinti 2026 m. gegužę. Pusmetinė peržiūra. Pranešti apie uždarytą liniją ar klaidingą informaciją: contact@moneypenis.com",ph3:"Kitos kalbos rengiamos. Tarptautiniai ištekliai žemiau lieka naudingi."},
   EL:{title:"Πρόληψη και Έκτακτη Ανάγκη",sub:"Αν βρίσκεστε σε άμεσο κίνδυνο, καλέστε τους αριθμούς έκτακτης ανάγκης στο επάνω μέρος της σελίδας.",pickCountry:"Επιλέξτε χώρα",backHome:"Πίσω",cat:{vital:"ΖΩΤΙΚΕΣ ΕΚΤΑΚΤΕΣ ΑΝΑΓΚΕΣ",suicide:"Ψυχολογική κρίση · Αυτοκτονία",minors:"Ανήλικοι σε κίνδυνο",health:"Σεξουαλική υγεία · ΣΜΝ · HIV",sw:"Προστασία εργαζομένων του σεξ",addict:"Εξαρτήσεις · Chemsex",psy:"Ακρόαση · Υποστήριξη LGBT+",local:"Τοπικοί πόροι ανά πόλη"},h24:"24/7",free:"δωρεάν",call:"Καλέστε",visit:"Ιστότοπος",note:"Πόροι ενημερώθηκαν τον Μάιο 2026. Εξαμηνιαία αναθεώρηση. Για αναφορά κλειστής γραμμής ή λάθος πληροφορίας: contact@moneypenis.com",ph3:"Άλλες γλώσσες σε προετοιμασία. Οι διεθνείς πόροι παρακάτω παραμένουν χρήσιμοι."},
-  PL:{title:"Prewencja i Pomoc Pilna",sub:"Jeśli grozi Ci bezpośrednie niebezpieczeństwo, zadzwoń pod numery alarmowe podane na górze strony.",pickCountry:"Wybierz kraj",backHome:"Powrót",cat:{vital:"ZAGROŻENIE ŻYCIA",suicide:"Kryzys psychiczny · Samobójstwo",minors:"Nieletni w niebezpieczeństwie",health:"Zdrowie seksualne · IPP · HIV",sw:"Ochrona osób świadczących usługi seksualne",addict:"Uzależnienia · Chemsex",psy:"Wysłuchanie · Wsparcie LGBT+",local:"Lokalne zasoby według miasta"},h24:"24/7",free:"bezpłatnie",call:"Zadzwoń",visit:"Strona",note:"Zasoby zaktualizowane w maju 2026. Półroczny przegląd. Aby zgłosić zamkniętą linię lub błędną informację: contact@moneypenis.com",ph3:"Inne języki w przygotowaniu. Zasoby międzynarodowe poniżej pozostają przydatne."}
+  PL:{title:"Prewencja i Pomoc Pilna",sub:"Jeśli grozi Ci bezpośrednie niebezpieczeństwo, zadzwoń pod numery alarmowe podane na górze strony.",pickCountry:"Wybierz kraj",backHome:"Powrót",cat:{vital:"ZAGROŻENIE ŻYCIA",suicide:"Kryzys psychiczny · Samobójstwo",minors:"Nieletni w niebezpieczeństwie",health:"Zdrowie seksualne · IPP · HIV",sw:"Ochrona osób świadczących usługi seksualne",addict:"Uzależnienia · Chemsex",psy:"Wysłuchanie · Wsparcie LGBT+",local:"Lokalne zasoby według miasta"},h24:"24/7",free:"bezpłatnie",call:"Zadzwoń",visit:"Strona",note:"Zasoby zaktualizowane w maju 2026. Półroczny przegląd. Aby zgłosić zamkniętą linię lub błędną informację: contact@moneypenis.com",ph3:"Inne języki w przygotowaniu. Zasoby międzynarodowe poniżej pozostają przydatne."},
+  RU:{title:"Профилактика и экстренная помощь",sub:"Если вам грозит непосредственная опасность, позвоните по номерам экстренных служб в верхней части страницы.",pickCountry:"Выберите страну",backHome:"Назад",cat:{vital:"УГРОЗА ЖИЗНИ",suicide:"Психологический кризис · Суицид",minors:"Несовершеннолетние в опасности",health:"Сексуальное здоровье · ИППП · ВИЧ",sw:"Защита секс-работников",addict:"Зависимости · Chemsex",psy:"Поддержка · ЛГБТ+",local:"Местные ресурсы по городам"},h24:"24/7",free:"бесплатно",call:"Позвонить",visit:"Сайт",note:"Источники обновлены в мае 2026 года. Полугодовая ревизия. Сообщить о неработающей линии или ошибке: contact@moneypenis.com",ph3:"Другие языки в подготовке. Международные ресурсы ниже остаются полезными."},
+  UK:{title:"Профілактика та екстрена допомога",sub:"Якщо ви в безпосередній небезпеці, телефонуйте на екстрені номери у верхній частині сторінки.",pickCountry:"Оберіть країну",backHome:"Назад",cat:{vital:"ЗАГРОЗА ЖИТТЮ",suicide:"Психологічна криза · Самогубство",minors:"Неповнолітні в небезпеці",health:"Сексуальне здоров\u2019я · ІПСШ · ВІЛ",sw:"Захист секс-працівників",addict:"Залежності · Chemsex",psy:"Підтримка · ЛГБТ+",local:"Місцеві ресурси за містом"},h24:"24/7",free:"безкоштовно",call:"Подзвонити",visit:"Сайт",note:"Джерела оновлено в травні 2026 року. Піврічний перегляд. Повідомити про закриту лінію або помилку: contact@moneypenis.com",ph3:"Інші мови готуються. Міжнародні ресурси нижче залишаються корисними."},
+  TR:{title:"Önleme ve Acil Durum",sub:"Acil tehlikedeyseniz sayfanın üstündeki acil durum numaralarını arayın.",pickCountry:"Ülke seçin",backHome:"Geri",cat:{vital:"HAYATİ ACİL DURUMLAR",suicide:"Psikolojik kriz · İntihar",minors:"Risk altındaki çocuklar",health:"Cinsel sağlık · CYBE · HIV",sw:"Seks işçilerinin korunması",addict:"Bağımlılıklar · Chemsex",psy:"Dinleme · LGBT+ desteği",local:"Şehirlere göre yerel kaynaklar"},h24:"24/7",free:"ücretsiz",call:"Ara",visit:"Web sitesi",note:"Kaynaklar Mayıs 2026\u2019da güncellendi. Altı aylık inceleme. Kapanmış hat veya yanlış bilgi bildirimi: contact@moneypenis.com",ph3:"Diğer diller hazırlanıyor. Aşağıdaki uluslararası kaynaklar kullanılabilir."},
+  AR:{title:"الوقاية والطوارئ",sub:"إذا كنت في خطر فوري، اتصل بأرقام الطوارئ في أعلى الصفحة.",pickCountry:"اختر بلداً",backHome:"رجوع",cat:{vital:"حالات الطوارئ الحرجة",suicide:"أزمة نفسية · انتحار",minors:"قاصرون في خطر",health:"الصحة الجنسية · الأمراض المنقولة · فيروس HIV",sw:"حماية العاملين/العاملات في الجنس",addict:"الإدمان · Chemsex",psy:"إصغاء · دعم مجتمع الميم",local:"موارد محلية حسب المدينة"},h24:"24/7",free:"مجاناً",call:"اتصل",visit:"الموقع",note:"تم تحديث المصادر في مايو 2026. مراجعة نصف سنوية. للإبلاغ عن خط مغلق أو معلومات خاطئة: contact@moneypenis.com",ph3:"لغات أخرى قيد الإعداد. تبقى المصادر الدولية أدناه متاحة."},
+  FA:{title:"پیشگیری و اضطرار",sub:"اگر در خطر فوری هستید با شماره\u200cهای اضطراری بالای صفحه تماس بگیرید.",pickCountry:"کشور را انتخاب کنید",backHome:"بازگشت",cat:{vital:"اضطراری\u200cهای حیاتی",suicide:"بحران روانی · خودکشی",minors:"کودکان در خطر",health:"سلامت جنسی · STI · HIV",sw:"حمایت از کارکنان جنسی",addict:"اعتیاد · Chemsex",psy:"گوش دادن · حمایت LGBT+",local:"منابع محلی بر اساس شهر"},h24:"24/7",free:"رایگان",call:"تماس",visit:"وب\u200cسایت",note:"منابع در مه 2026 به\u200cروزرسانی شد. بازبینی نیم\u200cساله. برای گزارش خط بسته یا اطلاعات نادرست: contact@moneypenis.com",ph3:"زبان\u200cهای دیگر در حال آماده\u200cسازی. منابع بین\u200cالمللی زیر همچنان مفید هستند."}
 };
 
 // Données ressources, format compact. n=nom, u=url, t=téléphone, d=description courte, h=heures
@@ -4696,6 +4701,145 @@ const PREV_DATA = {
         {n:"KPH — Kampania Przeciw Homofobii",u:"https://kph.org.pl",t:"+48 22 423 64 38",d:"Krajowa organizacja antyhomofobiczna.",h:"Dni robocze"},
         {n:"Trans-Fuzja",u:"https://www.transfuzja.org",t:"+48 22 295 56 80",d:"Fundacja na rzecz osób transpłciowych.",h:"Dni robocze"},
         {n:"TADA Tolerada (Łódź)",u:"https://tolerada.pl",t:"Przez stronę",d:"Łódzkie stowarzyszenie LGBT+.",h:"Zmienne"}
+      ]
+    }}
+  ]
+  ,
+  RU:[
+    {code:"INT",flag:"🌐",name:"Цифровая безопасность · Прежде всего",cats:{
+      psy:[
+        {n:"Защита цифровой связи",u:"https://ssd.eff.org/ru",t:"EFF Surveillance Self-Defense",d:"Используйте Signal с самоуничтожающимися сообщениями, Tor Browser, надёжный VPN. Не сохраняйте ЛГБТК+ контакты в телефоне открыто. После 2023 года участие в «международном ЛГБТ-движении» криминализировано.",h:"Постоянно"}
+      ]
+    }},
+    {code:"RU",flag:"🇷🇺",name:"Россия — лицензированные службы",cats:{
+      suicide:[
+        {n:"Телефон доверия экстренной психологической помощи",u:"https://www.psychiatr.ru",t:"8-800-2000-122",d:"Бесплатная анонимная общероссийская линия (дети, подростки, родители).",h:"24/7"},
+        {n:"Московская служба психологической помощи",u:"https://msph.ru",t:"051 (Москва) · 8-499-173-09-09",d:"Городская служба, кризисная помощь, в т.ч. для взрослых.",h:"24/7"}
+      ],
+      minors:[
+        {n:"Детский телефон доверия",u:"https://telefon-doveria.ru",t:"8-800-2000-122",d:"Анонимная и бесплатная линия для детей, подростков, родителей.",h:"24/7"}
+      ],
+      health:[
+        {n:"СПИД.ЦЕНТР (фонд помощи)",u:"https://spid.center",t:"Через сайт",d:"Информация о ВИЧ, тестировании, ПрЭП. Сайт может быть заблокирован в РФ.",h:"Работает"},
+        {n:"Региональные центры по борьбе со СПИДом",u:"https://aids-centr.ru",t:"Сайт регионального центра",d:"Официальные центры в каждом регионе, анонимное тестирование.",h:"Часы работы"}
+      ]
+    }},
+    {code:"OUT",flag:"🌐",name:"Помощь в эмиграции",cats:{
+      psy:[
+        {n:"Rainbow Railroad (Канада)",u:"https://www.rainbowrailroad.org",t:"Через сайт (защищённая форма)",d:"Срочная помощь ЛГБТК+ людям, спасающимся от преследования. Сайт заблокирован в РФ — доступ через Tor/VPN.",h:"Заявка онлайн"},
+        {n:"Sphere Foundation / Российская ЛГБТ-сеть в эмиграции",u:"https://lgbtnet.org",t:"helpline@lgbtnet.org",d:"Юридическая и психологическая помощь, работает из-за рубежа. С апреля 2026 объявлена «экстремистской» в РФ.",h:"По запросу"},
+        {n:"QARAVAN (Нью-Йорк, бывш. RUSA LGBTQ)",u:"https://www.qaravan.org",t:"info@qaravan.org",d:"Поддержка русскоязычных ЛГБТК+ беженцев и мигрантов в США.",h:"Рабочие часы"},
+        {n:"ORAM (Сан-Франциско)",u:"https://oramrefugee.org",t:"Через сайт",d:"Помощь ЛГБТК+ беженцам по всему миру.",h:"По запросу"}
+      ]
+    }}
+  ],
+  UK:[
+    {code:"UA",flag:"🇺🇦",name:"Україна",cats:{
+      suicide:[
+        {n:"Lifeline Ukraine",u:"https://lifelineukraine.com",t:"7333",d:"Національна лінія психологічної підтримки, особливо для ветеранів та родин.",h:"24/7"},
+        {n:"Гаряча лінія психологічної допомоги (Червоний Хрест)",u:"https://redcross.org.ua",t:"0-800-331-800",d:"Психологічна підтримка від Червоного Хреста України.",h:"24/7"}
+      ],
+      minors:[
+        {n:"Дитяча гаряча лінія La Strada",u:"https://lastrada.org.ua",t:"0-800-500-225 · 116 111",d:"Безкоштовна анонімна лінія для дітей та підлітків.",h:"Робочий час"}
+      ],
+      health:[
+        {n:"Альянс громадського здоров\u2019я",u:"https://aph.org.ua",t:"Через сайт",d:"ВІЛ/СНІД, ПрЕП, тестування, всеукраїнська мережа.",h:"Робочі дні"},
+        {n:"Точка опори UA — ЛГБТ+ дружні психологи",u:"https://tochkaopory.com",t:"Через сайт",d:"Каталог ЛГБТ+ дружніх психологів та лікарів в Україні.",h:"Онлайн"}
+      ],
+      psy:[
+        {n:"KyivPride",u:"https://kyivpride.org",t:"Через соцмережі",d:"Ялтинська 5b, Київ. Найбільша ЛГБТК+ організація. Реєстрація на події обов\u2019язкова з міркувань безпеки.",h:"Робочі дні"},
+        {n:"NGO Insight Ukraine",u:"https://insight-ukraine.org",t:"Через сайт",d:"Регіональні офіси по всій Україні. Робота з трансгендерними людьми.",h:"Робочі дні"},
+        {n:"UKRAINEPRIDE",u:"https://www.ukrainepride.org",t:"Через сайт",d:"Заснована Софією Лапіною та Юрієм Двіжоном у 2021. Мистецтво та адвокація.",h:"Онлайн"},
+        {n:"Military LGBT for Equal Rights",u:"https://lgbtmilitary.org.ua",t:"Через соцмережі",d:"ЛГБТК+ військовослужбовці, керівник Віктор Пилипенко.",h:"Соцмережі"},
+        {n:"KharkivPride",u:"https://kharkivpride.org",t:"Через соцмережі",d:"Прайд та активізм у Харкові, попри війну.",h:"Соцмережі"},
+        {n:"Nash Svit Center (LGBT Human Rights)",u:"https://gay.org.ua",t:"Через сайт",d:"Центр прав людини «Наш світ», моніторинг та документування.",h:"Робочі дні"},
+        {n:"Sens Bookstore Kyiv",u:"https://www.instagram.com/sens.bookstore",t:"Через Instagram",d:"Книгарня біля метро Арсенальна, презентації квір-літератури.",h:"Робочий час"}
+      ]
+    }}
+  ],
+  TR:[
+    {code:"TR",flag:"🇹🇷",name:"Türkiye",cats:{
+      suicide:[
+        {n:"Yeşilay (bağımlılık ve psikososyal destek)",u:"https://www.yesilay.org.tr",t:"115",d:"Bağımlılıkla mücadele ve danışmanlık hattı, psikolojik destek.",h:"24/7"},
+        {n:"İBB Kadın ve Aile Hizmetleri Müdürlüğü",u:"https://kadinveaile.ibb.istanbul",t:"AKDAM 0212 449 02 80",d:"İstanbul. Kriz danışmanlığı, kadın ve LGBTİ+ destek.",h:"Hafta içi"}
+      ],
+      minors:[
+        {n:"ALO 183 Sosyal Destek Hattı",u:"https://www.aile.gov.tr",t:"183",d:"Aile ve Sosyal Hizmetler Bakanlığı, kadın, çocuk, aile destek.",h:"24/7"}
+      ],
+      health:[
+        {n:"Pozitif-iz Derneği (HIV)",u:"https://pozitifiz.org",t:"0212 245 39 99",d:"İstanbul. HIV ile yaşayanlar için destek, test, hukuki danışmanlık.",h:"Hafta içi"},
+        {n:"Kırmızı Şemsiye (Red Umbrella)",u:"https://kirmizisemsiye.org",t:"Web sitesinden",d:"Seks işçilerinin cinsel sağlık ve insan hakları derneği.",h:"Hafta içi"}
+      ],
+      sw:[
+        {n:"Kırmızı Şemsiye (Red Umbrella)",u:"https://kirmizisemsiye.org",t:"Web sitesinden",d:"Seks işçilerinin hakları için Türkiye derneği.",h:"Hafta içi"},
+        {n:"Pembe Hayat (trans seks işçileri için de)",u:"https://www.pembehayat.org",t:"+90 312 215 60 30",d:"Ankara. Türkiye\u2019nin ilk trans haklar derneği, 2006\u2019dan beri.",h:"Hafta içi"}
+      ],
+      psy:[
+        {n:"KAOS GL Derneği",u:"https://kaosgl.org",t:"0850 888 0 539 (ücretsiz) · refugee@kaosgl.org",d:"Ankara, Barbaros Bağday Sk No:2 D:5 Çankaya. 1994\u2019te kurulan en eski LGBTİ+ derneği. Sığınmacılar için ücretsiz hukuki destek.",h:"Hafta içi"},
+        {n:"Lambdaistanbul LGBTİ+ Dayanışma Derneği",u:"https://www.lambdaistanbul.org",t:"lambda@lambdaistanbul.org",d:"İstanbul Beyoğlu, 1993\u2019te kurulan. Lambda Kültür Merkezi, İstanbul Onur Yürüyüşü düzenleyicisi.",h:"Hafta içi"},
+        {n:"SPoD (Sosyal Politikalar Cinsiyet Kimliği)",u:"https://spod.org.tr",t:"Web sitesinden",d:"İstanbul. Hukuki, sosyal, psikolojik danışmanlık. 2011\u2019den beri.",h:"Hafta içi"},
+        {n:"17 Mayıs Derneği",u:"https://17mayis.org",t:"Web sitesinden",d:"Ankara. 2019. Psikososyal ve hukuki destek, iyi olma hali programı.",h:"Hafta içi"},
+        {n:"HEVİ LGBTİ+ Derneği (Kürt-ağırlıklı)",u:"https://hevilgbti.org",t:"Web sitesinden",d:"İstanbul. Etnik azınlık LGBTİ+ ve mülteci hakları, kesişimsel yaklaşım.",h:"Hafta içi"},
+        {n:"LİSTAG (Aileler ve Arkadaşlar)",u:"https://www.listag.org",t:"listag.istanbul@gmail.com",d:"LGBT bireylerin aile ve arkadaşları için gönüllü destek grubu.",h:"Buluşmalar"}
+      ]
+    }}
+  ],
+  AR:[
+    {code:"LB",flag:"🇱🇧",name:"لبنان",cats:{
+      psy:[
+        {n:"حِلِم (Helem)",u:"https://www.helem.net",t:"services@helem.net (الخط الساخن للطوارئ عبر الموقع)",d:"بيروت. أول منظمة LGBTQIA+ في العالم العربي (2004). خدمات الحماية، الاستجابة للطوارئ في حالات الاعتقال، الدعم القانوني والنفسي.",h:"حسب الحالة"}
+      ],
+      health:[
+        {n:"Helem — توجيهات صحية",u:"https://www.helem.net",t:"services@helem.net",d:"إحالة إلى عيادات صديقة للمجتمع لفحص الأمراض المنقولة جنسياً وHIV.",h:"حسب الموعد"}
+      ]
+    }},
+    {code:"TN",flag:"🇹🇳",name:"تونس",cats:{
+      psy:[
+        {n:"موجودين (Mawjoudin) — نحن موجودون",u:"https://www.mawjoudin.org",t:"عبر الموقع",d:"تونس. أُسست 2014/2015. دعم نفسي وطبي وقانوني، شبكة معالجين/معالجات وأطباء.",h:"أيام العمل"},
+        {n:"دمج (Damj) للعدالة والمساواة",u:"https://www.facebook.com/damj.justice",t:"عبر فيسبوك",d:"تونس. العمل من أجل إلغاء الفصل 230 ودعم ضحايا التمييز.",h:"حسب الحالة"},
+        {n:"شوف (Chouf) — منظمة نسوية كويرية",u:"https://www.facebook.com/Chouftounes",t:"عبر فيسبوك",d:"تونس. منظمة نسوية كويرية تنظم مهرجان \"شوفت\" السنوي.",h:"حسب الحالة"}
+      ]
+    }},
+    {code:"MA",flag:"🇲🇦",name:"المغرب — في المنفى",cats:{
+      psy:[
+        {n:"Kif-Kif (في المنفى، إسبانيا)",u:"https://kifkif.info",t:"عبر الموقع",d:"منظمة مثليي/مثليات المغرب، تنشط من إسبانيا منذ القمع.",h:"عبر الإنترنت"}
+      ]
+    }},
+    {code:"INT",flag:"🌐",name:"مصادر إقليمية ودولية",cats:{
+      psy:[
+        {n:"Rainbow Railroad (كندا)",u:"https://www.rainbowrailroad.org",t:"عبر الموقع",d:"مساعدة عاجلة لأفراد LGBTQI+ الفارين من الاضطهاد. طلبات عبر الموقع المؤمَّن.",h:"طلب إلكتروني"},
+        {n:"ORAM (الولايات المتحدة)",u:"https://oramrefugee.org",t:"عبر الموقع",d:"دعم لاجئي مجتمع الميم في جميع أنحاء العالم.",h:"حسب الطلب"},
+        {n:"OutRight International",u:"https://outrightinternational.org",t:"عبر الموقع",d:"منظمة دولية لحقوق LGBTIQ، تقارير وموارد لمنطقة الشرق الأوسط وشمال أفريقيا.",h:"دائم"},
+        {n:"AFE — مؤسسة الحريات والمساواة العربية",u:"https://afemena.org",t:"عبر الموقع",d:"شبكة إقليمية للدفاع عن حقوق LGBTIQ في منطقة سوانا (جنوب غرب آسيا وشمال أفريقيا).",h:"حسب الحالة"},
+        {n:"My.Kali Magazine",u:"https://www.mykalimag.com",t:"عبر الموقع",d:"مجلة كويرية عربية أُسست في الأردن، مصدر معلومات وقصص.",h:"عبر الإنترنت"},
+        {n:"ILGA-Asia / ILGA-MENA",u:"https://ilga.org",t:"عبر الموقع",d:"الرابطة الدولية لحقوق LGBTI، الفرع الإقليمي.",h:"عبر الإنترنت"}
+      ]
+    }},
+    {code:"SEC",flag:"🔐",name:"تنبيه الأمان الرقمي",cats:{
+      psy:[
+        {n:"حماية الاتصالات",u:"https://ssd.eff.org/ar",t:"EFF Surveillance Self-Defense",d:"استخدم Signal مع الرسائل ذاتية التدمير، Tor Browser، VPN موثوق. في بعض البلدان (مصر، الإمارات، السعودية، إيران) تطبيقات المواعدة قد تُستخدم في عمليات الاستدراج البوليسي.",h:"دائم"}
+      ]
+    }}
+  ],
+  FA:[
+    {code:"SEC",flag:"🔐",name:"امنیت دیجیتال · در درجه اول",cats:{
+      psy:[
+        {n:"محافظت از ارتباطات",u:"https://ssd.eff.org/fa",t:"EFF Surveillance Self-Defense",d:"از Signal با پیام\u200cهای خودتخریبی، مرورگر Tor و VPN قابل اعتماد استفاده کنید. در ایران مجازات همجنس\u200cگرایی اعدام است. مخاطبین LGBT را در گوشی ذخیره نکنید.",h:"دائمی"}
+      ]
+    }},
+    {code:"OUT",flag:"🌐",name:"کمک از خارج",cats:{
+      psy:[
+        {n:"IRQR — راه\u200cآهن بین\u200cالمللی پناهندگان کوییر (کانادا)",u:"https://irqr.net",t:"info@irqr.ca · +1-416-985-7456",d:"تورنتو. از 2008. حمایت از پناه\u200cجویان ایرانی LGBTQIA+. خدمات به فارسی و انگلیسی. درخواست از طریق support.irqr.ca.",h:"دوشنبه–جمعه 10-17 (وقت تورنتو)"},
+        {n:"6Rang — نه به تبعیض ایرانی",u:"https://6rang.org",t:"info@6rang.org",d:"شبکه ایرانی LGBTI در تبعید، گزارش\u200cهای حقوق بشری و آگاهی\u200cرسانی.",h:"از طریق ایمیل"},
+        {n:"Rainbow Railroad (کانادا)",u:"https://www.rainbowrailroad.org",t:"از طریق وب\u200cسایت",d:"کمک اضطراری به افراد LGBTQI+ که از آزار و اذیت می\u200cگریزند. درخواست از طریق سایت امن.",h:"درخواست آنلاین"},
+        {n:"ORAM (آمریکا)",u:"https://oramrefugee.org",t:"از طریق وب\u200cسایت",d:"حمایت از پناهندگان دگرباش در سراسر جهان.",h:"بنا به درخواست"},
+        {n:"OutRight International",u:"https://outrightinternational.org",t:"از طریق وب\u200cسایت",d:"سازمان بین\u200cالمللی حقوق LGBTIQ، گزارش\u200cها و منابع.",h:"همیشه"}
+      ]
+    }},
+    {code:"INT",flag:"☎️",name:"خطوط بحران بین\u200cالمللی",cats:{
+      suicide:[
+        {n:"Befrienders Worldwide",u:"https://www.befrienders.org",t:"یافتن خط محلی در وب\u200cسایت",d:"شبکه بین\u200cالمللی پیشگیری از خودکشی، خطوط مختلف حسب کشور.",h:"متغیر"},
+        {n:"Crisis Text Line (بین\u200cالمللی)",u:"https://www.crisistextline.org",t:"از طریق پیامک/وب",d:"خدمات بحران از طریق پیامک در چندین کشور.",h:"24/7"}
       ]
     }}
   ]
