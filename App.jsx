@@ -6585,25 +6585,14 @@ export default function App(){
         <div style={{height:52,display:"flex",alignItems:"center",
           justifyContent:"space-between",padding:"0 14px",gap:8,position:"relative"}}>
 
-          {/* spacer gauche (vide) — ancienne zone A.V.S.M PRINTS retirée pour mobile */}
-          <div style={{flexShrink:0,width:1}}/>
-
-          {/* Center controls : SOS + Balance — centres absolument */}
-          <div style={{position:"absolute",left:"50%",top:"50%",
-            transform:"translate(-50%,-50%)",
-            display:"flex",alignItems:"center",gap:8,zIndex:1,
-            paddingTop:"env(safe-area-inset-top,0px)"}}>
+          {/* Zone gauche : SOS + Balance Légal — groupés, bien visibles */}
+          <div style={{display:"flex",alignItems:"center",gap:8,flexShrink:0}}>
             <SOSButton onClick={()=>goSec("prevention")} size={26}/>
             <LegalButton onClick={()=>goSec("legal")} size={26}/>
           </div>
 
           {/* Right controls */}
           <div style={{display:"flex",alignItems:"center",gap:6,flexShrink:0}}>
-
-            {/* Réseaux sociaux */}
-            <div style={{marginRight:4,display:"flex",alignItems:"center",gap:6}}>
-              <SocialButtons size={26}/>
-            </div>
 
             {/* Lang dropdown · drapeau */}
             <div style={{position:"relative"}}>
