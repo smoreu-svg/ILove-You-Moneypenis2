@@ -82,9 +82,9 @@ const T={
 
 
 const EDS=[
-  {key:"pf",pr:{port:590,single:110},rm:{port:37,tot:50},
+  {key:"pf",pr:{port:750,single:190},rm:{port:37,tot:50},
    avail:{portFrom:41,portTo:46,portTot:50,singleFrom:47,singleTo:50,singleTot:50}},
-  {key:"gf",pr:{port:1190,single:180},rm:{port:12,tot:15},
+  {key:"gf",pr:{port:1400,single:300},rm:{port:12,tot:15},
    avail:{portFrom:11,portTo:13,portTot:15,singleFrom:14,singleTo:15,singleTot:15}}
 ];
 // 5 types de requête (anciens : info/buy/dep/pro/col/oth — remplacés)
@@ -7067,7 +7067,7 @@ export default function App(){
                   <p style={{color:"#0a1228",fontSize:9,opacity:.55,marginBottom:14,
                     fontFamily:"'Space Grotesk',sans-serif",fontWeight:400,fontStyle:"italic",
                     lineHeight:1.6}}>
-                    {t.nextWaves||"* Prix exceptionnel de lancement, jusqu'à épuisement. Vagues suivantes : PF n°31 à 40 à 700 € · GF n°6 à 10 à 1 300 € l'exemplaire."}
+                    {t.nextWaves||"* Prix exceptionnel de lancement, jusqu'à épuisement des exemplaires indiqués."}
                   </p>
                   <p style={{color:"#0a1228",fontSize:10,opacity:.7,lineHeight:1.7,
                     fontFamily:"'Space Grotesk',sans-serif",fontWeight:400}}>
