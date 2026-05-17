@@ -6584,7 +6584,7 @@ export default function App(){
         background:"rgba(255,255,255,0.97)",backdropFilter:"blur(16px)",
         borderBottom:"1px solid #0a1228",paddingTop:"env(safe-area-inset-top,0px)"}}>
         <div style={{height:52,display:"flex",alignItems:"center",
-          justifyContent:"space-between",padding:"0 14px",gap:8}}>
+          justifyContent:"space-between",padding:"0 14px",gap:8,position:"relative"}}>
 
           {/* AVSM PRINTS · plus gros, sans logo Moneypenis à côté */}
           <div style={{display:"flex",alignItems:"center",cursor:"pointer",flexShrink:0}}
@@ -6595,8 +6595,11 @@ export default function App(){
             </span>
           </div>
 
-          {/* Center controls : SOS + Balance ensemble */}
-          <div style={{display:"flex",alignItems:"center",gap:8,flexShrink:0}}>
+          {/* Center controls : SOS + Balance — centres absolument */}
+          <div style={{position:"absolute",left:"50%",top:"50%",
+            transform:"translate(-50%,-50%)",
+            display:"flex",alignItems:"center",gap:8,zIndex:1,
+            paddingTop:"env(safe-area-inset-top,0px)"}}>
             <SOSButton onClick={()=>goSec("prevention")} size={26}/>
             <LegalButton onClick={()=>goSec("legal")} size={26}/>
           </div>
