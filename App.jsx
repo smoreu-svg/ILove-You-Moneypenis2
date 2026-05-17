@@ -7702,10 +7702,24 @@ export default function App(){
                             {L.cat[catKey]}
                           </h2>
                         </div>
-                        <div style={{display:"grid",
-                          gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",
-                          gap:14}}>
-                          {items.map((r,i)=>(
+                        {(()=>{
+                          // Séparer items avec/sans préfixe [Ville]
+                          const cityMatch = (s)=> s.match(/^\[([^\]]+)\]\s*(.*)$/);
+                          const nonCity = [];
+                          const byCity = {};
+                          items.forEach(r => {
+                            const m = cityMatch(r.n);
+                            if(m){
+                              const city = m[1].trim();
+                              const cleanName = m[2].trim();
+                              if(!byCity[city]) byCity[city]=[];
+                              byCity[city].push({...r, n: cleanName});
+                            } else {
+                              nonCity.push(r);
+                            }
+                          });
+                          const cityOrder = Object.keys(byCity).sort((a,b)=>a.localeCompare(b,undefined,{sensitivity:"base"}));
+                          const renderCard = (r,i)=>(
                             <div key={i} style={{background:"#ffffff",
                               border:isVital?"1px solid #dc2626":"1px solid #0a1228",
                               padding:"14px 16px"}}>
@@ -7745,8 +7759,35 @@ export default function App(){
                                 )}
                               </div>
                             </div>
-                          ))}
-                        </div>
+                          );
+                          return (
+                            <>
+                              {nonCity.length>0 && (
+                                <div style={{display:"grid",
+                                  gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",
+                                  gap:14}}>
+                                  {nonCity.map(renderCard)}
+                                </div>
+                              )}
+                              {cityOrder.map((city,ci)=>(
+                                <div key={city} style={{marginTop:(nonCity.length>0||ci>0)?22:0}}>
+                                  <h3 style={{fontFamily:"'Libre Baskerville',serif",
+                                    fontStyle:"italic",fontWeight:400,
+                                    fontSize:"clamp(15px,2vw,19px)",color:"#0a1228",
+                                    margin:"0 0 10px 0",paddingBottom:5,
+                                    borderBottom:"1px solid #0a1228",opacity:0.75}}>
+                                    {city}
+                                  </h3>
+                                  <div style={{display:"grid",
+                                    gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",
+                                    gap:14}}>
+                                    {byCity[city].map(renderCard)}
+                                  </div>
+                                </div>
+                              ))}
+                            </>
+                          );
+                        })()}
                       </div>
                     );
                   })}
