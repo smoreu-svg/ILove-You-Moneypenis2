@@ -6073,6 +6073,18 @@ export default function App(){
   const[formResult,setFormResult]=useState(null);
   // D'où le user vient lorsqu'il a ouvert le formulaire (pour le retour)
   const[formReturn,setFormReturn]=useState("list");
+  // Relais SMÉ : arrivée depuis la page-miroir sebastienmoreu.com,
+  // validation déjà cochée → on ouvre directement le site (gate en miroir).
+  useEffect(()=>{
+    const p=new URLSearchParams(window.location.search);
+    if(p.get("sme")==="1" && p.get("adult")==="1"){
+      setStarted(true);
+      setIntroDone(true);
+      setAgeOk(true);
+      setDis(true);
+      setMenuOpen(true);
+    }
+  },[]);
   const audioRef=useRef(null);
   const audioTriggeredRef=useRef(false);
   const t=T[lang]?{...T.EN,...T[lang]}:T.EN;
