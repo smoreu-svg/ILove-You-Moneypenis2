@@ -6072,19 +6072,17 @@ export default function App(){
     country:"",langPref:lang,pref:"email",msg:"",consent:false});
   const[formResult,setFormResult]=useState(null);
   // D'où le user vient lorsqu'il a ouvert le formulaire (pour le retour)
-  const[formReturn,setFormReturn]=useState("list");
-  // Relais SMÉ : arrivée depuis la page-miroir sebastienmoreu.com,
-  // validation déjà cochée → on ouvre directement le site (gate en miroir).
-  useEffect(()=>{
-    const p=new URLSearchParams(window.location.search);
-    if(p.get("sme")==="1" && p.get("adult")==="1"){
-      setStarted(true);
-      setIntroDone(true);
-      setAgeOk(true);
-      setDis(true);
-      setMenuOpen(true);
-    }
-  },[]);
+  // Relais SMÉ : +18 (adult=1) ouvre la version complète, -18 (adult=0) la version grand public.
+useEffect(()=>{
+  const p=new URLSearchParams(window.location.search);
+  if(p.get("sme")==="1"){
+    setStarted(true);
+    setIntroDone(true);
+    setDis(true);
+    setMenuOpen(true);
+    setAgeOk(p.get("adult")==="1");   // 1 = +18 complet ; 0 = -18 grand public (censuré)
+  }
+},[]);
   const audioRef=useRef(null);
   const audioTriggeredRef=useRef(false);
   const t=T[lang]?{...T.EN,...T[lang]}:T.EN;
